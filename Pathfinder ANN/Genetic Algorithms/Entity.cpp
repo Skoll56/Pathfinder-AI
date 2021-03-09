@@ -413,8 +413,16 @@ void Entity::InitialiseANN()
 			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;;
 		}
 	}
-	ANN = new NeuralNetwork(weights, 0.5f);
-	//ANN = NeuralNetwork("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-03-07--12-52-35.ann");
+	//ANN = new NeuralNetwork(weights, 0.5f);
+	ANN = new NeuralNetwork();
+	if (tag == 'A')
+	{
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-03-09--11-51-34.ann");
+	}
+	else if (tag == 'B')
+	{
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-03-09--11-52-19.ann");
+	}
 }
 
 bool contains(int _i, std::vector<int> &_array)

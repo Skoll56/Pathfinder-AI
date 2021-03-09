@@ -107,7 +107,7 @@ void Game::start()
 		else { tag = "?"; }
 		console.Log("--Player " + tag + " Wins--");
 		games++;
-		if (games == 75)
+		if (games == 300)
 		{
 			console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/");		
 			games = 0;

@@ -214,7 +214,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Count the ticks for saving the ANN
 		tick++;
-		if (tick == 5000000)
+		if (tick == 50000000)
 		{
 			Save();
 			tick = 0;
@@ -327,6 +327,7 @@ void NeuralNetwork::Load(std::string _path)
 
 	int outLayer = weights.size() - 1;
 	weights[outLayer].resize(numOutputs);
+	activations[outLayer].resize(numOutputs);
 	for (int l = 0; l < weights[outLayer].size(); l++)
 	{
 		weights[outLayer][l].resize(nodesPerLayer);
@@ -348,8 +349,9 @@ void NeuralNetwork::Load(std::string _path)
 			if (i != 0)
 			{
 				layers[i].node[l].inputWeights.resize(weights[i - 1].size());
+				layers[i].node[l].activationThreshold = activations[i][l];
 			}
-			layers[i].node[l].activationThreshold = activations[i][l];
+			
 
 			for (int j = 0; j < weights[i][l].size(); j++)
 			{
