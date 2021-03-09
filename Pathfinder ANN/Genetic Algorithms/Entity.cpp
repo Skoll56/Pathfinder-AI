@@ -199,7 +199,6 @@ void Entity::DoAction(Action _a)
 		m_actionList[CharacterSheet::AttackDefensively].legal = false;		
 		m_actionList[CharacterSheet::FullMeleeAttack].legal = false;
 		m_actionList[CharacterSheet::FullAttackDefensively].legal = false;
-		
 	}
 	else if (_a.name == CharacterSheet::FiveFtStepFwd)
 	{
@@ -381,43 +380,41 @@ void Entity::InitialiseANN()
 
 	std::vector<std::vector<std::vector<float>>> weights;
 
-const int numLayers = 3;
-const int numNodes = 10;
-const int numOutputs = 13;
-const int numInputs = 11;
-const float weight = 0.05f;
+	const int numLayers = 3;
+	const int numNodes = 10;
+	const int numOutputs = 13;
+	const int numInputs = 11;
+	const float weight = 0.05f;
+	
+	weights.resize(numLayers + 2); // The +2 is to include the input and output layer
+	weights[0].resize(numInputs); //0 is the input layer, it has no inputs or weights of its own
 
-weights.resize(numLayers + 2); // The +2 is to include the input and output layer
-weights[0].resize(numInputs); //0 is the input layer, it has no inputs or weights of its own
 
-
-for (int i = 1; i < weights.size() - 1; i++) //This initialises all the middle layers
-{
-	weights[i].resize(numNodes);
-	for (int l = 0; l < weights[i].size(); l++)
+	for (int i = 1; i < weights.size() - 1; i++) //This initialises all the middle layers
 	{
-		weights[i][l].resize(weights[i - 1].size());
-		for (int j = 0; j < weights[i][l].size(); j++)
+		weights[i].resize(numNodes);
+		for (int l = 0; l < weights[i].size(); l++)
 		{
-			weights[i][l][j] = weight;
+			weights[i][l].resize(weights[i - 1].size());
+			for (int j = 0; j < weights[i][l].size(); j++)
+			{
+				weights[i][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;
+			}
 		}
 	}
-}
 
-int outLayer = weights.size() - 1;
-weights[outLayer].resize(numOutputs);
-for (int l = 0; l < weights[outLayer].size(); l++)
-{
-	weights[outLayer][l].resize(numNodes);
-	for (int j = 0; j < weights[outLayer][l].size(); j++)
+	int outLayer = weights.size() - 1;
+	weights[outLayer].resize(numOutputs);
+	for (int l = 0; l < weights[outLayer].size(); l++)
 	{
-		weights[outLayer][l][j] = weight;
+		weights[outLayer][l].resize(numNodes);
+		for (int j = 0; j < weights[outLayer][l].size(); j++)
+		{
+			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;;
+		}
 	}
-}
-
-
-ANN = new NeuralNetwork(weights, 0.5f);
-//ANN = NeuralNetwork("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-03-07--12-52-35.ann");
+	ANN = new NeuralNetwork(weights, 0.5f);
+	//ANN = NeuralNetwork("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-03-07--12-52-35.ann");
 }
 
 bool contains(int _i, std::vector<int> &_array)
@@ -483,22 +480,42 @@ void Entity::Update()
 				DoAction(m_actionList[CharacterSheet::MoveForRanged]);
 			}
 		}
-		else if (contains((int)CharacterSheet::FullMeleeAttack, selection) && !isAdjacent())
+		else if (contains((int)CharacterSheet::FullMeleeAttack, selection))
 		{
-			if (m_actionList[CharacterSheet::FiveFtStepFwd].legal)
+			if (!isAdjacent())
 			{
-				DoAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
+				if (m_actionList[CharacterSheet::FiveFtStepFwd].legal)
+				{
+					DoAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
+					if (m_actionList[CharacterSheet::FullMeleeAttack].legal)
+					{
+						DoAction(m_actionList[CharacterSheet::FullMeleeAttack]);
+					}
+				}
+			}
+			else
+			{
 				if (m_actionList[CharacterSheet::FullMeleeAttack].legal)
 				{
 					DoAction(m_actionList[CharacterSheet::FullMeleeAttack]);
 				}
 			}
 		}
-		else if (contains((int)CharacterSheet::FullAttackDefensively, selection) && !isAdjacent())
+		else if (contains((int)CharacterSheet::FullAttackDefensively, selection))
 		{
-			if (m_actionList[CharacterSheet::FiveFtStepFwd].legal)
+			if (!isAdjacent())
 			{
-				DoAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
+				if (m_actionList[CharacterSheet::FiveFtStepFwd].legal)
+				{
+					DoAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
+					if (m_actionList[CharacterSheet::FullAttackDefensively].legal)
+					{
+						DoAction(m_actionList[CharacterSheet::FullAttackDefensively]);
+					}
+				}
+			}
+			else
+			{
 				if (m_actionList[CharacterSheet::FullAttackDefensively].legal)
 				{
 					DoAction(m_actionList[CharacterSheet::FullAttackDefensively]);
@@ -725,6 +742,11 @@ bool Entity::isAdjacent()
 	{
 		return true;
 	}
+	else if (opponent->m_Pos == m_Pos)
+	{
+		return true;
+	}
+
 	return false;
 }
 

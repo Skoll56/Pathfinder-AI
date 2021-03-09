@@ -31,7 +31,7 @@ NeuralNetwork::NeuralNetwork(std::vector<std::vector<std::vector<float>>> _weigh
 			{
 				layers[i].node[l].inputWeights.resize(_weights[i - 1].size());
 			}
-			layers[i].node[l].activationThreshold = _activation;
+			layers[i].node[l].activationThreshold = _activation + ((float)(rand() % 6) - 8.0f) / 10.0f;;
 
 			for (int j = 0; j < _weights[i][l].size(); j++)
 			{
