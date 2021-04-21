@@ -10,8 +10,9 @@
 #include "Console.h"
 
 struct Game
-{
+{	
 	Game();
+	void InitialiseEntities();
 	SDL_Window* initWindow();
 	SDL_Renderer* initRenderer(SDL_Window* _window);
 	void drawWalls(SDL_Renderer* _renderer, std::vector<Entity*> _wall);
@@ -21,7 +22,7 @@ struct Game
 	void move(Entity* e, glm::vec2 _pos);
 	void start();
 	void drawScene();
-	
+	bool PlayerTesting = false;
 	float boxSize = 40.0f;
 	Input input;
 	SDL_Window *window; 

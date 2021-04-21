@@ -7,6 +7,7 @@
 #include <time.h>
 #include <SDL2/SDL.h>
 #include "Sheet.h"
+#include "Game.h"
 
 NeuralNetwork::NeuralNetwork(std::vector<std::vector<std::vector<float>>> _weights, float _activation)
 {
@@ -31,7 +32,7 @@ NeuralNetwork::NeuralNetwork(std::vector<std::vector<std::vector<float>>> _weigh
 			{
 				layers[i].node[l].inputWeights.resize(_weights[i - 1].size());
 			}
-			layers[i].node[l].activationThreshold = _activation + ((float)(rand() % 6) - 8.0f) / 10.0f;;
+			layers[i].node[l].activationThreshold = _activation + ((float)(rand() % 6) - 8.0f) / 10.0f;
 
 			for (int j = 0; j < _weights[i][l].size(); j++)
 			{
@@ -49,9 +50,6 @@ NeuralNetwork::NeuralNetwork(std::string _path)
 
 	layers.clear();
 	Load(_path);
-
-
-	
 }
 
 std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
@@ -72,7 +70,11 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 	int outLayer = layers.size() - 1;
 	std::vector<int> output(layers[outLayer].node.size());
 
-	while (fabs(ErrorSum) > 0.1f)
+
+	/* THIS IS USED FOR TRAINING ONLY*/
+	//This forces the AI to keep re-trying until it gets the perfect answer
+	while (fabs(ErrorSum) > 0.1f) 
+	/* Comment out this line when training is finished */
 	{
 		///Decision phase
 		for (int i = 1; i < layers.size(); i++) //Only start the "web" from layer 1, not 0 (input layer)
@@ -87,24 +89,16 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 					sumValue += w * in;
 				}
 
-				float sigmoid = 1.0f / (1.0f + powf(1.71828f, -(sumValue - activation)));
+				//float sigmoid = 1.0f / (1.0f + powf(1.71828f, -(sumValue - activation))); //WRONG
+				float sigmoid = 1.0f / (1.0f + powf(1.71828f, -(sumValue - layers[i].node[l].activationThreshold)));
 
 				layers[i].node[l].rawOutput = sumValue;
-				layers[i].node[l].output = sigmoid;
-
-				//if (sigmoid > layers[i].node[l].activationThreshold) 
-				//{ 
-				//	layers[i].node[l].output = 1.0f; 
-				//}
-				//else
-				//{
-				//	layers[i].node[l].output = 0.0f;
-				//}
+				layers[i].node[l].output = sigmoid;				
 			}
 		}
-		for (int i = 0; i < output.size(); i++)
+		for (int i = 0; i < output.size(); i++) 
 		{
-			if (layers[outLayer].node[i].output > 0.9f)
+			if (layers[outLayer].node[i].output > 0.85f)
 			{
 				output[i] = 1;
 			}
@@ -214,7 +208,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Count the ticks for saving the ANN
 		tick++;
-		if (tick == 50000000)
+		if (tick == 50000000 && !game->PlayerTesting)
 		{
 			Save();
 			tick = 0;

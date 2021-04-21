@@ -25,6 +25,59 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+void Game::InitialiseEntities()
+{
+	player->m_Pos.x = 4.0f * boxSize;
+	player->m_Pos.y = 1.0f * boxSize;
+
+
+	if (!PlayerTesting)
+	{
+		player->CS.weapon = CharacterSheet::Longbow;
+		player->CS.HP = 60;
+		player->CS.ACbonus = 0;
+		player->CS.attackBonus = 0;
+		player->CS.AC = 10 + rand() % 11;
+		player->CS.DEX = rand() % 7;
+		player->CS.STR = rand() % 7;
+		player->CS.BAB = 6;
+		player->CS.MoveSpeed = 30;
+		
+
+		npc->CS.weapon = (CharacterSheet::Weapon)(rand() % 2);
+		npc->CS.BAB = 6;
+		npc->CS.MoveSpeed = 30;
+		npc->CS.HP = 60;
+		npc->CS.ACbonus = 0;
+		npc->CS.attackBonus = 0;
+		npc->CS.AC = 10 + rand() % 11;
+		npc->CS.DEX = rand() % 7;
+		npc->CS.STR = rand() % 7;
+	}
+	else
+	{
+		player->CS.weapon = CharacterSheet::Longsword;
+		player->CS.HP = 45;
+		player->CS.BAB = 6;
+		player->CS.MoveSpeed = 30;
+		player->CS.ACbonus = 0;
+		player->CS.attackBonus = 0;
+		player->CS.AC = 10 + 8;
+		player->CS.DEX = 4;
+		player->CS.STR = 4;
+
+		npc->CS.weapon = (CharacterSheet::Weapon)(rand() % 2);
+		npc->CS.HP = 45;
+		npc->CS.BAB = 6;
+		npc->CS.MoveSpeed = 30;
+		npc->CS.ACbonus = 0;
+		npc->CS.attackBonus = 0;
+		npc->CS.AC = 10 + 8;
+		npc->CS.DEX = 4;
+		npc->CS.STR = 4;
+	}
+}
+
 Game::Game()
 {
 	srand(time(NULL));
@@ -34,35 +87,24 @@ Game::Game()
 	player = new Entity(4.0f * boxSize, 1.0f * boxSize);
 	npc = new Entity(7.0f * boxSize, 10.0f * boxSize);
 
+	player->tag = 'A';
 	player->game = this;
-	player->m_col = Colour(0, 255, 0, 255);
-	player->tag = 'A';		
-	player->opponent = npc;
 	player->initialiseActionList();
 	player->InitialiseANN();
-	player->ANN->player = true;
-	player->CS.weapon = CharacterSheet::Longbow;
-	player->CS.HP = 90;
-	player->CS.AC = 14;
-	player->CS.BAB = 6;
-	player->CS.STR = 4;
-	player->CS.DEX = 4;
-	player->CS.MoveSpeed = 30;
+	player->m_col = Colour(0, 255, 0, 255);
 	
+	player->opponent = npc;
+	player->ANN->player = true;
 
-	npc->game = this;
-	npc->opponent = player;
-	npc->m_col = Colour(255, 0, 0, 255);	
 	npc->tag = 'B';
+	npc->game = this;
 	npc->initialiseActionList();
 	npc->InitialiseANN();
-	npc->CS.weapon = CharacterSheet::Longsword;
-	npc->CS.HP = 90;
-	npc->CS.AC = 14;
-	npc->CS.BAB = 6;
-	npc->CS.STR = 4;
-	npc->CS.DEX = 4;
-	npc->CS.MoveSpeed = 30;
+	npc->opponent = player;
+	npc->m_col = Colour(255, 0, 0, 255);
+	
+
+	InitialiseEntities();
 
 	
 	SDL_RenderSetLogicalSize(renderer, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -70,6 +112,8 @@ Game::Game()
 	quit = false;
 
 	input.game = this;
+	player->ANN->game = this;
+	npc->ANN->game = this;
 }
 
 
@@ -106,40 +150,28 @@ void Game::start()
 		else if (player->CS.HP <= 0) { tag[0] = npc->tag; }
 		else { tag = "?"; }
 		console.Log("--Player " + tag + " Wins--");
-		games++;
-		if (games == 300)
+		if (!PlayerTesting)
 		{
-			console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/");		
-			games = 0;
+			games++;
+			if (games == 300)
+			{
+				console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/");
+				games = 0;
+			}
 		}
-		console.Clear();
+		else
+		{
+			console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/Test1/");
+		}
 
-
-
-		//---Reset---
-		player->CS.weapon = CharacterSheet::Longbow;
-		player->CS.HP = 60;		
-		player->CS.ACbonus = 0;
-		player->CS.attackBonus = 0;
-		player->CS.AC = 10 + rand() % 11;
-		player->CS.DEX = rand() % 7;
-		player->CS.STR = rand() % 7;
-
-		npc->CS.weapon = (CharacterSheet::Weapon)(rand() %2);
-		npc->CS.HP = 60;		
-		npc->CS.ACbonus = 0;
-		npc->CS.attackBonus = 0;
-		npc->CS.AC = 10 + rand() % 11;
-		npc->CS.DEX = rand() % 7;
-		npc->CS.STR = rand() % 7;
-
+		console.Clear();		
+		InitialiseEntities();
 
 		glm::vec2* player_pos = &player->m_Pos;
 		player_pos->x = 4.0f * boxSize;
 		player_pos->y = 1.0f * boxSize;
 
 		glm::vec2* npc_pos = &npc->m_Pos;
-
 		int x;
 		int y;
 		bool inwall = true;
@@ -166,7 +198,6 @@ void Game::start()
 		npc_pos->x = x * boxSize;
 		npc_pos->y = y * boxSize;
 	}
-
 	system("PAUSE");
 }
 

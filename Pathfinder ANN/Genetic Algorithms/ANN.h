@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+//#include "Game.h"
+
+class Game;
 
 struct Neuron
 {
@@ -58,4 +61,5 @@ struct NeuralNetwork
 	bool player = false;
 	int tick = 0;
 	const float alpha = 0.02f;
+	Game* game;
 };

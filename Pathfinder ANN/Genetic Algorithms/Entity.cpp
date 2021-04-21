@@ -413,15 +413,14 @@ void Entity::InitialiseANN()
 			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;;
 		}
 	}
-	//ANN = new NeuralNetwork(weights, 0.5f);
 	ANN = new NeuralNetwork();
 	if (tag == 'A')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-03-09--11-51-34.ann");
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-03-11--13-33-37.ann");
 	}
 	else if (tag == 'B')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-03-09--11-52-19.ann");
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-03-11--13-35-09.ann");
 	}
 }
 
