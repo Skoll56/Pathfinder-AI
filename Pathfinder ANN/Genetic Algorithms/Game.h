@@ -12,6 +12,9 @@
 struct Game
 {	
 	Game();
+	void DisplayStats();
+	void DisplayCommands();
+	void DisplayInfo();
 	void InitialiseEntities();
 	SDL_Window* initWindow();
 	SDL_Renderer* initRenderer(SDL_Window* _window);
@@ -22,7 +25,7 @@ struct Game
 	void move(Entity* e, glm::vec2 _pos);
 	void start();
 	void drawScene();
-	bool PlayerTesting = false;
+	bool PlayerTesting = true;
 	float boxSize = 40.0f;
 	Input input;
 	SDL_Window *window; 

@@ -51,6 +51,7 @@ struct Entity
 	void StartTurn();
 	void EndTurn();
 	void TakeAOO();
+	std::string readUntilVal(std::string & _string, int & _i, char _delim);
 	void MeleeAttack(int _bonus);
 	void RangedAttack(int _bonus);
 	int Roll(int _dice);

@@ -3,6 +3,8 @@
 #include "Game.h"
 #include <glm.hpp>
 #include <iostream>
+//#include <stdlib.h>
+#include <Windows.h>
 
 void Entity::initialiseActionList()
 {
@@ -56,12 +58,12 @@ void Entity::initialiseActionList()
 	m_actionList[CharacterSheet::MoveForMelee].name = CharacterSheet::MoveForMelee;
 	m_actionList[CharacterSheet::MoveForMelee].provokes = true;
 	m_actionList[CharacterSheet::MoveForMelee].slot = CharacterSheet::Move;
-	m_actionList[CharacterSheet::MoveForMelee].stringName = "Movement";
+	m_actionList[CharacterSheet::MoveForMelee].stringName = "MeleeMovement";
 
 	m_actionList[CharacterSheet::MoveForRanged].name = CharacterSheet::MoveForRanged;
 	m_actionList[CharacterSheet::MoveForRanged].provokes = true;
 	m_actionList[CharacterSheet::MoveForRanged].slot = CharacterSheet::Move;
-	m_actionList[CharacterSheet::MoveForRanged].stringName = "Ranged Movement";
+	m_actionList[CharacterSheet::MoveForRanged].stringName = "RangedMovement";
 
 	m_actionList[CharacterSheet::Draw].name = CharacterSheet::Draw;
 	m_actionList[CharacterSheet::Draw].provokes = false;
@@ -166,9 +168,22 @@ void Entity::DoAction(Action _a)
 			return;
 		}
 	}
-	std::string tag = " ";
-	tag[0] = this->tag;
-	game->console.Log("Player " + tag + ": " + _a.stringName);
+	if (!game->PlayerTesting)
+	{
+		std::string tag = " ";
+		tag[0] = this->tag;
+		game->console.Log("Player " + tag + ": " + _a.stringName);
+	}
+	else
+	{
+		if (this->tag == 'B')
+		{
+			system("CLS");
+			Sleep(1000);
+			game->console.Log("Opponent takes action: " + _a.stringName);
+			system("PAUSE");
+		}		
+	}
 	
 	if (_a.name == CharacterSheet::MeleeAttack)
 	{
@@ -183,13 +198,13 @@ void Entity::DoAction(Action _a)
 	}
 	else if (_a.name == CharacterSheet::RangedAttack)
 	{
-		MeleeAttack(CS.BAB + CS.DEX + CS.attackBonus);
+		RangedAttack(CS.BAB + CS.DEX + CS.attackBonus);
 	}
 	else if (_a.name == CharacterSheet::FullRangedAttack)
 	{
 		for (int i = 0; i < CS.BAB; i += 5)
 		{
-			MeleeAttack(CS.BAB + CS.DEX - i + CS.attackBonus);
+			RangedAttack(CS.BAB + CS.DEX - i + CS.attackBonus);
 		}
 	}
 	else if (_a.name == CharacterSheet::FiveFtStepBack)
@@ -317,16 +332,33 @@ void Entity::DoAction(Action _a)
 	{
 		if (CS.weapon == CharacterSheet::Longsword)
 		{
-			CS.weapon = CharacterSheet::Longbow;
-			m_actionList[CharacterSheet::RangedAttack].legal = m_actionList[CharacterSheet::MeleeAttack].legal;
+			CS.weapon = CharacterSheet::Longbow;				
+			if (HasStraightLine() && MoveActionsTaken != 2)
+			{
+				m_actionList[CharacterSheet::RangedAttack].legal = true;
+			}
+			else
+			{
+				m_actionList[CharacterSheet::RangedAttack].legal = false;
+			}
+
+
 			m_actionList[CharacterSheet::MeleeAttack].legal = false;
 			m_actionList[CharacterSheet::AttackDefensively].legal = false;
 		}
 		else
 		{
 			CS.weapon = CharacterSheet::Longsword;
-			m_actionList[CharacterSheet::MeleeAttack].legal = m_actionList[CharacterSheet::RangedAttack].legal;
-			m_actionList[CharacterSheet::AttackDefensively].legal = m_actionList[CharacterSheet::RangedAttack].legal;
+			if (isAdjacent() && MoveActionsTaken != 2)
+			{
+				m_actionList[CharacterSheet::MeleeAttack].legal = true;
+				m_actionList[CharacterSheet::AttackDefensively].legal = true;
+			}
+			else
+			{
+				m_actionList[CharacterSheet::MeleeAttack].legal = false;
+				m_actionList[CharacterSheet::AttackDefensively].legal = false;
+			}
 			m_actionList[CharacterSheet::RangedAttack].legal = false;
 		}
 	}
@@ -347,17 +379,9 @@ void Entity::DoAction(Action _a)
 	}
 	if (opponent->CS.HP <= 0) { game->victory = true; }
 
-	for (int i = 0; i < game->map.m_walls.size(); i++)
+	if (game->PlayerTesting)
 	{
-		if (m_Pos / game->boxSize == game->map.m_walls[i]->m_Pos)
-		{
-			int BAD = 5;
-		}
-	}
-
-	if (m_Pos == opponent->m_Pos)
-	{
-		int BAD = 5;
+		game->drawScene();
 	}
 }
 
@@ -380,8 +404,8 @@ void Entity::InitialiseANN()
 
 	std::vector<std::vector<std::vector<float>>> weights;
 
-	const int numLayers = 3;
-	const int numNodes = 10;
+	const int numLayers = 5;
+	const int numNodes = 15;
 	const int numOutputs = 13;
 	const int numInputs = 11;
 	const float weight = 0.05f;
@@ -410,18 +434,20 @@ void Entity::InitialiseANN()
 		weights[outLayer][l].resize(numNodes);
 		for (int j = 0; j < weights[outLayer][l].size(); j++)
 		{
-			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;;
+			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;
 		}
 	}
-	ANN = new NeuralNetwork();
-	if (tag == 'A')
-	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-04-22--13-06-03.ann");
-	}
-	else if (tag == 'B')
-	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-04-22--13-06-27.ann");
-	}
+	ANN = new NeuralNetwork(weights, 0.5f);
+
+
+	//if (tag == 'A')
+	//{
+	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-04-22--13-06-03.ann");
+	//}
+	//else if (tag == 'B')
+	//{
+	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-04-22--13-06-27.ann");
+	//}
 }
 
 bool contains(int _i, std::vector<int> &_array)
@@ -645,68 +671,204 @@ void Entity::TakeAOO()
 			std::string tag = " ";
 			tag[0] = opponent->tag;
 			game->console.Log("Player " + tag + " triggered AOO!");
-			DoAction(m_actionList[CharacterSheet::AOO]);
+			if (game->PlayerTesting)
+			{
+				game->console.Log("Type 'Y' to take your attack, or 'N' to pass.");
+				std::string input;
+				std::cin >> input;
+				if (input == "Y") { DoAction(m_actionList[CharacterSheet::AOO]); }
+			}
+			else
+			{
+				DoAction(m_actionList[CharacterSheet::AOO]);
+			}
 		}
 	}
+}
+
+std::string Entity::readUntilVal(std::string& _string, int &_i, char _delim)
+{
+	std::string out = "";
+	while (_string[_i] != _delim)
+	{
+		out += _string[_i];
+		_i++;
+	}
+	_i++;
+	return out;
 }
 
 void Entity::MeleeAttack(int _bonus)
 {
 	int D20 = Roll(20);
 	int dmgMod = (int)floor(CS.STR * 1.5f);
+	int dmgDice = 8;
+	int damage = 0;
+
+	if (game->PlayerTesting)
+	{
+		system("CLS");
+		if (this->tag == 'A')
+		{
+			game->DisplayStats();
+			game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
+			game->console.Log("For example: !roll d20+10 d6+5");
+			std::string input;
+			std::cin.clear();
+			std::cin.ignore(1000, '\n');
+			std::getline(std::cin, input);
+
+			int it = 7;
+			std::string d = readUntilVal(input, it, '+');
+			std::string hm = readUntilVal(input, it, ' ');
+			it++;
+			std::string dd = readUntilVal(input, it, '+');
+			std::string dm = "";
+			dm += input[it];
+			if (input.length() > it + 1)
+			{
+				dm += input[it + 1];
+			}
+			D20 = Roll(std::stoi(d));
+			_bonus = std::stoi(hm);
+			dmgMod = std::stoi(dm);
+			dmgDice = std::stoi(dd);
+			system("CLS");
+			game->console.Log("You rolled: " + std::to_string(D20));
+		}
+	}
+	
 
 	if (D20 >= 19)
 	{
-		if (Roll(20) + _bonus >= opponent->CS.AC)
+		int confirm = Roll(20);
+		if (game->PlayerTesting && this->tag == 'A')
 		{
-			opponent->CS.HP -= (Roll(8) + dmgMod);
-			opponent->CS.HP -= (Roll(8) + dmgMod);
+			game->console.Log("Confirmation Roll: " + std::to_string(confirm));
+		}
+
+		if (confirm + _bonus >= opponent->CS.AC)
+		{			
+			damage = (Roll(dmgDice) + dmgMod) + (Roll(dmgDice) + dmgMod);
+			opponent->CS.HP -= damage;			
 			game->console.Log("(CRIT)");
 		}
 		else
 		{
-			opponent->CS.HP -= (Roll(8) + dmgMod);
+			damage = (Roll(dmgDice) + dmgMod);
+			opponent->CS.HP -= damage;
 			game->console.Log("(Hit)");
 		}
 	}
 	else if (D20 + _bonus >= opponent->CS.AC)
 	{
-		opponent->CS.HP -= (Roll(8) + dmgMod);
+		damage = (Roll(dmgDice) + dmgMod);
+		opponent->CS.HP -= damage;
 		game->console.Log("(Hit)");
 	}
 	else
 	{
 		game->console.Log("(Miss)");
+	}
+
+	if (game->PlayerTesting)
+	{
+		if (this->tag == 'A')
+		{
+			game->console.Log("(You dealt: " + std::to_string(damage) + " damage!)");
+		}
+		else
+		{
+			game->console.Log("(You took: " + std::to_string(damage) + " damage!)");
+		}
+		system("PAUSE");
 	}
 }
 
 void Entity::RangedAttack(int _bonus)
 {
 	int D20 = Roll(20);
-
-	if (D20 == 20)
-	{
-		if (Roll(20) + _bonus >= opponent->CS.AC)
+	int dmgMod = 0;
+	int dmgDice = 8;
+	int damage = 0;
+	
+	if (game->PlayerTesting)
+	{		
+		system("CLS");
+		if (this->tag == 'A')
 		{
-			opponent->CS.HP -= (Roll(8));
-			opponent->CS.HP -= (Roll(8));
-			opponent->CS.HP -= (Roll(8));
+			game->DisplayStats();
+			game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
+			game->console.Log("For example: !roll d20+10 d6+5");
+			std::string input;
+			std::cin.clear();
+			std::cin.ignore(1000, '\n');
+			std::getline(std::cin, input);
+
+			int it = 7;
+			std::string d = readUntilVal(input, it, '+');
+			std::string hm = readUntilVal(input, it, ' ');
+			it++;
+			std::string dd = readUntilVal(input, it, '+');
+			std::string dm = "";
+			dm += input[it];
+			if (input.length() > it + 1)
+			{
+				dm += input[it + 1];
+			}
+			D20 = Roll(std::stoi(d));
+			_bonus = std::stoi(hm);
+			dmgMod = std::stoi(dm);
+			dmgDice = std::stoi(dd);
+			system("CLS");
+			game->console.Log("You rolled: " + std::to_string(D20));
+		}
+	}
+
+
+	if (D20 > 19)
+	{
+		int confirm = Roll(20);
+		if (game->PlayerTesting && this->tag == 'A')
+		{
+			game->console.Log("Confirmation Roll: " + std::to_string(confirm));
+		}
+
+		if (confirm + _bonus >= opponent->CS.AC)
+		{
+			damage = (Roll(dmgDice) + dmgMod) + (Roll(dmgDice) + dmgMod) + (Roll(dmgDice) + dmgMod);
+			opponent->CS.HP -= damage;
 			game->console.Log("(CRIT)");
 		}
 		else
 		{
-			opponent->CS.HP -= (Roll(8));
+			damage = (Roll(dmgDice) + dmgMod);
+			opponent->CS.HP -= damage;
 			game->console.Log("(Hit)");
 		}
 	}
 	else if (D20 + _bonus >= opponent->CS.AC)
 	{
-		opponent->CS.HP -= (Roll(8));
+		damage = (Roll(dmgDice) + dmgMod);
+		opponent->CS.HP -= damage;
 		game->console.Log("(Hit)");
 	}
 	else
 	{
 		game->console.Log("(Miss)");
+	}
+
+	if (game->PlayerTesting)
+	{
+		if (this->tag == 'A')
+		{
+			game->console.Log("(You dealt: " + std::to_string(damage) + " damage!)");
+		}
+		else
+		{
+			game->console.Log("(You took: " + std::to_string(damage) + " damage!)");
+		}
+		system("PAUSE");
 	}
 }
 

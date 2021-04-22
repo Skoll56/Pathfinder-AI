@@ -7,6 +7,8 @@
 #include "MapLoader.h"
 #include "Sheet.h"
 #include "Entity.h"
+#include <stdlib.h>
+#include <Windows.h>
 
 
 #define WINDOW_WIDTH 980
@@ -116,33 +118,174 @@ Game::Game()
 	npc->ANN->game = this;
 }
 
+void Game::DisplayStats()
+{
+	console.Log("Your Stats:");
+	console.Log("===============================================================================");
+	std::string stats = "";
+	stats += "HP: " + std::to_string(player->CS.HP) + " | ";
+	stats += "AC: " + std::to_string(player->CS.AC) + " | ";
+	stats += "STR: " + std::to_string(player->CS.STR) + " | ";
+	stats += "DEX: " + std::to_string(player->CS.DEX) + " | ";
+	stats += "BAB: " + std::to_string(player->CS.BAB) + " | ";
+	stats += "Speed: " + std::to_string(player->CS.MoveSpeed) + " | ";
+	if (player->CS.weapon == CharacterSheet::Longsword)
+	{
+		stats += "Weapon: Longsword | ";
+	}
+	else
+	{
+		stats += "Weapon: Longbow | ";
+	}
+	console.Log(stats);
+	console.Log("===============================================================================\n");
+}
 
+void Game::DisplayCommands()
+{
+	console.Log("Command List:");
+	console.Log("===============================================================================");
+	std::string commands = "";
+	for (int i = 0; i < player->m_actionList.size(); i++)
+	{
+		commands += "!" + player->m_actionList[i].stringName + " | ";
+	}
+	console.Log(commands);
+	console.Log("===============================================================================\n");
+}
+
+void Game::DisplayInfo()
+{	
+	DisplayCommands();
+	DisplayStats();
+}
+
+bool contains(std::string _i, std::vector<Action> &_array)
+{
+	for (int i = 0; i < _array.size(); i++)
+	{
+		if ("!" + _array[i].stringName == _i) { return true; }
+	}
+	return false;
+}
+
+int getIndex(std::string _i, std::vector<Action> &_array)
+{
+	for (int i = 0; i < _array.size(); i++)
+	{
+		if ("!" + _array[i].stringName == _i) { return i; }
+	}
+	return false;
+}
 
 void Game::start()
 {
 	int games = 0;
 	while (!quit)
 	{		
-		while (!victory && !quit)
+		if (!PlayerTesting)
 		{
-			if (npc->CS.HP > 0 && player->CS.HP > 0)
+			while (!victory && !quit)
 			{
-				npc->StartTurn();
-				npc->Update();
-			}
+				if (npc->CS.HP > 0 && player->CS.HP > 0)
+				{
+					npc->StartTurn();
+					npc->Update();
+				}
 
-			if (player->CS.HP > 0 && npc->CS.HP > 0)
+				if (player->CS.HP > 0 && npc->CS.HP > 0)
+				{
+					player->StartTurn();
+					player->Update();
+				}
+
+				///Draw Code
+				drawScene();
+				/* Removed for efficiency while training */
+				input.Update();
+			}
+		}
+		else
+		{
+			console.Log("Welcome.");
+			system("PAUSE");
+			system("CLS");
+
+			console.Log("Connecting to Opponent...");
+			Sleep(2000);
+			console.Log("Connected!");
+			system("PAUSE");
+			system("CLS");
+
+
+			console.Log("Rolling initiative...");
+			Sleep(1000);
+			
+			console.Log("You go first!");
+			system("PAUSE");
+			drawScene();
+
+			while (!victory && !quit)
 			{
 				player->StartTurn();
-				player->Update();
+				while (player->isMyTurn && !victory)
+				{
+					bool legal = false;
+					std::string input;
+					while (!legal && !victory)
+					{
+						bool valid = false;
+						while (!valid && !victory)
+						{
+							system("CLS");
+							console.Log("[Your Turn]\n");
+							DisplayInfo();
+							input = "";
+							std::cin >> input;
+							valid = contains(input, player->m_actionList);
+							if (!valid)
+							{
+								console.Log("Invalid Command");
+								system("PAUSE");
+							}
+						}
+
+						int index = getIndex(input, player->m_actionList);
+						legal = player->m_actionList[index].legal;
+						if (!legal)
+						{
+							valid = false;
+							console.Log("That action is not legal.");
+							system("PAUSE");
+						}
+						else
+						{
+							player->DoAction(player->m_actionList[index]);							
+						}
+					}
+				}
+				system("CLS");
+				console.Log("[Opponent's Turn]\n");
+				console.Log("Waiting...");
+				Sleep(5000);
+				system("CLS");
+
+				if (npc->CS.HP > 0 && player->CS.HP > 0)
+				{
+					npc->StartTurn();
+					npc->Update();
+				}
+				else
+				{
+					victory = true;
+				}
+				//system("PAUSE");
 			}
-
-
-			///Draw Code
-			drawScene(); 
-			/* Removed for efficiency while training */			
-			input.Update();
+			system("CLS");
 		}
+
+
+
 
 		victory = false;
 		std::string tag = " ";
@@ -161,7 +304,7 @@ void Game::start()
 		}
 		else
 		{
-			console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/Test1/");
+			//console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/Test1/");
 		}
 
 		console.Clear();		
@@ -197,6 +340,7 @@ void Game::start()
 
 		npc_pos->x = x * boxSize;
 		npc_pos->y = y * boxSize;
+		system("PAUSE");
 	}
 	system("PAUSE");
 }
