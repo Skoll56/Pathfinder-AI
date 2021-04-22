@@ -416,11 +416,11 @@ void Entity::InitialiseANN()
 	ANN = new NeuralNetwork();
 	if (tag == 'A')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-03-11--13-33-37.ann");
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-04-22--13-06-03.ann");
 	}
 	else if (tag == 'B')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-03-11--13-35-09.ann");
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-04-22--13-06-27.ann");
 	}
 }
 
