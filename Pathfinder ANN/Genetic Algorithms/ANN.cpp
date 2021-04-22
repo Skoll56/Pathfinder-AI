@@ -208,7 +208,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Count the ticks for saving the ANN
 		tick++;
-		if (tick == 50000000 && !game->PlayerTesting)
+		if (tick == 10000000 && !game->PlayerTesting)
 		{
 			Save();
 			tick = 0;

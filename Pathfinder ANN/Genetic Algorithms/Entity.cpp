@@ -577,7 +577,7 @@ void Entity::Update()
 		
 		for (int i = 0; i < selection.size(); i++)
 		{			
-			if (selection[i] == 1)
+			if (selection[i] == 1 && i != 11)
 			{
 				if (m_actionList[i].legal)
 				{

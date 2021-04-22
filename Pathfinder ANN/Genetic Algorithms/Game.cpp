@@ -296,7 +296,7 @@ void Game::start()
 		if (!PlayerTesting)
 		{
 			games++;
-			if (games == 300)
+			if (games == 500)
 			{
 				console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/");
 				games = 0;
@@ -340,7 +340,6 @@ void Game::start()
 
 		npc_pos->x = x * boxSize;
 		npc_pos->y = y * boxSize;
-		system("PAUSE");
 	}
 	system("PAUSE");
 }
