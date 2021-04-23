@@ -11,7 +11,7 @@
 
 struct Game
 {	
-	Game();
+	Game(int _layers, int _nodes);
 	void DisplayStats();
 	void DisplayCommands();
 	void DisplayInfo();
@@ -34,6 +34,8 @@ struct Game
 	Entity* player;
 	Entity* npc;
 	Console console;
+	int layers;
+	int nodes;
 
 	bool victory; 
 	bool quit; 

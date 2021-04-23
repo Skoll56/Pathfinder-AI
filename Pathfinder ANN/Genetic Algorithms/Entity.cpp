@@ -404,8 +404,8 @@ void Entity::InitialiseANN()
 
 	std::vector<std::vector<std::vector<float>>> weights;
 
-	const int numLayers = 5;
-	const int numNodes = 15;
+	const int numLayers = game->layers;
+	const int numNodes = game->nodes;
 	const int numOutputs = 13;
 	const int numInputs = 11;
 	const float weight = 0.05f;
@@ -440,13 +440,16 @@ void Entity::InitialiseANN()
 	ANN = new NeuralNetwork(weights, 0.5f);
 
 
+	//ANN = new NeuralNetwork();
+
+
 	//if (tag == 'A')
 	//{
-	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-04-22--13-06-03.ann");
+	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-04-23--13-00-43.ann");
 	//}
 	//else if (tag == 'B')
 	//{
-	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-04-22--13-06-27.ann");
+	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-04-23--12-59-30.ann");
 	//}
 }
 

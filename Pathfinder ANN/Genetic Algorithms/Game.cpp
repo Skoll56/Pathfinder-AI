@@ -9,6 +9,7 @@
 #include "Entity.h"
 #include <stdlib.h>
 #include <Windows.h>
+#include <direct.h>
 
 
 #define WINDOW_WIDTH 980
@@ -21,8 +22,9 @@
 
 
 int main(int argc, char *argv[])
-{
-	Game game;
+{		
+	std::cout << "BEGIN" << std::endl;
+	Game game(std::atoi(argv[1]), std::atoi(argv[2]));
 	game.start();
 	return 0;
 }
@@ -80,7 +82,7 @@ void Game::InitialiseEntities()
 	}
 }
 
-Game::Game()
+Game::Game(int _layers, int _nodes)
 {
 	srand(time(NULL));
 	window = initWindow();
@@ -89,6 +91,8 @@ Game::Game()
 	player = new Entity(4.0f * boxSize, 1.0f * boxSize);
 	npc = new Entity(7.0f * boxSize, 10.0f * boxSize);
 
+	layers = _layers;
+	nodes = _nodes;
 	player->tag = 'A';
 	player->game = this;
 	player->initialiseActionList();
@@ -180,7 +184,7 @@ int getIndex(std::string _i, std::vector<Action> &_array)
 
 void Game::start()
 {
-	int games = 0;
+	int games = 49;
 	while (!quit)
 	{		
 		if (!PlayerTesting)
@@ -296,9 +300,9 @@ void Game::start()
 		if (!PlayerTesting)
 		{
 			games++;
-			if (games == 500)
+			if (games == 50)
 			{
-				console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/");
+				console.Save("ANN Files/");
 				games = 0;
 			}
 		}

@@ -8,6 +8,7 @@
 #include <SDL2/SDL.h>
 #include "Sheet.h"
 #include "Game.h"
+#include <direct.h>
 
 NeuralNetwork::NeuralNetwork(std::vector<std::vector<std::vector<float>>> _weights, float _activation)
 {
@@ -69,13 +70,14 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 	float ErrorSum = 1.0f;
 	int outLayer = layers.size() - 1;
 	std::vector<int> output(layers[outLayer].node.size());
-
+	int attempts = 0;
 
 	/* THIS IS USED FOR TRAINING ONLY*/
 	//This forces the AI to keep re-trying until it gets the perfect answer
 	while (fabs(ErrorSum) > 0.1f) 
 	/* Comment out this line when training is finished */
 	{
+		attempts++;
 		///Decision phase
 		for (int i = 1; i < layers.size(); i++) //Only start the "web" from layer 1, not 0 (input layer)
 		{
@@ -208,13 +210,16 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Count the ticks for saving the ANN
 		tick++;
-		if (tick == 10000000 && !game->PlayerTesting)
+		if (tick == 1000000 && !game->PlayerTesting)
 		{
 			Save();
 			tick = 0;
 		}
 	}
-
+	if (!game->PlayerTesting)
+	{
+		game->console.Log("(Attempts: " + std::to_string(attempts) + ")");
+	}
 	return output;	
 }
 
@@ -248,14 +253,14 @@ void NeuralNetwork::Save()
 	if (player) { folderTag = "/player/"; }
 	else  { folderTag = "/npc/"; }
 
-	std::string directory = "D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files";
-
+	std::string directory = "ANN Files";
 	time_t now = time(0);
 	struct tm tstruct;
 	char buf[80];
 	localtime_s(&tstruct, &now);
 	strftime(buf, sizeof(buf), "%F--%H-%M-%S", &tstruct);
 	std::string timeStamp = std::string(buf);	
+	_mkdir((directory + folderTag).c_str());
 	std::string fullPath = directory + folderTag + timeStamp + ".ann";
 	std::ofstream File(fullPath);
 

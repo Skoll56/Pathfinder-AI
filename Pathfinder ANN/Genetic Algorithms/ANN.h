@@ -55,11 +55,11 @@ struct NeuralNetwork
 	//This is the whole network
 	std::vector<Layer> layers;
 	float activation;
-	int numInputs;
+	int numInputs = 0;
 	
 	//Save variables
 	bool player = false;
-	int tick = 9999999;
+	int tick = 999999;
 	const float alpha = 0.02f;
 	Game* game;
 };
