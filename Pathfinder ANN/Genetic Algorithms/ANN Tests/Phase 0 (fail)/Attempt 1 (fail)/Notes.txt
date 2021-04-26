@@ -1,0 +1,2 @@
+I accidentally used a "Global" activation value instead of each node's local activation value. This caused the agent
+to output the wrong results (It was trying to ranged attack instead of "move for ranged" which was the expected output). This has now been corrected.

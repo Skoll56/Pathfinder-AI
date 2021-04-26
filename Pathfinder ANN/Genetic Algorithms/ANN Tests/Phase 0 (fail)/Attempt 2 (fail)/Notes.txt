@@ -1,0 +1,11 @@
+Player B starts off correctly, the AI has learned that this is the best starting move.
+Its first turn is flawless.
+
+Player A keeps trying to make a melee attack, but it is not in melee range, so it defaults to "End Turn".
+
+Player B then keeps taking the same "Move for ranged" action (which is not necessary because it is already in
+line of sight) and taking a single attack (should be a full attack).
+
+They then repeat this cycle forever.
+
+Noteably, Player B will also try to take this action even when holding a melee weapon, causing the game to stall.
