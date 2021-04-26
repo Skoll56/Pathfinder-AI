@@ -1,3 +1,0 @@
-The folders represent: Layers-Nodes
-
-This is a way of having several different levels of ANN running at once.

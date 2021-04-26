@@ -37,8 +37,8 @@ void Game::InitialiseEntities()
 
 	if (!PlayerTesting)
 	{
-		player->CS.weapon = CharacterSheet::Longbow;
-		player->CS.HP = 60;
+		player->CS.weapon = (CharacterSheet::Weapon)(rand() % 2);
+		player->CS.HP = 40;
 		player->CS.ACbonus = 0;
 		player->CS.attackBonus = 0;
 		player->CS.AC = 10 + rand() % 11;
@@ -51,7 +51,7 @@ void Game::InitialiseEntities()
 		npc->CS.weapon = (CharacterSheet::Weapon)(rand() % 2);
 		npc->CS.BAB = 6;
 		npc->CS.MoveSpeed = 30;
-		npc->CS.HP = 60;
+		npc->CS.HP = 40;
 		npc->CS.ACbonus = 0;
 		npc->CS.attackBonus = 0;
 		npc->CS.AC = 10 + rand() % 11;
@@ -300,7 +300,7 @@ void Game::start()
 		if (!PlayerTesting)
 		{
 			games++;
-			if (games == 50)
+			if (games >= 25)
 			{
 				console.Save("ANN Files/");
 				games = 0;

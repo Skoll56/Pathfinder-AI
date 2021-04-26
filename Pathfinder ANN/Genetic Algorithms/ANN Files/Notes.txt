@@ -1,0 +1,6 @@
+THIS looks very promising.
+
+2 - 5000
+Alpha = 0.11f
+
+Reduced the training while (errorsum) loop to 0.2 (up from 0.1)

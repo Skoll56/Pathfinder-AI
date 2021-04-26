@@ -1,0 +1,2 @@
+This was much closer, but, ultimately stagnated. My theory was correct that more nodes = closer answers,
+but it would seem the amount of nodes required is rediculous.

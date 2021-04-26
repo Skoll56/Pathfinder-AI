@@ -437,20 +437,20 @@ void Entity::InitialiseANN()
 			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;
 		}
 	}
-	ANN = new NeuralNetwork(weights, 0.5f);
+	//ANN = new NeuralNetwork(weights, 0.5f);
 
 
-	//ANN = new NeuralNetwork();
-
-
-	//if (tag == 'A')
-	//{
-	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/player/2021-04-23--13-00-43.ann");
-	//}
-	//else if (tag == 'B')
-	//{
-	//	ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/npc/2021-04-23--12-59-30.ann");
-	//}
+	ANN = new NeuralNetwork();
+	
+	
+	if (tag == 'A')
+	{
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/player/2021-04-26--04-05-39.ann");
+	}
+	else if (tag == 'B')
+	{
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/npc/2021-04-26--04-06-05.ann");
+	}
 }
 
 bool contains(int _i, std::vector<int> &_array)
@@ -465,6 +465,7 @@ void Entity::Update()
 	inputs.AC = CS.AC;
 	inputs.chargeLegal = (int)m_actionList[CharacterSheet::Charge].legal;
 	inputs.distance = glm::distance(m_Pos, opponent->m_Pos) / game->boxSize;
+	std::cout << inputs.distance << std::endl;
 	inputs.enemyAC = opponent->CS.AC;
 	inputs.enemyMeleeAttBonus = opponent->CS.BAB + opponent->CS.STR;
 	inputs.enemyRangedAttBonus = opponent->CS.BAB + opponent->CS.DEX;

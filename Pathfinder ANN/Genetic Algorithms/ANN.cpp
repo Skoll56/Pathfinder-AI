@@ -74,7 +74,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 	/* THIS IS USED FOR TRAINING ONLY*/
 	//This forces the AI to keep re-trying until it gets the perfect answer
-	while (fabs(ErrorSum) > 0.1f) 
+	while (fabs(ErrorSum) > 0.2f) 
 	/* Comment out this line when training is finished */
 	{
 		attempts++;
@@ -144,6 +144,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 					}
 					else
 					{
+						
 						expectedOutput[CharacterSheet::MeleeAttack] = 1.0f;
 					}
 				}
@@ -168,6 +169,15 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 			else
 			{
 				expectedOutput[CharacterSheet::MoveForMelee] = 1.0f;
+				if (_input->enemyAC <= _input->meleeAttBonus + 7)
+				{
+					expectedOutput[CharacterSheet::AttackDefensively] = 1.0f;
+				}
+				else
+				{
+
+					expectedOutput[CharacterSheet::MeleeAttack] = 1.0f;
+				}
 			}
 		}
 
@@ -187,7 +197,22 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 		for (int i = 0; i < layers[outlayer].node.size(); i++)
 		{
 			float error = expectedOutput[i] - layers[outlayer].node[i].output;
-			layers[outlayer].node[i].error = layers[outlayer].node[i].output * (1.0f - layers[outlayer].node[i].output) * error;			
+			float sError = layers[outlayer].node[i].output * (1.0f - layers[outlayer].node[i].output) * error;
+			if (fabs(error) > 0.05f && fabs(sError) < 0.05f)
+			{
+				if (sError < 0)
+				{
+					layers[outlayer].node[i].error = -0.05f;
+				}
+				else
+				{
+					layers[outlayer].node[i].error = 0.05f;
+				}
+			}
+			else
+			{
+				layers[outlayer].node[i].error = sError;
+			}				
 
 			ErrorSum += fabs(error);
 		}
@@ -210,7 +235,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Count the ticks for saving the ANN
 		tick++;
-		if (tick == 1000000 && !game->PlayerTesting)
+		if (tick == 1000 && !game->PlayerTesting)
 		{
 			Save();
 			tick = 0;

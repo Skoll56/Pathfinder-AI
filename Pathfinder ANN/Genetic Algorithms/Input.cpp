@@ -38,6 +38,8 @@ void Input::Update()
 		}
 		else if (event.type == SDL_QUIT)
 		{
+			game->player->ANN->Save();
+			game->npc->ANN->Save();
 			game->quit = true;
 		}
 	}

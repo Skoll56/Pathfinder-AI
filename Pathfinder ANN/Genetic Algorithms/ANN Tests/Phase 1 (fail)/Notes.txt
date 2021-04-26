@@ -1,0 +1,8 @@
+The folders represent: Layers-Nodes
+
+This is a way of having several different levels of ANN running at once.
+
+
+
+After testing:
+Preliminary evidence shows that a WIDER network seems to get the closest to victory. All of the first tests went stagnant, but I continued with wider networks.
