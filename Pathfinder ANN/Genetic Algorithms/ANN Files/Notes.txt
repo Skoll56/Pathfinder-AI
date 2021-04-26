@@ -4,3 +4,7 @@ THIS looks very promising.
 Alpha = 0.11f
 
 Reduced the training while (errorsum) loop to 0.2 (up from 0.1)
+
+At 04:09:10 I adjusted the alpha to 0.05
+
+At 04:23 adjusted to 0.01

@@ -445,11 +445,11 @@ void Entity::InitialiseANN()
 	
 	if (tag == 'A')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/player/2021-04-26--04-05-39.ann");
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/npc/2021-04-26--13-37-42.ann");
 	}
 	else if (tag == 'B')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/npc/2021-04-26--04-06-05.ann");
+		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/npc/2021-04-26--13-37-42.ann");
 	}
 }
 

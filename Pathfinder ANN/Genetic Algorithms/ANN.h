@@ -60,6 +60,6 @@ struct NeuralNetwork
 	//Save variables
 	bool player = false;
 	int tick = 999;
-	const float alpha = 0.05f;
+	const float alpha = 0.01f;
 	Game* game;
 };

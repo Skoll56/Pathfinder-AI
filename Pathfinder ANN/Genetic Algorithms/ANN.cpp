@@ -74,7 +74,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 	/* THIS IS USED FOR TRAINING ONLY*/
 	//This forces the AI to keep re-trying until it gets the perfect answer
-	while (fabs(ErrorSum) > 0.2f) 
+	//while (fabs(ErrorSum) > 0.2f) 
 	/* Comment out this line when training is finished */
 	{
 		attempts++;
