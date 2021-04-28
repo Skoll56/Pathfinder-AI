@@ -23,7 +23,7 @@
 
 int main(int argc, char *argv[])
 {		
-	std::cout << "BEGIN" << std::endl;
+	std::cout << "[LOADING]" << std::endl;
 	Game game(std::atoi(argv[1]), std::atoi(argv[2]));
 	game.start();
 	return 0;
