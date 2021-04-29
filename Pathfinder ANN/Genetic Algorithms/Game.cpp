@@ -12,7 +12,7 @@
 #include <direct.h>
 
 
-#define WINDOW_WIDTH 980
+#define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 800
 #define RED 255, 0, 0
 #define BLUE 0, 0, 255
@@ -357,6 +357,12 @@ void Game::start()
 
 void Game::drawScene()
 {
+	SDL_Event event = { 0 };
+	while (SDL_PollEvent(&event))
+	{
+		
+	}
+
 	SDL_SetRenderDrawColor(renderer, WHITE, 255);
 	SDL_RenderClear(renderer);
 
@@ -364,10 +370,13 @@ void Game::drawScene()
 	drawGrid(renderer, map.m_gridX, map.m_gridY);
 	drawWalls(renderer, map.m_walls);
 
+
+
 	//Draw the player square	
 	drawPlayerSquare(renderer, player, true);
 	drawPlayerSquare(renderer, npc, true);
 	SDL_RenderPresent(renderer);
+	//SDL_Delay(500);
 }
 
 

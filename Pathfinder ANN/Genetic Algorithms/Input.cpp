@@ -10,10 +10,10 @@ void Input::Update()
 	mouse.m_dPos = newPos - mouse.m_Pos;
 	mouse.m_Pos = newPos;
 
-	SDL_Event event = { 0 };
+	
 	bool quit = false;
 	
-
+	SDL_Event event = { 0 };
 	while (SDL_PollEvent(&event))
 	{
 		if (event.type == SDL_MOUSEBUTTONDOWN)
