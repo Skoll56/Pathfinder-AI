@@ -28,6 +28,20 @@ void Console::Log(std::string _message)
 	}
 }
 
+void Console::SecretLog(std::string _message)
+{
+	if (index < maxSize)
+	{
+		messageLog[index] = _message;
+	}
+	else
+	{
+		messageLog.push_back(_message);
+		//messageLog[index] = _message;
+	}
+	index++;
+}
+
 void Console::Clear()
 {
 	messageLog.clear();

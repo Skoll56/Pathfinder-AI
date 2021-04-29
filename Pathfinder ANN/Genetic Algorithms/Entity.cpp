@@ -440,16 +440,15 @@ void Entity::InitialiseANN()
 	//ANN = new NeuralNetwork(weights, 0.5f);
 
 
-	ANN = new NeuralNetwork();
-	
+	ANN = new NeuralNetwork();	
 	
 	if (tag == 'A')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/npc/2021-04-26--13-37-42.ann");
+		ANN->Load("Files/npc/2021-04-26--13-37-42.ann");
 	}
 	else if (tag == 'B')
 	{
-		ANN->Load("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/Pathfinder-AI/Pathfinder ANN/Genetic Algorithms/ANN Files/npc/2021-04-26--13-37-42.ann");
+		ANN->Load("Files/npc/2021-04-26--13-37-42.ann");
 	}
 }
 
@@ -465,7 +464,6 @@ void Entity::Update()
 	inputs.AC = CS.AC;
 	inputs.chargeLegal = (int)m_actionList[CharacterSheet::Charge].legal;
 	inputs.distance = glm::distance(m_Pos, opponent->m_Pos) / game->boxSize;
-	std::cout << inputs.distance << std::endl;
 	inputs.enemyAC = opponent->CS.AC;
 	inputs.enemyMeleeAttBonus = opponent->CS.BAB + opponent->CS.STR;
 	inputs.enemyRangedAttBonus = opponent->CS.BAB + opponent->CS.DEX;
@@ -711,34 +709,52 @@ void Entity::MeleeAttack(int _bonus)
 
 	if (game->PlayerTesting)
 	{
-		system("CLS");
-		if (this->tag == 'A')
+		bool valid = false;
+		while (!valid)
 		{
-			game->DisplayStats();
-			game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
-			game->console.Log("For example: !roll d20+10 d6+5");
-			std::string input;
-			std::cin.clear();
-			std::cin.ignore(1000, '\n');
-			std::getline(std::cin, input);
-
-			int it = 7;
-			std::string d = readUntilVal(input, it, '+');
-			std::string hm = readUntilVal(input, it, ' ');
-			it++;
-			std::string dd = readUntilVal(input, it, '+');
-			std::string dm = "";
-			dm += input[it];
-			if (input.length() > it + 1)
-			{
-				dm += input[it + 1];
-			}
-			D20 = Roll(std::stoi(d));
-			_bonus = std::stoi(hm);
-			dmgMod = std::stoi(dm);
-			dmgDice = std::stoi(dd);
+			valid = true;
 			system("CLS");
-			game->console.Log("You rolled: " + std::to_string(D20));
+			if (this->tag == 'A')
+			{
+				game->DisplayStats();
+				game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
+				game->console.Log("For example: !roll d20+10 d6+5");
+				try
+				{
+					std::string input;
+					std::getline(std::cin, input);
+					
+					while (input == "")
+					{
+						std::getline(std::cin, input);
+					}
+					game->console.SecretLog(input);
+
+					int it = 7;
+					std::string d = readUntilVal(input, it, '+');
+					std::string hm = readUntilVal(input, it, ' ');
+					it++;
+					std::string dd = readUntilVal(input, it, '+');
+					std::string dm = "";
+					dm += input[it];
+					if (input.length() > it + 1)
+					{
+						dm += input[it + 1];
+					}
+					D20 = Roll(std::stoi(d));
+					_bonus = std::stoi(hm);
+					dmgMod = std::stoi(dm);
+					dmgDice = std::stoi(dd);
+					system("CLS");
+					game->console.Log("You rolled: " + std::to_string(D20));
+				}
+				catch(std::exception e)
+				{
+					valid = false;
+					game->console.Log("Invalid Input");
+					system("PAUSE");
+				}
+			}
 		}
 	}
 	
@@ -798,34 +814,51 @@ void Entity::RangedAttack(int _bonus)
 	
 	if (game->PlayerTesting)
 	{		
-		system("CLS");
-		if (this->tag == 'A')
+		bool valid = false;
+		while (!valid)
 		{
-			game->DisplayStats();
-			game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
-			game->console.Log("For example: !roll d20+10 d6+5");
-			std::string input;
-			std::cin.clear();
-			std::cin.ignore(1000, '\n');
-			std::getline(std::cin, input);
-
-			int it = 7;
-			std::string d = readUntilVal(input, it, '+');
-			std::string hm = readUntilVal(input, it, ' ');
-			it++;
-			std::string dd = readUntilVal(input, it, '+');
-			std::string dm = "";
-			dm += input[it];
-			if (input.length() > it + 1)
-			{
-				dm += input[it + 1];
-			}
-			D20 = Roll(std::stoi(d));
-			_bonus = std::stoi(hm);
-			dmgMod = std::stoi(dm);
-			dmgDice = std::stoi(dd);
+			valid = true;
 			system("CLS");
-			game->console.Log("You rolled: " + std::to_string(D20));
+			if (this->tag == 'A')
+			{
+				game->DisplayStats();
+				game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
+				game->console.Log("For example: !roll d20+10 d6+5");
+
+				try
+				{
+					std::string input;
+					std::getline(std::cin, input);
+					while (input == "")
+					{
+						std::getline(std::cin, input);
+					}
+					game->console.SecretLog(input);
+					int it = 7;
+					std::string d = readUntilVal(input, it, '+');
+					std::string hm = readUntilVal(input, it, ' ');
+					it++;
+					std::string dd = readUntilVal(input, it, '+');
+					std::string dm = "";
+					dm += input[it];
+					if (input.length() > it + 1)
+					{
+						dm += input[it + 1];
+					}
+					D20 = Roll(std::stoi(d));
+					_bonus = std::stoi(hm);
+					dmgMod = std::stoi(dm);
+					dmgDice = std::stoi(dd);
+					system("CLS");
+					game->console.Log("You rolled: " + std::to_string(D20));
+				}
+				catch (std::exception e)
+				{
+					valid = false;
+					game->console.Log("Invalid Input");
+					system("PAUSE");
+				}
+			}
 		}
 	}
 

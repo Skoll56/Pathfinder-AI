@@ -24,7 +24,8 @@
 int main(int argc, char *argv[])
 {		
 	std::cout << "[LOADING]" << std::endl;
-	Game game(std::atoi(argv[1]), std::atoi(argv[2]));
+	//Game game(std::atoi(argv[1]), std::atoi(argv[2]));
+	Game game(0, 0);
 	game.start();
 	return 0;
 }
@@ -89,14 +90,15 @@ Game::Game(int _layers, int _nodes)
 	renderer = initRenderer(window);
 	map = readFile("map.txt");	
 	player = new Entity(4.0f * boxSize, 1.0f * boxSize);
-	npc = new Entity(7.0f * boxSize, 10.0f * boxSize);
+	npc = new Entity(14.0f * boxSize, 14.0f * boxSize);
 
 	layers = _layers;
 	nodes = _nodes;
 	player->tag = 'A';
 	player->game = this;
 	player->initialiseActionList();
-	player->InitialiseANN();
+	//player->InitialiseANN();
+	player->ANN = new NeuralNetwork();
 	player->m_col = Colour(0, 255, 0, 255);
 	
 	player->opponent = npc;
@@ -225,15 +227,17 @@ void Game::start()
 			console.Log("Rolling initiative...");
 			Sleep(1000);
 			
-			console.Log("You go first!");
+			console.Log("\nYou go first!");
 			system("PAUSE");
-			drawScene();
+			
 
 			while (!victory && !quit)
 			{
+				drawScene();
 				player->StartTurn();
 				while (player->isMyTurn && !victory)
 				{
+					drawScene();
 					bool legal = false;
 					std::string input;
 					while (!legal && !victory)
@@ -246,6 +250,7 @@ void Game::start()
 							DisplayInfo();
 							input = "";
 							std::cin >> input;
+							console.SecretLog(input);
 							valid = contains(input, player->m_actionList);
 							if (!valid)
 							{
@@ -271,7 +276,8 @@ void Game::start()
 				system("CLS");
 				console.Log("[Opponent's Turn]\n");
 				console.Log("Waiting...");
-				Sleep(5000);
+				int time = rand() % 50000;
+				Sleep(5000 + time);
 				system("CLS");
 
 				if (npc->CS.HP > 0 && player->CS.HP > 0)
@@ -302,13 +308,15 @@ void Game::start()
 			games++;
 			if (games >= 25)
 			{
-				console.Save("ANN Files/");
+				console.Save("Files/");
 				games = 0;
 			}
 		}
 		else
 		{
-			//console.Save("D:/Users/Skoll/OneDrive - Bournemouth University/Work/Year 3/Final Year Project/ANN Files/Test1/");
+			console.Save("Files/");
+			system("PAUSE");
+			quit = true;
 		}
 
 		console.Clear();		
@@ -344,8 +352,7 @@ void Game::start()
 
 		npc_pos->x = x * boxSize;
 		npc_pos->y = y * boxSize;
-	}
-	system("PAUSE");
+	}	
 }
 
 void Game::drawScene()
@@ -374,7 +381,7 @@ SDL_Window* Game::initWindow()
 		throw std::exception();
 	}
 
-	SDL_Window *window = SDL_CreateWindow("Pathfinder AI",
+	SDL_Window *window = SDL_CreateWindow("The Intelligent NPC",
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 

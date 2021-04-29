@@ -8,6 +8,7 @@ struct Console
 {
 	Console();
 	void Log(std::string _message);
+	void SecretLog(std::string _message);
 	void Clear();
 	void Save(std::string _path);
 

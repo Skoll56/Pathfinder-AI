@@ -74,7 +74,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 	/* THIS IS USED FOR TRAINING ONLY*/
 	//This forces the AI to keep re-trying until it gets the perfect answer
-	//while (fabs(ErrorSum) > 0.2f) 
+	while (fabs(ErrorSum) > 0.2f && attempts < 3) 
 	/* Comment out this line when training is finished */
 	{
 		attempts++;
@@ -278,7 +278,7 @@ void NeuralNetwork::Save()
 	if (player) { folderTag = "/player/"; }
 	else  { folderTag = "/npc/"; }
 
-	std::string directory = "ANN Files";
+	std::string directory = "Files";
 	time_t now = time(0);
 	struct tm tstruct;
 	char buf[80];
