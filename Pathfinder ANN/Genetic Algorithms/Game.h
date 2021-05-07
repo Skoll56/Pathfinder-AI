@@ -25,7 +25,7 @@ struct Game
 	void move(Entity* e, glm::vec2 _pos);
 	void start();
 	void drawScene();
-	bool PlayerTesting = true;
+	bool PlayerTesting = false;
 	float boxSize = 40.0f;
 	Input input;
 	SDL_Window *window; 

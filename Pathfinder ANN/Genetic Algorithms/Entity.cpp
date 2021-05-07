@@ -437,19 +437,19 @@ void Entity::InitialiseANN()
 			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;
 		}
 	}
-	//ANN = new NeuralNetwork(weights, 0.5f);
+	ANN = new NeuralNetwork(weights, 0.5f);
 
 
-	ANN = new NeuralNetwork();	
-	
-	if (tag == 'A')
-	{
-		ANN->Load("Files/npc/2021-04-26--13-37-42.ann");
-	}
-	else if (tag == 'B')
-	{
-		ANN->Load("Files/npc/2021-04-26--13-37-42.ann");
-	}
+	//ANN = new NeuralNetwork();	
+	//
+	//if (tag == 'A')
+	//{
+	//	ANN->Load("Files/npc/2021-04-26--13-37-42.ann");
+	//}
+	//else if (tag == 'B')
+	//{
+	//	ANN->Load("Files/npc/2021-04-26--13-37-42.ann");
+	//}
 }
 
 bool contains(int _i, std::vector<int> &_array)

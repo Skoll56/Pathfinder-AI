@@ -74,7 +74,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 	/* THIS IS USED FOR TRAINING ONLY*/
 	//This forces the AI to keep re-trying until it gets the perfect answer
-	while (fabs(ErrorSum) > 0.2f && attempts < 3) 
+	while (fabs(ErrorSum) > 0.2f) 
 	/* Comment out this line when training is finished */
 	{
 		attempts++;
@@ -235,7 +235,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Count the ticks for saving the ANN
 		tick++;
-		if (tick == 1000 && !game->PlayerTesting)
+		if (tick > 500 && !game->PlayerTesting)
 		{
 			Save();
 			tick = 0;

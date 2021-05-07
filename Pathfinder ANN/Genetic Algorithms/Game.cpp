@@ -20,12 +20,12 @@
 #define WHITE 255, 255, 255
 #define BLACK 0, 0, 0
 
-
+#undef main
 int main(int argc, char *argv[])
 {		
 	std::cout << "[LOADING]" << std::endl;
-	//Game game(std::atoi(argv[1]), std::atoi(argv[2]));
-	Game game(0, 0);
+	Game game(std::atoi(argv[1]), std::atoi(argv[2]));
+	//Game game(0, 0);
 	game.start();
 	return 0;
 }
@@ -97,8 +97,8 @@ Game::Game(int _layers, int _nodes)
 	player->tag = 'A';
 	player->game = this;
 	player->initialiseActionList();
-	//player->InitialiseANN();
-	player->ANN = new NeuralNetwork();
+	player->InitialiseANN();
+	//player->ANN = new NeuralNetwork();
 	player->m_col = Colour(0, 255, 0, 255);
 	
 	player->opponent = npc;
