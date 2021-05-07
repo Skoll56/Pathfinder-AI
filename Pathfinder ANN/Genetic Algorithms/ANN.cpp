@@ -227,7 +227,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 				{
 					layers[i].node[l].inputWeights[j] += alpha * layers[i - 1].node[j].output * layers[i].node[l].error;
 					float error = layers[i].node[l].inputWeights[j] * layers[i].node[l].error;
-					float sError = layers[i].node[l].output * (1.0f - layers[i].node[l].output) * error;
+					float sError = layers[i - 1].node[j].output * (1.0f - layers[i - 1].node[j].output) * error;
 					layers[i - 1].node[j].error += sError;
 				}
 			}
