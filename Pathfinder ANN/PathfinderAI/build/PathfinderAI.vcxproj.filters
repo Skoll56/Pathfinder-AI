@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\ANN.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\MapLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Pathfind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\ANN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\MapLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Pathfind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\src\Sheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\PathfinderAI\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{433C81C2-3140-3DE2-9CC2-3AB57A561E47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{53A8D760-41A7-351D-A723-F292695E08D0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
