@@ -32,45 +32,44 @@ struct Entity
 		m_Pos.x = _xPos;
 		m_Pos.y = _yPos;
 		m_col = Colour(150, 150, 150, 255);
-	}
-	glm::vec2 m_Pos;
-
-	glm::vec2 fiveFtBackSquare;
-	Colour m_col;
-
-	char tag;
-	bool picked = false;
-	std::vector<Action> m_actionList;
+	}	
+	
 	void initialiseActionList();
 	void refreshActionList();
-	void DoRandomAction();
-	void DoAction(Action _a);
-	void Disable(CharacterSheet::ActionLength _slot);
-	void InitialiseANN();
-	void Update();
-	void StartTurn();
-	void EndTurn();
-	void TakeAOO();
+	void doRandomAction();
+	void doAction(Action _a);
+	void disable(CharacterSheet::ActionLength _slot);
+	void initialiseANN();
+	void update();
+	void startTurn();
+	void endTurn();
+	void takeAOO();
 	std::string readUntilVal(std::string & _string, int & _i, char _delim);
-	void MeleeAttack(int _bonus);
-	void RangedAttack(int _bonus);
-	int Roll(int _dice);
+	void meleeAttack(int _bonus);
+	void rangedAttack(int _bonus);
+	int roll(int _dice);
 	bool isAdjacent();
-	bool HitBoundingBox(float minB[], float maxB[], float origin[], float dir[], float coord[]);
-	bool HasStraightLine();
-	void AdjustPosition(std::string _route);
-	bool isMyTurn = false;
-	glm::vec2 LOSsquare;
+	bool hitBoundingBox(float minB[], float maxB[], float origin[], float dir[], float coord[]);
+	bool hasStraightLine();
+	void adjustPosition(std::string _route);	
 	glm::vec2 findLOS();
 	bool can5ftBack();
 
-	int MoveActionsTaken = 0;
-	std::string chargePath;
-	CharacterSheet CS;
-	Game* game;
-	Entity* opponent;
-	Inputs inputs;
-	NeuralNetwork* ANN;
+	std::vector<Action> m_actionList;
+	glm::vec2 m_LOSsquare;
+	bool m_isMyTurn = false;
+	glm::vec2 m_Pos;
+	glm::vec2 m_fiveFtBackSquare;
+	Colour m_col;
+	char m_tag;
+	bool m_picked = false;
+	int m_moveActionsTaken = 0;
+	std::string m_chargePath;
+	CharacterSheet m_CS;
+	Game* m_game;
+	Entity* m_opponent;
+	Inputs m_inputs;
+	NeuralNetwork* m_ANN;
 };
 
 struct Map

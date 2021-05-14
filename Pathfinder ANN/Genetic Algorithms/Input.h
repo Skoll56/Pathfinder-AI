@@ -5,21 +5,12 @@
 #include <SDL2\SDL.h>
 struct Game;
 
-struct Mouse
-{
-	glm::vec2 m_Pos;	
-	glm::vec2 m_dPos;
-
-	bool clicking = false;
-};
 
 struct Input
 {
-	Input() {};
-	Mouse mouse;
+	Input() {};	
 	Game* game;
-
-	void Update();
+	void update();
 };
 
 #endif

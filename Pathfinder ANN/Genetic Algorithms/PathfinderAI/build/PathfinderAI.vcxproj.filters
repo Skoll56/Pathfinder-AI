@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\ANN.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\MapLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Pathfind.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\ANN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\MapLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Pathfind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\src\Sheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Users\Skoll\OneDrive - Bournemouth University\Work\Year 3\Final Year Project\Pathfinder-AI\Pathfinder ANN\Genetic Algorithms\PathfinderAI\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{09A49357-6DC7-36B3-A416-E300893C464B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E658518A-3C40-3791-A52F-19FCD4D7EC01}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

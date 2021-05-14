@@ -30,112 +30,112 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void Game::InitialiseEntities()
+void Game::initialiseEntities()
 {
-	player->m_Pos.x = 4.0f * boxSize;
-	player->m_Pos.y = 1.0f * boxSize;
+	m_player->m_Pos.x = 4.0f * m_boxSize;
+	m_player->m_Pos.y = 1.0f * m_boxSize;
 
 
-	if (!PlayerTesting)
+	if (!m_playerTesting)
 	{
-		player->CS.weapon = (CharacterSheet::Weapon)(rand() % 2);
-		player->CS.HP = 40;
-		player->CS.ACbonus = 0;
-		player->CS.attackBonus = 0;
-		player->CS.AC = 10 + rand() % 11;
-		player->CS.DEX = rand() % 7;
-		player->CS.STR = rand() % 7;
-		player->CS.BAB = 6;
-		player->CS.MoveSpeed = 30;
+		m_player->m_CS.m_weapon = (CharacterSheet::Weapon)(rand() % 2);
+		m_player->m_CS.m_HP = 40;
+		m_player->m_CS.m_ACbonus = 0;
+		m_player->m_CS.m_attackBonus = 0;
+		m_player->m_CS.m_AC = 10 + rand() % 11;
+		m_player->m_CS.m_DEX = rand() % 7;
+		m_player->m_CS.m_STR = rand() % 7;
+		m_player->m_CS.m_BAB = 6;
+		m_player->m_CS.m_moveSpeed = 30;
 		
 
-		npc->CS.weapon = (CharacterSheet::Weapon)(rand() % 2);
-		npc->CS.BAB = 6;
-		npc->CS.MoveSpeed = 30;
-		npc->CS.HP = 40;
-		npc->CS.ACbonus = 0;
-		npc->CS.attackBonus = 0;
-		npc->CS.AC = 10 + rand() % 11;
-		npc->CS.DEX = rand() % 7;
-		npc->CS.STR = rand() % 7;
+		m_npc->m_CS.m_weapon = (CharacterSheet::Weapon)(rand() % 2);
+		m_npc->m_CS.m_BAB = 6;
+		m_npc->m_CS.m_moveSpeed = 30;
+		m_npc->m_CS.m_HP = 40;
+		m_npc->m_CS.m_ACbonus = 0;
+		m_npc->m_CS.m_attackBonus = 0;
+		m_npc->m_CS.m_AC = 10 + rand() % 11;
+		m_npc->m_CS.m_DEX = rand() % 7;
+		m_npc->m_CS.m_STR = rand() % 7;
 	}
 	else
 	{
-		player->CS.weapon = CharacterSheet::Longsword;
-		player->CS.HP = 45;
-		player->CS.BAB = 6;
-		player->CS.MoveSpeed = 30;
-		player->CS.ACbonus = 0;
-		player->CS.attackBonus = 0;
-		player->CS.AC = 10 + 8;
-		player->CS.DEX = 4;
-		player->CS.STR = 4;
+		m_player->m_CS.m_weapon = CharacterSheet::Longsword;
+		m_player->m_CS.m_HP = 45;
+		m_player->m_CS.m_BAB = 6;
+		m_player->m_CS.m_moveSpeed = 30;
+		m_player->m_CS.m_ACbonus = 0;
+		m_player->m_CS.m_attackBonus = 0;
+		m_player->m_CS.m_AC = 10 + 8;
+		m_player->m_CS.m_DEX = 4;
+		m_player->m_CS.m_STR = 4;
 
-		npc->CS.weapon = (CharacterSheet::Weapon)(rand() % 2);
-		npc->CS.HP = 45;
-		npc->CS.BAB = 6;
-		npc->CS.MoveSpeed = 30;
-		npc->CS.ACbonus = 0;
-		npc->CS.attackBonus = 0;
-		npc->CS.AC = 10 + 8;
-		npc->CS.DEX = 4;
-		npc->CS.STR = 4;
+		m_npc->m_CS.m_weapon = (CharacterSheet::Weapon)(rand() % 2);
+		m_npc->m_CS.m_HP = 45;
+		m_npc->m_CS.m_BAB = 6;
+		m_npc->m_CS.m_moveSpeed = 30;
+		m_npc->m_CS.m_ACbonus = 0;
+		m_npc->m_CS.m_attackBonus = 0;
+		m_npc->m_CS.m_AC = 10 + 8;
+		m_npc->m_CS.m_DEX = 4;
+		m_npc->m_CS.m_STR = 4;
 	}
 }
 
 Game::Game(int _layers, int _nodes)
 {
 	srand(time(NULL));
-	window = initWindow();
-	renderer = initRenderer(window);
-	map = readFile("map.txt");	
-	player = new Entity(4.0f * boxSize, 1.0f * boxSize);
-	npc = new Entity(14.0f * boxSize, 14.0f * boxSize);
+	m_window = initWindow();
+	m_renderer = initRenderer(m_window);
+	m_map = readFile("map.txt");	
+	m_player = new Entity(4.0f * m_boxSize, 1.0f * m_boxSize);
+	m_npc = new Entity(14.0f * m_boxSize, 14.0f * m_boxSize);
 
-	layers = _layers;
-	nodes = _nodes;
-	player->tag = 'A';
-	player->game = this;
-	player->initialiseActionList();
-	player->InitialiseANN();
+	m_layers = _layers;
+	m_nodes = _nodes;
+	m_player->m_tag = 'A';
+	m_player->m_game = this;
+	m_player->initialiseActionList();
+	m_player->initialiseANN();
 	//player->ANN = new NeuralNetwork();
-	player->m_col = Colour(0, 255, 0, 255);
+	m_player->m_col = Colour(0, 255, 0, 255);
 	
-	player->opponent = npc;
-	player->ANN->player = true;
+	m_player->m_opponent = m_npc;
+	m_player->m_ANN->m_player = true;
 
-	npc->tag = 'B';
-	npc->game = this;
-	npc->initialiseActionList();
-	npc->InitialiseANN();
-	npc->opponent = player;
-	npc->m_col = Colour(255, 0, 0, 255);
+	m_npc->m_tag = 'B';
+	m_npc->m_game = this;
+	m_npc->initialiseActionList();
+	m_npc->initialiseANN();
+	m_npc->m_opponent = m_player;
+	m_npc->m_col = Colour(255, 0, 0, 255);
 	
 
-	InitialiseEntities();
+	initialiseEntities();
 
 	
-	SDL_RenderSetLogicalSize(renderer, WINDOW_WIDTH, WINDOW_HEIGHT);
-	victory = false;
-	quit = false;
+	SDL_RenderSetLogicalSize(m_renderer, WINDOW_WIDTH, WINDOW_HEIGHT);
+	m_victory = false;
+	m_quit = false;
 
-	input.game = this;
-	player->ANN->game = this;
-	npc->ANN->game = this;
+	m_input.game = this;
+	m_player->m_ANN->m_game = this;
+	m_npc->m_ANN->m_game = this;
 }
 
-void Game::DisplayStats()
+void Game::displayStats()
 {
-	console.Log("Your Stats:");
-	console.Log("===============================================================================");
+	m_console.log("Your Stats:");
+	m_console.log("===============================================================================");
 	std::string stats = "";
-	stats += "HP: " + std::to_string(player->CS.HP) + " | ";
-	stats += "AC: " + std::to_string(player->CS.AC) + " | ";
-	stats += "STR: " + std::to_string(player->CS.STR) + " | ";
-	stats += "DEX: " + std::to_string(player->CS.DEX) + " | ";
-	stats += "BAB: " + std::to_string(player->CS.BAB) + " | ";
-	stats += "Speed: " + std::to_string(player->CS.MoveSpeed) + " | ";
-	if (player->CS.weapon == CharacterSheet::Longsword)
+	stats += "HP: " + std::to_string(m_player->m_CS.m_HP) + " | ";
+	stats += "AC: " + std::to_string(m_player->m_CS.m_AC) + " | ";
+	stats += "STR: " + std::to_string(m_player->m_CS.m_STR) + " | ";
+	stats += "DEX: " + std::to_string(m_player->m_CS.m_DEX) + " | ";
+	stats += "BAB: " + std::to_string(m_player->m_CS.m_BAB) + " | ";
+	stats += "Speed: " + std::to_string(m_player->m_CS.m_moveSpeed) + " | ";
+	if (m_player->m_CS.m_weapon == CharacterSheet::Longsword)
 	{
 		stats += "Weapon: Longsword | ";
 	}
@@ -143,34 +143,34 @@ void Game::DisplayStats()
 	{
 		stats += "Weapon: Longbow | ";
 	}
-	console.Log(stats);
-	console.Log("===============================================================================\n");
+	m_console.log(stats);
+	m_console.log("===============================================================================\n");
 }
 
-void Game::DisplayCommands()
+void Game::displayCommands()
 {
-	console.Log("Command List:");
-	console.Log("===============================================================================");
+	m_console.log("Command List:");
+	m_console.log("===============================================================================");
 	std::string commands = "";
-	for (int i = 0; i < player->m_actionList.size(); i++)
+	for (int i = 0; i < m_player->m_actionList.size(); i++)
 	{
-		commands += "!" + player->m_actionList[i].stringName + " | ";
+		commands += "!" + m_player->m_actionList[i].m_stringName + " | ";
 	}
-	console.Log(commands);
-	console.Log("===============================================================================\n");
+	m_console.log(commands);
+	m_console.log("===============================================================================\n");
 }
 
-void Game::DisplayInfo()
+void Game::displayInfo()
 {	
-	DisplayCommands();
-	DisplayStats();
+	displayCommands();
+	displayStats();
 }
 
 bool contains(std::string _i, std::vector<Action> &_array)
 {
 	for (int i = 0; i < _array.size(); i++)
 	{
-		if ("!" + _array[i].stringName == _i) { return true; }
+		if ("!" + _array[i].m_stringName == _i) { return true; }
 	}
 	return false;
 }
@@ -179,7 +179,7 @@ int getIndex(std::string _i, std::vector<Action> &_array)
 {
 	for (int i = 0; i < _array.size(); i++)
 	{
-		if ("!" + _array[i].stringName == _i) { return i; }
+		if ("!" + _array[i].m_stringName == _i) { return i; }
 	}
 	return false;
 }
@@ -187,107 +187,107 @@ int getIndex(std::string _i, std::vector<Action> &_array)
 void Game::start()
 {
 	int games = 49;
-	while (!quit)
+	while (!m_quit)
 	{		
-		if (!PlayerTesting)
+		if (!m_playerTesting)
 		{
-			while (!victory && !quit)
+			while (!m_victory && !m_quit)
 			{
-				if (npc->CS.HP > 0 && player->CS.HP > 0)
+				if (m_npc->m_CS.m_HP > 0 && m_player->m_CS.m_HP > 0)
 				{
-					npc->StartTurn();
-					npc->Update();
+					m_npc->startTurn();
+					m_npc->update();
 				}
 
-				if (player->CS.HP > 0 && npc->CS.HP > 0)
+				if (m_player->m_CS.m_HP > 0 && m_npc->m_CS.m_HP > 0)
 				{
-					player->StartTurn();
-					player->Update();
+					m_player->startTurn();
+					m_player->update();
 				}
 
 				///Draw Code
 				drawScene();
 				/* Removed for efficiency while training */
-				input.Update();
+				m_input.update();
 			}
 		}
 		else
 		{
-			console.Log("Welcome.");
+			m_console.log("Welcome.");
 			system("PAUSE");
 			system("CLS");
 
-			console.Log("Connecting to Opponent...");
+			m_console.log("Connecting to Opponent...");
 			Sleep(2000);
-			console.Log("Connected!");
+			m_console.log("Connected!");
 			system("PAUSE");
 			system("CLS");
 
 
-			console.Log("Rolling initiative...");
+			m_console.log("Rolling initiative...");
 			Sleep(1000);
 			
-			console.Log("\nYou go first!");
+			m_console.log("\nYou go first!");
 			system("PAUSE");
 			
 
-			while (!victory && !quit)
+			while (!m_victory && !m_quit)
 			{
 				drawScene();
-				player->StartTurn();
-				while (player->isMyTurn && !victory)
+				m_player->startTurn();
+				while (m_player->m_isMyTurn && !m_victory)
 				{
 					drawScene();
 					bool legal = false;
 					std::string input;
-					while (!legal && !victory)
+					while (!legal && !m_victory)
 					{
 						bool valid = false;
-						while (!valid && !victory)
+						while (!valid && !m_victory)
 						{
 							system("CLS");
-							console.Log("[Your Turn]\n");
-							DisplayInfo();
+							m_console.log("[Your Turn]\n");
+							displayInfo();
 							input = "";
 							std::cin >> input;
-							console.SecretLog(input);
-							valid = contains(input, player->m_actionList);
+							m_console.secretLog(input);
+							valid = contains(input, m_player->m_actionList);
 							if (!valid)
 							{
-								console.Log("Invalid Command");
+								m_console.log("Invalid Command");
 								system("PAUSE");
 							}
 						}
 
-						int index = getIndex(input, player->m_actionList);
-						legal = player->m_actionList[index].legal;
+						int index = getIndex(input, m_player->m_actionList);
+						legal = m_player->m_actionList[index].m_legal;
 						if (!legal)
 						{
 							valid = false;
-							console.Log("That action is not legal.");
+							m_console.log("That action is not legal.");
 							system("PAUSE");
 						}
 						else
 						{
-							player->DoAction(player->m_actionList[index]);							
+							m_player->doAction(m_player->m_actionList[index]);							
 						}
 					}
 				}
 				system("CLS");
-				console.Log("[Opponent's Turn]\n");
-				console.Log("Waiting...");
+				m_console.log("[Opponent's Turn]\n");
+				m_console.log("Waiting...");
 				int time = rand() % 50000;
 				Sleep(5000 + time);
 				system("CLS");
 
-				if (npc->CS.HP > 0 && player->CS.HP > 0)
+				if (m_npc->m_CS.m_HP > 0 && m_player->m_CS.m_HP > 0)
 				{
-					npc->StartTurn();
-					npc->Update();
+					m_npc->startTurn();
+					m_npc->update();
 				}
 				else
 				{
-					victory = true;
+					m_victory = true;
 				}
 				//system("PAUSE");
 			}
@@ -297,36 +297,36 @@ void Game::start()
 
 
 
-		victory = false;
+		m_victory = false;
 		std::string tag = " ";
-		if (npc->CS.HP <= 0) { tag[0] = player->tag; }
-		else if (player->CS.HP <= 0) { tag[0] = npc->tag; }
+		if (m_npc->m_CS.m_HP <= 0) { tag[0] = m_player->m_tag; }
+		else if (m_player->m_CS.m_HP <= 0) { tag[0] = m_npc->m_tag; }
 		else { tag = "?"; }
-		console.Log("--Player " + tag + " Wins--");
-		if (!PlayerTesting)
+		m_console.log("--Player " + tag + " Wins--");
+		if (!m_playerTesting)
 		{
 			games++;
 			if (games >= 25)
 			{
-				console.Save("Files/");
+				m_console.save("Files/");
 				games = 0;
 			}
 		}
 		else
 		{
-			console.Save("Files/");
+			m_console.save("Files/");
 			system("PAUSE");
-			quit = true;
+			m_quit = true;
 		}
 
-		console.Clear();		
-		InitialiseEntities();
+		m_console.clear();		
+		initialiseEntities();
 
-		glm::vec2* player_pos = &player->m_Pos;
-		player_pos->x = 4.0f * boxSize;
-		player_pos->y = 1.0f * boxSize;
+		glm::vec2* player_pos = &m_player->m_Pos;
+		player_pos->x = 4.0f * m_boxSize;
+		player_pos->y = 1.0f * m_boxSize;
 
-		glm::vec2* npc_pos = &npc->m_Pos;
+		glm::vec2* npc_pos = &m_npc->m_Pos;
 		int x;
 		int y;
 		bool inwall = true;
@@ -336,22 +336,22 @@ void Game::start()
 			inwall = false;
 			x = rand() % 20;
 			y = rand() % 20;
-			for (int i = 0; i < map.m_walls.size(); i++)
+			for (int i = 0; i < m_map.m_walls.size(); i++)
 			{
-				if (map.m_walls[i]->m_Pos == glm::vec2(x, y))
+				if (m_map.m_walls[i]->m_Pos == glm::vec2(x, y))
 				{
 					inwall = true;
 					break;
 				}
 			}
-			if (x * boxSize == player_pos->x && y * boxSize == player_pos->y)
+			if (x * m_boxSize == player_pos->x && y * m_boxSize == player_pos->y)
 			{
 				inwall = true;
 			}
 		}
 
-		npc_pos->x = x * boxSize;
-		npc_pos->y = y * boxSize;
+		npc_pos->x = x * m_boxSize;
+		npc_pos->y = y * m_boxSize;
 	}	
 }
 
@@ -363,19 +363,19 @@ void Game::drawScene()
 		
 	}
 
-	SDL_SetRenderDrawColor(renderer, WHITE, 255);
-	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(m_renderer, WHITE, 255);
+	SDL_RenderClear(m_renderer);
 
 	//Draw the map
-	drawGrid(renderer, map.m_gridX, map.m_gridY);
-	drawWalls(renderer, map.m_walls);
+	drawGrid(m_renderer, m_map.m_gridX, m_map.m_gridY);
+	drawWalls(m_renderer, m_map.m_walls);
 
 
 
 	//Draw the player square	
-	drawPlayerSquare(renderer, player, true);
-	drawPlayerSquare(renderer, npc, true);
-	SDL_RenderPresent(renderer);
+	drawPlayerSquare(m_renderer, m_player, true);
+	drawPlayerSquare(m_renderer, m_npc, true);
+	SDL_RenderPresent(m_renderer);
 	//SDL_Delay(500);
 }
 
@@ -433,10 +433,10 @@ void Game::drawWalls(SDL_Renderer* _renderer, std::vector<Entity*> _wall)
 void Game::drawGridSquare(SDL_Renderer* _renderer, Entity _entity, bool _fill)
 {
 	SDL_Rect square;	
-	square.x = _entity.m_Pos.x * boxSize;
-	square.y = _entity.m_Pos.y * boxSize;
-	square.w = boxSize;
-	square.h = boxSize;
+	square.x = _entity.m_Pos.x * m_boxSize;
+	square.y = _entity.m_Pos.y * m_boxSize;
+	square.w = m_boxSize;
+	square.h = m_boxSize;
 	SDL_SetRenderDrawColor(_renderer, _entity.m_col.r, _entity.m_col.g, _entity.m_col.b, _entity.m_col.a);
 	
 	if (_fill)
@@ -453,8 +453,8 @@ void Game::drawPlayerSquare(SDL_Renderer* _renderer, Entity* _entity, bool _fill
 	SDL_Rect square;
 	square.x = _entity->m_Pos.x;
 	square.y = _entity->m_Pos.y;
-	square.w = boxSize;
-	square.h = boxSize;
+	square.w = m_boxSize;
+	square.h = m_boxSize;
 	SDL_SetRenderDrawColor(_renderer, _entity->m_col.r, _entity->m_col.g, _entity->m_col.b, _entity->m_col.a);
 
 	if (_fill)

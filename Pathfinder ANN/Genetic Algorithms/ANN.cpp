@@ -16,28 +16,28 @@ NeuralNetwork::NeuralNetwork(std::vector<std::vector<std::vector<float>>> _weigh
 	//Weights[0][0] <-- Neuron number
 	//Weights[0][0][0] <-- Connection number
 
-	layers.clear();	
-	layers.resize(_weights.size());
-	activation = _activation;
-	numInputs = _weights[0].size();
+	m_layers.clear();	
+	m_layers.resize(_weights.size());
+	m_activation = _activation;
+	m_numInputs = _weights[0].size();
 
-	for (int i = 0; i < layers.size(); i++)
+	for (int i = 0; i < m_layers.size(); i++)
 	{
-		layers[i].node.clear();
-		layers[i].node.resize(_weights[i].size());
+		m_layers[i].m_node.clear();
+		m_layers[i].m_node.resize(_weights[i].size());
 
 		for (int l = 0; l < _weights[i].size(); l++)
 		{
-			layers[i].node[l].inputWeights.clear();
+			m_layers[i].m_node[l].m_inputWeights.clear();
 			if (i != 0)
 			{
-				layers[i].node[l].inputWeights.resize(_weights[i - 1].size());
+				m_layers[i].m_node[l].m_inputWeights.resize(_weights[i - 1].size());
 			}
-			layers[i].node[l].activationThreshold = _activation + ((float)(rand() % 6) - 8.0f) / 10.0f;
+			m_layers[i].m_node[l].m_activationThreshold = _activation + ((float)(rand() % 6) - 8.0f) / 10.0f;
 
 			for (int j = 0; j < _weights[i][l].size(); j++)
 			{
-				layers[i].node[l].inputWeights[j] = _weights[i][l][j];
+				m_layers[i].m_node[l].m_inputWeights[j] = _weights[i][l][j];
 			}
 		}	
 	}
@@ -49,27 +49,27 @@ NeuralNetwork::NeuralNetwork(std::string _path)
 	//Weights[0][0] <-- Neuron number
 	//Weights[0][0][0] <-- Connection number
 
-	layers.clear();
-	Load(_path);
+	m_layers.clear();
+	load(_path);
 }
 
 std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 {
-	layers[0].node[0].output = _input->AC;
-	layers[0].node[1].output = _input->chargeLegal;
-	layers[0].node[2].output = _input->distance;
-	layers[0].node[3].output = _input->enemyAC;
-	layers[0].node[4].output = _input->enemyMeleeAttBonus;
-	layers[0].node[5].output = _input->enemyRangedAttBonus;
-	layers[0].node[6].output = _input->meleeAttBonus;
-	layers[0].node[7].output = _input->rangedAttBonus;
-	layers[0].node[8].output = _input->rangedLegal;
-	layers[0].node[9].output = _input->weapon;
-	layers[0].node[10].output = _input->fiveFtBkLegal;
+	m_layers[0].m_node[0].m_output = _input->m_AC;
+	m_layers[0].m_node[1].m_output = _input->m_chargeLegal;
+	m_layers[0].m_node[2].m_output = _input->m_distance;
+	m_layers[0].m_node[3].m_output = _input->m_enemyAC;
+	m_layers[0].m_node[4].m_output = _input->m_enemyMeleeAttBonus;
+	m_layers[0].m_node[5].m_output = _input->m_enemyRangedAttBonus;
+	m_layers[0].m_node[6].m_output = _input->m_meleeAttBonus;
+	m_layers[0].m_node[7].m_output = _input->m_rangedAttBonus;
+	m_layers[0].m_node[8].m_output = _input->m_rangedLegal;
+	m_layers[0].m_node[9].m_output = _input->m_weapon;
+	m_layers[0].m_node[10].m_output = _input->m_fiveFtBkLegal;
 	
 	float ErrorSum = 1.0f;
-	int outLayer = layers.size() - 1;
-	std::vector<int> output(layers[outLayer].node.size());
+	int outLayer = m_layers.size() - 1;
+	std::vector<int> output(m_layers[outLayer].m_node.size());
 	int attempts = 0;
 
 	/* THIS IS USED FOR TRAINING ONLY*/
@@ -79,28 +79,28 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 	{
 		attempts++;
 		///Decision phase
-		for (int i = 1; i < layers.size(); i++) //Only start the "web" from layer 1, not 0 (input layer)
+		for (int i = 1; i < m_layers.size(); i++) //Only start the "web" from layer 1, not 0 (input layer)
 		{
-			for (int l = 0; l < layers[i].node.size(); l++)
+			for (int l = 0; l < m_layers[i].m_node.size(); l++)
 			{
 				float sumValue = 0.0f;
-				for (int j = 0; j < layers[i].node[l].inputWeights.size(); j++)
+				for (int j = 0; j < m_layers[i].m_node[l].m_inputWeights.size(); j++)
 				{
-					float w = layers[i].node[l].inputWeights[j];
-					float in = layers[i - 1].node[j].output;
+					float w = m_layers[i].m_node[l].m_inputWeights[j];
+					float in = m_layers[i - 1].m_node[j].m_output;
 					sumValue += w * in;
 				}
 
 				//float sigmoid = 1.0f / (1.0f + powf(1.71828f, -(sumValue - activation))); //WRONG
-				float sigmoid = 1.0f / (1.0f + powf(1.71828f, -(sumValue - layers[i].node[l].activationThreshold)));
+				float sigmoid = 1.0f / (1.0f + powf(1.71828f, -(sumValue - m_layers[i].m_node[l].m_activationThreshold)));
 
-				layers[i].node[l].rawOutput = sumValue;
-				layers[i].node[l].output = sigmoid;				
+				m_layers[i].m_node[l].m_rawOutput = sumValue;
+				m_layers[i].m_node[l].m_output = sigmoid;				
 			}
 		}
 		for (int i = 0; i < output.size(); i++) 
 		{
-			if (layers[outLayer].node[i].output > 0.85f)
+			if (m_layers[outLayer].m_node[i].m_output > 0.85f)
 			{
 				output[i] = 1;
 			}
@@ -113,11 +113,11 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Determining the desired output
 		//Determine the desired action in the current circumstance
-		if (_input->distance <= 2.0f)
+		if (_input->m_distance <= 2.0f)
 		{
-			if (_input->weapon == CharacterSheet::Weapon::Longsword)
+			if (_input->m_weapon == CharacterSheet::Weapon::Longsword)
 			{
-				if (_input->enemyAC <= _input->meleeAttBonus + 7)
+				if (_input->m_enemyAC <= _input->m_meleeAttBonus + 7)
 				{
 					expectedOutput[CharacterSheet::AttackDefensively] = 1.0f;
 					expectedOutput[CharacterSheet::FullAttackDefensively] = 1.0f;
@@ -128,9 +128,9 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 					expectedOutput[CharacterSheet::MeleeAttack] = 1.0f;
 				}
 			}
-			else if (_input->weapon = CharacterSheet::Weapon::Longbow)
+			else if (_input->m_weapon = CharacterSheet::Weapon::Longbow)
 			{
-				if (_input->distance <= 1.0f && _input->fiveFtBkLegal)
+				if (_input->m_distance <= 1.0f && _input->m_fiveFtBkLegal)
 				{
 					expectedOutput[CharacterSheet::RangedAttack] = 1.0f;
 					expectedOutput[CharacterSheet::FullRangedAttack] = 1.0f;
@@ -138,7 +138,7 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 				else
 				{
 					expectedOutput[CharacterSheet::Draw] = 1.0f;
-					if (_input->enemyAC <= _input->meleeAttBonus + 7)
+					if (_input->m_enemyAC <= _input->m_meleeAttBonus + 7)
 					{
 						expectedOutput[CharacterSheet::AttackDefensively] = 1.0f;
 					}
@@ -153,23 +153,23 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 		}
 		else
 		{
-			if (_input->chargeLegal && _input->weapon == CharacterSheet::Weapon::Longsword)
+			if (_input->m_chargeLegal && _input->m_weapon == CharacterSheet::Weapon::Longsword)
 			{
 				expectedOutput[CharacterSheet::Charge] = 1.0f;
 			}
-			else if (_input->weapon == CharacterSheet::Weapon::Longbow && _input->rangedLegal)
+			else if (_input->m_weapon == CharacterSheet::Weapon::Longbow && _input->m_rangedLegal)
 			{
 				expectedOutput[CharacterSheet::RangedAttack] = 1.0f;
 				expectedOutput[CharacterSheet::FullRangedAttack] = 1.0f;
 			}
-			else if (_input->weapon == CharacterSheet::Weapon::Longbow)
+			else if (_input->m_weapon == CharacterSheet::Weapon::Longbow)
 			{
 				expectedOutput[CharacterSheet::MoveForRanged] = 1.0f;
 			}
 			else
 			{
 				expectedOutput[CharacterSheet::MoveForMelee] = 1.0f;
-				if (_input->enemyAC <= _input->meleeAttBonus + 7)
+				if (_input->m_enemyAC <= _input->m_meleeAttBonus + 7)
 				{
 					expectedOutput[CharacterSheet::AttackDefensively] = 1.0f;
 				}
@@ -183,99 +183,104 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 
 		///Begin Training
 		//Reset all the error values
-		for (int i = 0; i < layers.size(); i++)
+		for (int i = 0; i < m_layers.size(); i++)
 		{
-			for (int l = 0; l < layers[i].node.size(); l++)
+			for (int l = 0; l < m_layers[i].m_node.size(); l++)
 			{
-				layers[i].node[l].error = 0.0f;
+				m_layers[i].m_node[l].m_error = 0.0f;
 			}
 		}
 
 		//Determine the error value of the output layer
-		int outlayer = layers.size() - 1;
+		int outlayer = m_layers.size() - 1;
 		ErrorSum = 0.0f;
-		for (int i = 0; i < layers[outlayer].node.size(); i++)
+		for (int i = 0; i < m_layers[outlayer].m_node.size(); i++)
 		{
-			float error = expectedOutput[i] - layers[outlayer].node[i].output;
-			float sError = layers[outlayer].node[i].output * (1.0f - layers[outlayer].node[i].output) * error;
+			if (m_layers[outlayer].m_node[i].m_output == 1.0f || m_layers[outlayer].m_node[i].m_output == 0.0f || m_layers[outlayer].m_node[i].m_output == -1.0f)
+			{
+				m_layers[outlayer].m_node[i].m_output += 0.012564f;
+			}
+
+			float error = expectedOutput[i] - m_layers[outlayer].m_node[i].m_output;
+			float sError = m_layers[outlayer].m_node[i].m_output * (1.0f - m_layers[outlayer].m_node[i].m_output) * error;
 			if (fabs(error) > 0.05f && fabs(sError) < 0.05f)
 			{
 				if (sError < 0)
 				{
-					layers[outlayer].node[i].error = -0.05f;
+					m_layers[outlayer].m_node[i].m_error = -0.05f;
 				}
 				else
 				{
-					layers[outlayer].node[i].error = 0.05f;
+					m_layers[outlayer].m_node[i].m_error = 0.05f;
 				}
 			}
 			else
 			{
-				layers[outlayer].node[i].error = sError;
+				m_layers[outlayer].m_node[i].m_error = sError;
 			}				
 
 			ErrorSum += fabs(error);
 		}
 
 		//Backpropogate and adjust all the weights
-		for (int i = layers.size()-1; i > 0; i--)
+		for (int i = m_layers.size()-1; i > 0; i--)
 		{
-			for (int l = 0; l < layers[i].node.size(); l++)
+			for (int l = 0; l < m_layers[i].m_node.size(); l++)
 			{
-				layers[i].node[l].activationThreshold += alpha * -1.0f * layers[i].node[l].error;
-				for (int j = 0; j < layers[i].node[l].inputWeights.size(); j++) //J also represents the output of the previous layer
+				m_layers[i].m_node[l].m_activationThreshold += m_alpha * -1.0f * m_layers[i].m_node[l].m_error;
+				for (int j = 0; j < m_layers[i].m_node[l].m_inputWeights.size(); j++) //J also represents the output of the previous layer
 				{
-					layers[i].node[l].inputWeights[j] += alpha * layers[i - 1].node[j].output * layers[i].node[l].error;
-					float error = layers[i].node[l].inputWeights[j] * layers[i].node[l].error;
-					float sError = layers[i - 1].node[j].output * (1.0f - layers[i - 1].node[j].output) * error;
-					layers[i - 1].node[j].error += sError;
+					m_layers[i].m_node[l].m_inputWeights[j] += m_alpha * m_layers[i - 1].m_node[j].m_output * m_layers[i].m_node[l].m_error;
+					float error = m_layers[i].m_node[l].m_inputWeights[j] * m_layers[i].m_node[l].m_error;
+					float sError = m_layers[i - 1].m_node[j].m_output * (1.0f - m_layers[i - 1].m_node[j].m_output) * error;
+					m_layers[i - 1].m_node[j].m_error += sError;
 				}
 			}
 		}
 
 		///Count the ticks for saving the ANN
-		tick++;
-		if (tick > 500 && !game->PlayerTesting)
+		m_tick++;
+		if (m_tick > 500 && !m_game->m_playerTesting)
 		{
-			Save();
-			tick = 0;
+			save();
+			m_tick = 0;
 		}
 	}
-	if (!game->PlayerTesting)
+	if (!m_game->m_playerTesting)
 	{
-		game->console.Log("(Attempts: " + std::to_string(attempts) + ")");
+		m_game->m_console.log("(Attempts: " + std::to_string(attempts) + ")");
 	}
 	return output;	
 }
 
 
-void NeuralNetwork::Save()
+void NeuralNetwork::save()
 {
-	int numLayers = layers.size() -1; //Don't count the input layer, there's no point in saving and loading that
-	int nodesPerLayer = layers[1].node.size(); // We only want the number of middle nodes
-	int numOutputs = layers[layers.size() - 1].node.size(); // Number of output nodes (the final layer)
+	int numLayers = m_layers.size() -1; //Don't count the input layer, there's no point in saving and loading that
+	int nodesPerLayer = m_layers[1].m_node.size(); // We only want the number of middle nodes
+	int numOutputs = m_layers[m_layers.size() - 1].m_node.size(); // Number of output nodes (the final layer)
 
 	std::string saveFile = "";
 	saveFile += std::to_string(numLayers) + "-";
 	saveFile += std::to_string(nodesPerLayer) + "-";
 	saveFile += std::to_string(numOutputs) + "-";
-	saveFile += std::to_string(numInputs) + "-";
-	saveFile += std::to_string(activation) + "-";
+	saveFile += std::to_string(m_numInputs) + "-";
+	saveFile += std::to_string(m_activation) + "-";
 
 
-	for (int i = 1; i < layers.size(); i++)
+	for (int i = 1; i < m_layers.size(); i++)
 	{
-		for (int l = 0; l < layers[i].node.size(); l++)
+		for (int l = 0; l < m_layers[i].m_node.size(); l++)
 		{
-			saveFile += std::to_string(layers[i].node[l].activationThreshold) + ",";
-			for (int j = 0; j < layers[i].node[l].inputWeights.size(); j++)
+			saveFile += std::to_string(m_layers[i].m_node[l].m_activationThreshold) + ",";
+			for (int j = 0; j < m_layers[i].m_node[l].m_inputWeights.size(); j++)
 			{
-				saveFile += std::to_string(layers[i].node[l].inputWeights[j]) + ",";
+				saveFile += std::to_string(m_layers[i].m_node[l].m_inputWeights[j]) + ",";
 			}
 		}
 	}
 	std::string folderTag;
-	if (player) { folderTag = "/player/"; }
+	if (m_player) { folderTag = "/player/"; }
 	else  { folderTag = "/npc/"; }
 
 	std::string directory = "Files";
@@ -310,7 +315,7 @@ std::string readUntil(std::string& _string, int &_i, char _delim)
 	return out;
 }
 
-void NeuralNetwork::Load(std::string _path)
+void NeuralNetwork::load(std::string _path)
 {
 	std::ifstream File(_path);
 	if (!File)
@@ -326,12 +331,12 @@ void NeuralNetwork::Load(std::string _path)
 	int numLayers = std::stoi(readUntil(str, it, '-'));
 	int nodesPerLayer = std::stoi(readUntil(str, it, '-'));
 	int numOutputs = std::stoi(readUntil(str, it, '-'));
-	numInputs = std::stoi(readUntil(str, it, '-'));
-	activation = std::stof(readUntil(str, it, '-'));
+	m_numInputs = std::stoi(readUntil(str, it, '-'));
+	m_activation = std::stof(readUntil(str, it, '-'));
 	
 	weights.resize(numLayers + 1);
 	activations.resize(numLayers + 1);
-	weights[0].resize(numInputs); //0 is the input layer, it has no inputs or weights of its own
+	weights[0].resize(m_numInputs); //0 is the input layer, it has no inputs or weights of its own
 	
 	for (int i = 1; i < weights.size() - 1; i++) //This initialises all the middle layers
 	{
@@ -361,25 +366,25 @@ void NeuralNetwork::Load(std::string _path)
 		}
 	}
 
-	layers.resize(weights.size());
-	for (int i = 0; i < layers.size(); i++)
+	m_layers.resize(weights.size());
+	for (int i = 0; i < m_layers.size(); i++)
 	{
-		layers[i].node.clear();
-		layers[i].node.resize(weights[i].size());
+		m_layers[i].m_node.clear();
+		m_layers[i].m_node.resize(weights[i].size());
 
 		for (int l = 0; l < weights[i].size(); l++)
 		{
-			layers[i].node[l].inputWeights.clear();
+			m_layers[i].m_node[l].m_inputWeights.clear();
 			if (i != 0)
 			{
-				layers[i].node[l].inputWeights.resize(weights[i - 1].size());
-				layers[i].node[l].activationThreshold = activations[i][l];
+				m_layers[i].m_node[l].m_inputWeights.resize(weights[i - 1].size());
+				m_layers[i].m_node[l].m_activationThreshold = activations[i][l];
 			}
 			
 
 			for (int j = 0; j < weights[i][l].size(); j++)
 			{
-				layers[i].node[l].inputWeights[j] = weights[i][l][j];
+				m_layers[i].m_node[l].m_inputWeights[j] = weights[i][l][j];
 			}
 		}
 	}

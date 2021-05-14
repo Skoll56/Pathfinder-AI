@@ -10,80 +10,80 @@ void Entity::initialiseActionList()
 {
 	m_actionList.clear();
 	m_actionList.resize(CharacterSheet::EndTurn + 1);
-	m_actionList[CharacterSheet::MeleeAttack].name = CharacterSheet::MeleeAttack;	
-	m_actionList[CharacterSheet::MeleeAttack].provokes = false;
-	m_actionList[CharacterSheet::MeleeAttack].slot = CharacterSheet::Standard;
-	m_actionList[CharacterSheet::MeleeAttack].stringName = "MeleeAttack";
+	m_actionList[CharacterSheet::MeleeAttack].m_name = CharacterSheet::MeleeAttack;	
+	m_actionList[CharacterSheet::MeleeAttack].m_provokes = false;
+	m_actionList[CharacterSheet::MeleeAttack].m_slot = CharacterSheet::Standard;
+	m_actionList[CharacterSheet::MeleeAttack].m_stringName = "MeleeAttack";
 
-	m_actionList[CharacterSheet::RangedAttack].name = CharacterSheet::RangedAttack;	
-	m_actionList[CharacterSheet::RangedAttack].provokes = true;
-	m_actionList[CharacterSheet::RangedAttack].slot = CharacterSheet::Standard;
-	m_actionList[CharacterSheet::RangedAttack].stringName = "RangedAttack";
+	m_actionList[CharacterSheet::RangedAttack].m_name = CharacterSheet::RangedAttack;	
+	m_actionList[CharacterSheet::RangedAttack].m_provokes = true;
+	m_actionList[CharacterSheet::RangedAttack].m_slot = CharacterSheet::Standard;
+	m_actionList[CharacterSheet::RangedAttack].m_stringName = "RangedAttack";
 
-	m_actionList[CharacterSheet::FullMeleeAttack].name = CharacterSheet::FullMeleeAttack;	
-	m_actionList[CharacterSheet::FullMeleeAttack].provokes = false;
-	m_actionList[CharacterSheet::FullMeleeAttack].slot = CharacterSheet::FullRound;
-	m_actionList[CharacterSheet::FullMeleeAttack].stringName = "FullMeleeAttack";
+	m_actionList[CharacterSheet::FullMeleeAttack].m_name = CharacterSheet::FullMeleeAttack;	
+	m_actionList[CharacterSheet::FullMeleeAttack].m_provokes = false;
+	m_actionList[CharacterSheet::FullMeleeAttack].m_slot = CharacterSheet::FullRound;
+	m_actionList[CharacterSheet::FullMeleeAttack].m_stringName = "FullMeleeAttack";
 
-	m_actionList[CharacterSheet::FullRangedAttack].name = CharacterSheet::FullRangedAttack;	
-	m_actionList[CharacterSheet::FullRangedAttack].provokes = true;
-	m_actionList[CharacterSheet::FullRangedAttack].slot = CharacterSheet::FullRound;
-	m_actionList[CharacterSheet::FullRangedAttack].stringName = "FullRangedAttack";
+	m_actionList[CharacterSheet::FullRangedAttack].m_name = CharacterSheet::FullRangedAttack;	
+	m_actionList[CharacterSheet::FullRangedAttack].m_provokes = true;
+	m_actionList[CharacterSheet::FullRangedAttack].m_slot = CharacterSheet::FullRound;
+	m_actionList[CharacterSheet::FullRangedAttack].m_stringName = "FullRangedAttack";
 
-	m_actionList[CharacterSheet::FiveFtStepBack].name = CharacterSheet::FiveFtStepBack;
-	m_actionList[CharacterSheet::FiveFtStepBack].provokes = false;
-	m_actionList[CharacterSheet::FiveFtStepBack].slot = CharacterSheet::Step;
-	m_actionList[CharacterSheet::FiveFtStepBack].stringName = "FiveFtStepBack";
+	m_actionList[CharacterSheet::FiveFtStepBack].m_name = CharacterSheet::FiveFtStepBack;
+	m_actionList[CharacterSheet::FiveFtStepBack].m_provokes = false;
+	m_actionList[CharacterSheet::FiveFtStepBack].m_slot = CharacterSheet::Step;
+	m_actionList[CharacterSheet::FiveFtStepBack].m_stringName = "FiveFtStepBack";
 
-	m_actionList[CharacterSheet::FiveFtStepFwd].name = CharacterSheet::FiveFtStepFwd;
-	m_actionList[CharacterSheet::FiveFtStepFwd].provokes = false;
-	m_actionList[CharacterSheet::FiveFtStepFwd].slot = CharacterSheet::Step;
-	m_actionList[CharacterSheet::FiveFtStepFwd].stringName = "FiveFtStepFwd";
+	m_actionList[CharacterSheet::FiveFtStepFwd].m_name = CharacterSheet::FiveFtStepFwd;
+	m_actionList[CharacterSheet::FiveFtStepFwd].m_provokes = false;
+	m_actionList[CharacterSheet::FiveFtStepFwd].m_slot = CharacterSheet::Step;
+	m_actionList[CharacterSheet::FiveFtStepFwd].m_stringName = "FiveFtStepFwd";
 
-	m_actionList[CharacterSheet::AttackDefensively].name = CharacterSheet::AttackDefensively;
-	m_actionList[CharacterSheet::AttackDefensively].provokes = false;
-	m_actionList[CharacterSheet::AttackDefensively].slot = CharacterSheet::Standard;
-	m_actionList[CharacterSheet::AttackDefensively].stringName = "AttackDefensively";
+	m_actionList[CharacterSheet::AttackDefensively].m_name = CharacterSheet::AttackDefensively;
+	m_actionList[CharacterSheet::AttackDefensively].m_provokes = false;
+	m_actionList[CharacterSheet::AttackDefensively].m_slot = CharacterSheet::Standard;
+	m_actionList[CharacterSheet::AttackDefensively].m_stringName = "AttackDefensively";
 
-	m_actionList[CharacterSheet::FullAttackDefensively].name = CharacterSheet::FullAttackDefensively;
-	m_actionList[CharacterSheet::FullAttackDefensively].provokes = false;
-	m_actionList[CharacterSheet::FullAttackDefensively].slot = CharacterSheet::FullRound;
-	m_actionList[CharacterSheet::FullAttackDefensively].stringName = "FullAttackDefensively";
+	m_actionList[CharacterSheet::FullAttackDefensively].m_name = CharacterSheet::FullAttackDefensively;
+	m_actionList[CharacterSheet::FullAttackDefensively].m_provokes = false;
+	m_actionList[CharacterSheet::FullAttackDefensively].m_slot = CharacterSheet::FullRound;
+	m_actionList[CharacterSheet::FullAttackDefensively].m_stringName = "FullAttackDefensively";
 
-	m_actionList[CharacterSheet::TotalDefence].name = CharacterSheet::TotalDefence;
-	m_actionList[CharacterSheet::TotalDefence].provokes = false;
-	m_actionList[CharacterSheet::TotalDefence].slot = CharacterSheet::Standard;
-	m_actionList[CharacterSheet::TotalDefence].stringName = "TotalDefence";
+	m_actionList[CharacterSheet::TotalDefence].m_name = CharacterSheet::TotalDefence;
+	m_actionList[CharacterSheet::TotalDefence].m_provokes = false;
+	m_actionList[CharacterSheet::TotalDefence].m_slot = CharacterSheet::Standard;
+	m_actionList[CharacterSheet::TotalDefence].m_stringName = "TotalDefence";
 
-	m_actionList[CharacterSheet::MoveForMelee].name = CharacterSheet::MoveForMelee;
-	m_actionList[CharacterSheet::MoveForMelee].provokes = true;
-	m_actionList[CharacterSheet::MoveForMelee].slot = CharacterSheet::Move;
-	m_actionList[CharacterSheet::MoveForMelee].stringName = "MeleeMovement";
+	m_actionList[CharacterSheet::MoveForMelee].m_name = CharacterSheet::MoveForMelee;
+	m_actionList[CharacterSheet::MoveForMelee].m_provokes = true;
+	m_actionList[CharacterSheet::MoveForMelee].m_slot = CharacterSheet::Move;
+	m_actionList[CharacterSheet::MoveForMelee].m_stringName = "MeleeMovement";
 
-	m_actionList[CharacterSheet::MoveForRanged].name = CharacterSheet::MoveForRanged;
-	m_actionList[CharacterSheet::MoveForRanged].provokes = true;
-	m_actionList[CharacterSheet::MoveForRanged].slot = CharacterSheet::Move;
-	m_actionList[CharacterSheet::MoveForRanged].stringName = "RangedMovement";
+	m_actionList[CharacterSheet::MoveForRanged].m_name = CharacterSheet::MoveForRanged;
+	m_actionList[CharacterSheet::MoveForRanged].m_provokes = true;
+	m_actionList[CharacterSheet::MoveForRanged].m_slot = CharacterSheet::Move;
+	m_actionList[CharacterSheet::MoveForRanged].m_stringName = "RangedMovement";
 
-	m_actionList[CharacterSheet::Draw].name = CharacterSheet::Draw;
-	m_actionList[CharacterSheet::Draw].provokes = false;
-	m_actionList[CharacterSheet::Draw].slot = CharacterSheet::Move;
-	m_actionList[CharacterSheet::Draw].stringName = "Draw";
+	m_actionList[CharacterSheet::Draw].m_name = CharacterSheet::Draw;
+	m_actionList[CharacterSheet::Draw].m_provokes = false;
+	m_actionList[CharacterSheet::Draw].m_slot = CharacterSheet::Move;
+	m_actionList[CharacterSheet::Draw].m_stringName = "Draw";
 
-	m_actionList[CharacterSheet::Charge].name = CharacterSheet::Charge;
-	m_actionList[CharacterSheet::Charge].provokes = false;
-	m_actionList[CharacterSheet::Charge].slot = CharacterSheet::FullRound;
-	m_actionList[CharacterSheet::Charge].stringName = "Charge";
+	m_actionList[CharacterSheet::Charge].m_name = CharacterSheet::Charge;
+	m_actionList[CharacterSheet::Charge].m_provokes = false;
+	m_actionList[CharacterSheet::Charge].m_slot = CharacterSheet::FullRound;
+	m_actionList[CharacterSheet::Charge].m_stringName = "Charge";
 
-	m_actionList[CharacterSheet::AOO].name = CharacterSheet::AOO;
-	m_actionList[CharacterSheet::AOO].provokes = false;
-	m_actionList[CharacterSheet::AOO].slot = CharacterSheet::Immediate;
-	m_actionList[CharacterSheet::AOO].stringName = "AOO";
+	m_actionList[CharacterSheet::AOO].m_name = CharacterSheet::AOO;
+	m_actionList[CharacterSheet::AOO].m_provokes = false;
+	m_actionList[CharacterSheet::AOO].m_slot = CharacterSheet::Immediate;
+	m_actionList[CharacterSheet::AOO].m_stringName = "AOO";
 
-	m_actionList[CharacterSheet::EndTurn].name = CharacterSheet::EndTurn;
-	m_actionList[CharacterSheet::EndTurn].provokes = false;
-	m_actionList[CharacterSheet::EndTurn].slot = CharacterSheet::Free;
-	m_actionList[CharacterSheet::EndTurn].stringName = "EndTurn";
+	m_actionList[CharacterSheet::EndTurn].m_name = CharacterSheet::EndTurn;
+	m_actionList[CharacterSheet::EndTurn].m_provokes = false;
+	m_actionList[CharacterSheet::EndTurn].m_slot = CharacterSheet::Free;
+	m_actionList[CharacterSheet::EndTurn].m_stringName = "EndTurn";
 
 
 	refreshActionList();
@@ -92,215 +92,215 @@ void Entity::initialiseActionList()
 void Entity::refreshActionList()
 {
 
-	m_actionList[CharacterSheet::MeleeAttack].legal = true;
-	m_actionList[CharacterSheet::RangedAttack].legal = true;		
-	m_actionList[CharacterSheet::FullMeleeAttack].legal = true;		
-	m_actionList[CharacterSheet::FullRangedAttack].legal = true;	
-	m_actionList[CharacterSheet::FiveFtStepBack].legal = true;
-	m_actionList[CharacterSheet::FiveFtStepFwd].legal = true;
-	m_actionList[CharacterSheet::AttackDefensively].legal = true;
-	m_actionList[CharacterSheet::FullAttackDefensively].legal = true;
-	m_actionList[CharacterSheet::TotalDefence].legal = true;
-	m_actionList[CharacterSheet::MoveForMelee].legal = true;
-	m_actionList[CharacterSheet::MoveForRanged].legal = true;
-	m_actionList[CharacterSheet::Draw].legal = true;
-	m_actionList[CharacterSheet::Charge].legal = true;
+	m_actionList[CharacterSheet::MeleeAttack].m_legal = true;
+	m_actionList[CharacterSheet::RangedAttack].m_legal = true;		
+	m_actionList[CharacterSheet::FullMeleeAttack].m_legal = true;		
+	m_actionList[CharacterSheet::FullRangedAttack].m_legal = true;	
+	m_actionList[CharacterSheet::FiveFtStepBack].m_legal = true;
+	m_actionList[CharacterSheet::FiveFtStepFwd].m_legal = true;
+	m_actionList[CharacterSheet::AttackDefensively].m_legal = true;
+	m_actionList[CharacterSheet::FullAttackDefensively].m_legal = true;
+	m_actionList[CharacterSheet::TotalDefence].m_legal = true;
+	m_actionList[CharacterSheet::MoveForMelee].m_legal = true;
+	m_actionList[CharacterSheet::MoveForRanged].m_legal = true;
+	m_actionList[CharacterSheet::Draw].m_legal = true;
+	m_actionList[CharacterSheet::Charge].m_legal = true;
 }
 
-void Entity::DoRandomAction()
+void Entity::doRandomAction()
 {
 	int selection = rand() % (CharacterSheet::EndTurn + 1);
-	while (m_actionList[selection].legal == false)
+	while (m_actionList[selection].m_legal == false)
 	{
 		selection = rand() % (CharacterSheet::EndTurn + 1);
 	}
-	DoAction(m_actionList[selection]);	
+	doAction(m_actionList[selection]);	
 }
 
-void Entity::DoAction(Action _a)
+void Entity::doAction(Action _a)
 {
 
-	if (_a.slot == CharacterSheet::Standard)
+	if (_a.m_slot == CharacterSheet::Standard)
 	{
-		Disable(_a.slot);
-		MoveActionsTaken++;
-		if (MoveActionsTaken == 2)
+		disable(_a.m_slot);
+		m_moveActionsTaken++;
+		if (m_moveActionsTaken == 2)
 		{
-			Disable(CharacterSheet::Move);
+			disable(CharacterSheet::Move);
 		}
-		Disable(CharacterSheet::FullRound);
+		disable(CharacterSheet::FullRound);
 	}
-	else if (_a.slot == CharacterSheet::FullRound)
+	else if (_a.m_slot == CharacterSheet::FullRound)
 	{
-		Disable(_a.slot);
-		Disable(CharacterSheet::Standard);
-		Disable(CharacterSheet::Move);
-		MoveActionsTaken = 2;
+		disable(_a.m_slot);
+		disable(CharacterSheet::Standard);
+		disable(CharacterSheet::Move);
+		m_moveActionsTaken = 2;
 	}
-	else if (_a.slot == CharacterSheet::Move)
+	else if (_a.m_slot == CharacterSheet::Move)
 	{
-		MoveActionsTaken++;
-		if (MoveActionsTaken == 2)
+		m_moveActionsTaken++;
+		if (m_moveActionsTaken == 2)
 		{
-			Disable(CharacterSheet::Standard);
-			Disable(CharacterSheet::Move);
+			disable(CharacterSheet::Standard);
+			disable(CharacterSheet::Move);
 		}
-		Disable(CharacterSheet::FullRound);
+		disable(CharacterSheet::FullRound);
 	}
-	else if (_a.slot == CharacterSheet::Immediate)
+	else if (_a.m_slot == CharacterSheet::Immediate)
 	{
-		Disable(_a.slot);
+		disable(_a.m_slot);
 	}
-	else if (_a.slot == CharacterSheet::Step)
+	else if (_a.m_slot == CharacterSheet::Step)
 	{
-		Disable(_a.slot);
-		m_actionList[CharacterSheet::Charge].legal = false;
-		m_actionList[CharacterSheet::MoveForMelee].legal = false;		
-		m_actionList[CharacterSheet::MoveForRanged].legal = false;		
+		disable(_a.m_slot);
+		m_actionList[CharacterSheet::Charge].m_legal = false;
+		m_actionList[CharacterSheet::MoveForMelee].m_legal = false;		
+		m_actionList[CharacterSheet::MoveForRanged].m_legal = false;		
 	}
 	
-	if (_a.provokes)
+	if (_a.m_provokes)
 	{
-		opponent->TakeAOO();
-		if (CS.HP < 1)
+		m_opponent->takeAOO();
+		if (m_CS.m_HP < 1)
 		{
-			isMyTurn = false;
+			m_isMyTurn = false;
 			return;
 		}
 	}
-	if (!game->PlayerTesting)
+	if (!m_game->m_playerTesting)
 	{
 		std::string tag = " ";
-		tag[0] = this->tag;
-		game->console.Log("Player " + tag + ": " + _a.stringName);
+		tag[0] = this->m_tag;
+		m_game->m_console.log("Player " + tag + ": " + _a.m_stringName);
 	}
 	else
 	{
-		if (this->tag == 'B')
+		if (this->m_tag == 'B')
 		{
 			system("CLS");
 			Sleep(1000);
-			game->console.Log("Opponent takes action: " + _a.stringName);
+			m_game->m_console.log("Opponent takes action: " + _a.m_stringName);
 			system("PAUSE");
 		}		
 	}
 	
-	if (_a.name == CharacterSheet::MeleeAttack)
+	if (_a.m_name == CharacterSheet::MeleeAttack)
 	{
-		MeleeAttack(CS.BAB + CS.STR + CS.attackBonus);
+		meleeAttack(m_CS.m_BAB + m_CS.m_STR + m_CS.m_attackBonus);
 	}
-	else if (_a.name == CharacterSheet::FullMeleeAttack)
+	else if (_a.m_name == CharacterSheet::FullMeleeAttack)
 	{
-		for (int i = 0; i < CS.BAB; i += 5)
+		for (int i = 0; i < m_CS.m_BAB; i += 5)
 		{
-			MeleeAttack(CS.BAB + CS.STR + CS.attackBonus - i);
+			meleeAttack(m_CS.m_BAB + m_CS.m_STR + m_CS.m_attackBonus - i);
 		}
 	}
-	else if (_a.name == CharacterSheet::RangedAttack)
+	else if (_a.m_name == CharacterSheet::RangedAttack)
 	{
-		RangedAttack(CS.BAB + CS.DEX + CS.attackBonus);
+		rangedAttack(m_CS.m_BAB + m_CS.m_DEX + m_CS.m_attackBonus);
 	}
-	else if (_a.name == CharacterSheet::FullRangedAttack)
+	else if (_a.m_name == CharacterSheet::FullRangedAttack)
 	{
-		for (int i = 0; i < CS.BAB; i += 5)
+		for (int i = 0; i < m_CS.m_BAB; i += 5)
 		{
-			RangedAttack(CS.BAB + CS.DEX - i + CS.attackBonus);
+			rangedAttack(m_CS.m_BAB + m_CS.m_DEX - i + m_CS.m_attackBonus);
 		}
 	}
-	else if (_a.name == CharacterSheet::FiveFtStepBack)
+	else if (_a.m_name == CharacterSheet::FiveFtStepBack)
 	{
-		m_Pos = fiveFtBackSquare;	
-		m_actionList[CharacterSheet::MeleeAttack].legal = false;
-		m_actionList[CharacterSheet::AttackDefensively].legal = false;		
-		m_actionList[CharacterSheet::FullMeleeAttack].legal = false;
-		m_actionList[CharacterSheet::FullAttackDefensively].legal = false;
+		m_Pos = m_fiveFtBackSquare;	
+		m_actionList[CharacterSheet::MeleeAttack].m_legal = false;
+		m_actionList[CharacterSheet::AttackDefensively].m_legal = false;		
+		m_actionList[CharacterSheet::FullMeleeAttack].m_legal = false;
+		m_actionList[CharacterSheet::FullAttackDefensively].m_legal = false;
 	}
-	else if (_a.name == CharacterSheet::FiveFtStepFwd)
+	else if (_a.m_name == CharacterSheet::FiveFtStepFwd)
 	{
-		std::string route = findPath(game->map, this, opponent->m_Pos.x / game->boxSize, opponent->m_Pos.y / game->boxSize);
+		std::string route = findPath(m_game->m_map, this, m_opponent->m_Pos.x / m_game->m_boxSize, m_opponent->m_Pos.y / m_game->m_boxSize);
 		route.pop_back();
 
 		while (route.size() > 1)
 		{
 			route.pop_back();
 		}
-		AdjustPosition(route); 
+		adjustPosition(route); 
 
-		if (CS.weapon == CharacterSheet::Longsword && MoveActionsTaken != 2)
+		if (m_CS.m_weapon == CharacterSheet::Longsword && m_moveActionsTaken != 2)
 		{
 			if (isAdjacent())
 			{
-				m_actionList[CharacterSheet::MeleeAttack].legal = true;
-				m_actionList[CharacterSheet::AttackDefensively].legal = true;
+				m_actionList[CharacterSheet::MeleeAttack].m_legal = true;
+				m_actionList[CharacterSheet::AttackDefensively].m_legal = true;
 
-				if (MoveActionsTaken == 0)
+				if (m_moveActionsTaken == 0)
 				{
-					m_actionList[CharacterSheet::FullMeleeAttack].legal = true;
-					m_actionList[CharacterSheet::FullAttackDefensively].legal = true;
+					m_actionList[CharacterSheet::FullMeleeAttack].m_legal = true;
+					m_actionList[CharacterSheet::FullAttackDefensively].m_legal = true;
 				}
 			}
 		}
 	}
-	else if (_a.name == CharacterSheet::AttackDefensively)
+	else if (_a.m_name == CharacterSheet::AttackDefensively)
 	{
-		CS.attackBonus -= 4;
-		CS.ACbonus += 2;
-		MeleeAttack(CS.BAB + CS.STR - 4 + CS.attackBonus);
+		m_CS.m_attackBonus -= 4;
+		m_CS.m_ACbonus += 2;
+		meleeAttack(m_CS.m_BAB + m_CS.m_STR - 4 + m_CS.m_attackBonus);
 	}
-	else if (_a.name == CharacterSheet::FullAttackDefensively)
+	else if (_a.m_name == CharacterSheet::FullAttackDefensively)
 	{
-		CS.attackBonus -= 4;
-		CS.ACbonus += 2;
-		for (int i = 0; i < CS.BAB; i += 5)
+		m_CS.m_attackBonus -= 4;
+		m_CS.m_ACbonus += 2;
+		for (int i = 0; i < m_CS.m_BAB; i += 5)
 		{
-			MeleeAttack(CS.BAB + CS.STR - i + CS.attackBonus);
+			meleeAttack(m_CS.m_BAB + m_CS.m_STR - i + m_CS.m_attackBonus);
 		}
 	}	
-	else if (_a.name == CharacterSheet::TotalDefence)
+	else if (_a.m_name == CharacterSheet::TotalDefence)
 	{		
-		CS.ACbonus += 4;
+		m_CS.m_ACbonus += 4;
 	}
-	else if (_a.name == CharacterSheet::MoveForMelee)
+	else if (_a.m_name == CharacterSheet::MoveForMelee)
 	{
-		std::string route = findPath(game->map, this, opponent->m_Pos.x / game->boxSize, opponent->m_Pos.y / game->boxSize);
+		std::string route = findPath(m_game->m_map, this, m_opponent->m_Pos.x / m_game->m_boxSize, m_opponent->m_Pos.y / m_game->m_boxSize);
 		route.pop_back();
 
 		while (route.size() > 6)
 		{
 			route.pop_back();
 		}
-		AdjustPosition(route); 
-		if (CS.weapon == CharacterSheet::Longbow && MoveActionsTaken != 2)
+		adjustPosition(route); 
+		if (m_CS.m_weapon == CharacterSheet::Longbow && m_moveActionsTaken != 2)
 		{
-			if (HasStraightLine())
+			if (hasStraightLine())
 			{
-				m_actionList[CharacterSheet::RangedAttack].legal = true;
+				m_actionList[CharacterSheet::RangedAttack].m_legal = true;
 			}
 		}
-		else if (CS.weapon == CharacterSheet::Longsword && MoveActionsTaken != 2)
+		else if (m_CS.m_weapon == CharacterSheet::Longsword && m_moveActionsTaken != 2)
 		{
 			if (isAdjacent())
 			{
-				m_actionList[CharacterSheet::MeleeAttack].legal = true;
-				m_actionList[CharacterSheet::AttackDefensively].legal = true;
+				m_actionList[CharacterSheet::MeleeAttack].m_legal = true;
+				m_actionList[CharacterSheet::AttackDefensively].m_legal = true;
 			}
 		}
 
-		m_actionList[CharacterSheet::FiveFtStepBack].legal = false;
-		m_actionList[CharacterSheet::FiveFtStepFwd].legal = false;
+		m_actionList[CharacterSheet::FiveFtStepBack].m_legal = false;
+		m_actionList[CharacterSheet::FiveFtStepFwd].m_legal = false;
 	}
-	else if (_a.name == CharacterSheet::MoveForRanged)
+	else if (_a.m_name == CharacterSheet::MoveForRanged)
 	{
 		glm::vec2 LOS = findLOS();
 		std::string route;
 		if (LOS != glm::vec2(-1, -1))
 		{
-			LOSsquare = LOS;
-			route = findPath(game->map, this, LOSsquare.x, LOSsquare.y);
+			m_LOSsquare = LOS;
+			route = findPath(m_game->m_map, this, m_LOSsquare.x, m_LOSsquare.y);
 		}
 		else
 		{
-			route = findPath(game->map, this, opponent->m_Pos.x / game->boxSize, opponent->m_Pos.y / game->boxSize);
+			route = findPath(m_game->m_map, this, m_opponent->m_Pos.x / m_game->m_boxSize, m_opponent->m_Pos.y / m_game->m_boxSize);
 			route.pop_back();
 		}
 		
@@ -309,94 +309,94 @@ void Entity::DoAction(Action _a)
 			route.pop_back();
 		}
 
-		AdjustPosition(route); 
-		if (CS.weapon == CharacterSheet::Longbow && MoveActionsTaken != 2)
+		adjustPosition(route); 
+		if (m_CS.m_weapon == CharacterSheet::Longbow && m_moveActionsTaken != 2)
 		{
-			if (HasStraightLine())
+			if (hasStraightLine())
 			{
-				m_actionList[CharacterSheet::RangedAttack].legal = true;
+				m_actionList[CharacterSheet::RangedAttack].m_legal = true;
 			}
 		}
-		else if (CS.weapon == CharacterSheet::Longsword && MoveActionsTaken != 2)
+		else if (m_CS.m_weapon == CharacterSheet::Longsword && m_moveActionsTaken != 2)
 		{
 			if (isAdjacent())
 			{
-				m_actionList[CharacterSheet::MeleeAttack].legal = true;
-				m_actionList[CharacterSheet::AttackDefensively].legal = true;
+				m_actionList[CharacterSheet::MeleeAttack].m_legal = true;
+				m_actionList[CharacterSheet::AttackDefensively].m_legal = true;
 			}
 		}
-		m_actionList[CharacterSheet::FiveFtStepBack].legal = false;
-		m_actionList[CharacterSheet::FiveFtStepFwd].legal = false;
+		m_actionList[CharacterSheet::FiveFtStepBack].m_legal = false;
+		m_actionList[CharacterSheet::FiveFtStepFwd].m_legal = false;
 	}
-	else if (_a.name == CharacterSheet::Draw)
+	else if (_a.m_name == CharacterSheet::Draw)
 	{
-		if (CS.weapon == CharacterSheet::Longsword)
+		if (m_CS.m_weapon == CharacterSheet::Longsword)
 		{
-			CS.weapon = CharacterSheet::Longbow;				
-			if (HasStraightLine() && MoveActionsTaken != 2)
+			m_CS.m_weapon = CharacterSheet::Longbow;				
+			if (hasStraightLine() && m_moveActionsTaken != 2)
 			{
-				m_actionList[CharacterSheet::RangedAttack].legal = true;
+				m_actionList[CharacterSheet::RangedAttack].m_legal = true;
 			}
 			else
 			{
-				m_actionList[CharacterSheet::RangedAttack].legal = false;
+				m_actionList[CharacterSheet::RangedAttack].m_legal = false;
 			}
 
 
-			m_actionList[CharacterSheet::MeleeAttack].legal = false;
-			m_actionList[CharacterSheet::AttackDefensively].legal = false;
+			m_actionList[CharacterSheet::MeleeAttack].m_legal = false;
+			m_actionList[CharacterSheet::AttackDefensively].m_legal = false;
 		}
 		else
 		{
-			CS.weapon = CharacterSheet::Longsword;
-			if (isAdjacent() && MoveActionsTaken != 2)
+			m_CS.m_weapon = CharacterSheet::Longsword;
+			if (isAdjacent() && m_moveActionsTaken != 2)
 			{
-				m_actionList[CharacterSheet::MeleeAttack].legal = true;
-				m_actionList[CharacterSheet::AttackDefensively].legal = true;
+				m_actionList[CharacterSheet::MeleeAttack].m_legal = true;
+				m_actionList[CharacterSheet::AttackDefensively].m_legal = true;
 			}
 			else
 			{
-				m_actionList[CharacterSheet::MeleeAttack].legal = false;
-				m_actionList[CharacterSheet::AttackDefensively].legal = false;
+				m_actionList[CharacterSheet::MeleeAttack].m_legal = false;
+				m_actionList[CharacterSheet::AttackDefensively].m_legal = false;
 			}
-			m_actionList[CharacterSheet::RangedAttack].legal = false;
+			m_actionList[CharacterSheet::RangedAttack].m_legal = false;
 		}
 	}
-	else if (_a.name == CharacterSheet::Charge)
+	else if (_a.m_name == CharacterSheet::Charge)
 	{		
-		CS.ACbonus -= 2;
-		AdjustPosition(chargePath);
-		MeleeAttack(CS.BAB + CS.STR + CS.attackBonus + 2);
-		Disable(CharacterSheet::Step);
+		m_CS.m_ACbonus -= 2;
+		adjustPosition(m_chargePath);
+		meleeAttack(m_CS.m_BAB + m_CS.m_STR + m_CS.m_attackBonus + 2);
+		disable(CharacterSheet::Step);
 	}
-	else if (_a.name == CharacterSheet::AOO)
+	else if (_a.m_name == CharacterSheet::AOO)
 	{
-		MeleeAttack(CS.BAB + CS.STR + CS.attackBonus);
+		meleeAttack(m_CS.m_BAB + m_CS.m_STR + m_CS.m_attackBonus);
 	}
-	else if (_a.name == CharacterSheet::EndTurn)
+	else if (_a.m_name == CharacterSheet::EndTurn)
 	{
-		EndTurn();
+		endTurn();
 	}
-	if (opponent->CS.HP <= 0) { game->victory = true; }
+	if (m_opponent->m_CS.m_HP <= 0) { m_game->m_victory = true; }
 
-	if (game->PlayerTesting)
+	if (m_game->m_playerTesting)
 	{
-		game->drawScene();
+		m_game->drawScene();
 	}
 }
 
-void Entity::Disable(CharacterSheet::ActionLength _slot)
+void Entity::disable(CharacterSheet::ActionLength _slot)
 {
 	for (int i = 0; i < m_actionList.size(); i++)
 	{
-		if (m_actionList[i].slot == _slot)
+		if (m_actionList[i].m_slot == _slot)
 		{
-			m_actionList[i].legal = false;
+			m_actionList[i].m_legal = false;
 		}
 	}
 }
 
-void Entity::InitialiseANN()
+void Entity::initialiseANN()
 {
 	//Weights[0] <-- Layer Number
 	//Weights[0][0] <-- Neuron number
@@ -404,8 +404,8 @@ void Entity::InitialiseANN()
 
 	std::vector<std::vector<std::vector<float>>> weights;
 
-	const int numLayers = game->layers;
-	const int numNodes = game->nodes;
+	const int numLayers = m_game->m_layers;
+	const int numNodes = m_game->m_nodes;
 	const int numOutputs = 13;
 	const int numInputs = 11;
 	const float weight = 0.05f;
@@ -437,7 +437,7 @@ void Entity::InitialiseANN()
 			weights[outLayer][l][j] = weight + ((float)(rand() % 6) - 8.0f) / 100.0f;
 		}
 	}
-	ANN = new NeuralNetwork(weights, 0.5f);
+	m_ANN = new NeuralNetwork(weights, 0.5f);
 
 
 	//ANN = new NeuralNetwork();	
@@ -458,81 +458,81 @@ bool contains(int _i, std::vector<int> &_array)
 	return false;
 }
 
-void Entity::Update()
+void Entity::update()
 {
 
-	inputs.AC = CS.AC;
-	inputs.chargeLegal = (int)m_actionList[CharacterSheet::Charge].legal;
-	inputs.distance = glm::distance(m_Pos, opponent->m_Pos) / game->boxSize;
-	inputs.enemyAC = opponent->CS.AC;
-	inputs.enemyMeleeAttBonus = opponent->CS.BAB + opponent->CS.STR;
-	inputs.enemyRangedAttBonus = opponent->CS.BAB + opponent->CS.DEX;
-	inputs.meleeAttBonus = CS.BAB + CS.STR;
-	inputs.rangedAttBonus = CS.BAB + CS.DEX;
-	inputs.rangedLegal = (int)m_actionList[CharacterSheet::RangedAttack].legal;
-	inputs.weapon = (int)CS.weapon;
-	inputs.fiveFtBkLegal = (int)m_actionList[CharacterSheet::FiveFtStepBack].legal;
+	m_inputs.m_AC = m_CS.m_AC;
+	m_inputs.m_chargeLegal = (int)m_actionList[CharacterSheet::Charge].m_legal;
+	m_inputs.m_distance = glm::distance(m_Pos, m_opponent->m_Pos) / m_game->m_boxSize;
+	m_inputs.m_enemyAC = m_opponent->m_CS.m_AC;
+	m_inputs.m_enemyMeleeAttBonus = m_opponent->m_CS.m_BAB + m_opponent->m_CS.m_STR;
+	m_inputs.m_enemyRangedAttBonus = m_opponent->m_CS.m_BAB + m_opponent->m_CS.m_DEX;
+	m_inputs.m_meleeAttBonus = m_CS.m_BAB + m_CS.m_STR;
+	m_inputs.m_rangedAttBonus = m_CS.m_BAB + m_CS.m_DEX;
+	m_inputs.m_rangedLegal = (int)m_actionList[CharacterSheet::RangedAttack].m_legal;
+	m_inputs.m_weapon = (int)m_CS.m_weapon;
+	m_inputs.m_fiveFtBkLegal = (int)m_actionList[CharacterSheet::FiveFtStepBack].m_legal;
 
 
 
-	std::vector<int> selection = ANN->makeDecision(&inputs);
+	std::vector<int> selection = m_ANN->makeDecision(&m_inputs);
 
-	if (opponent->CS.HP > 0 && CS.HP > 0 && !game->victory)
+	if (m_opponent->m_CS.m_HP > 0 && m_CS.m_HP > 0 && !m_game->m_victory)
 	{
 		if (contains((int)CharacterSheet::Draw, selection))
 		{
-			DoAction(m_actionList[CharacterSheet::Draw]);
+			doAction(m_actionList[CharacterSheet::Draw]);
 		}
 
 		if (contains((int)CharacterSheet::MoveForMelee, selection))
 		{
-			DoAction(m_actionList[CharacterSheet::MoveForMelee]);
+			doAction(m_actionList[CharacterSheet::MoveForMelee]);
 			if (!isAdjacent())
 			{
-				DoAction(m_actionList[CharacterSheet::MoveForMelee]);
+				doAction(m_actionList[CharacterSheet::MoveForMelee]);
 			}
 			else
 			{
 				if (contains((int)CharacterSheet::MeleeAttack, selection))
 				{
-					DoAction(m_actionList[CharacterSheet::MeleeAttack]);
+					doAction(m_actionList[CharacterSheet::MeleeAttack]);
 				}
 				else if (contains((int)CharacterSheet::AttackDefensively, selection))
 				{
-					DoAction(m_actionList[CharacterSheet::AttackDefensively]);
+					doAction(m_actionList[CharacterSheet::AttackDefensively]);
 				}
 			}
 		}
 		else if (contains((int)CharacterSheet::MoveForRanged, selection))
 		{
-			DoAction(m_actionList[CharacterSheet::MoveForRanged]);
-			if (m_actionList[CharacterSheet::RangedAttack].legal)
+			doAction(m_actionList[CharacterSheet::MoveForRanged]);
+			if (m_actionList[CharacterSheet::RangedAttack].m_legal)
 			{
-				DoAction(m_actionList[CharacterSheet::RangedAttack]);
+				doAction(m_actionList[CharacterSheet::RangedAttack]);
 			}
 			else
 			{
-				DoAction(m_actionList[CharacterSheet::MoveForRanged]);
+				doAction(m_actionList[CharacterSheet::MoveForRanged]);
 			}
 		}
 		else if (contains((int)CharacterSheet::FullMeleeAttack, selection))
 		{
 			if (!isAdjacent())
 			{
-				if (m_actionList[CharacterSheet::FiveFtStepFwd].legal)
+				if (m_actionList[CharacterSheet::FiveFtStepFwd].m_legal)
 				{
-					DoAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
-					if (m_actionList[CharacterSheet::FullMeleeAttack].legal)
+					doAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
+					if (m_actionList[CharacterSheet::FullMeleeAttack].m_legal)
 					{
-						DoAction(m_actionList[CharacterSheet::FullMeleeAttack]);
+						doAction(m_actionList[CharacterSheet::FullMeleeAttack]);
 					}
 				}
 			}
 			else
 			{
-				if (m_actionList[CharacterSheet::FullMeleeAttack].legal)
+				if (m_actionList[CharacterSheet::FullMeleeAttack].m_legal)
 				{
-					DoAction(m_actionList[CharacterSheet::FullMeleeAttack]);
+					doAction(m_actionList[CharacterSheet::FullMeleeAttack]);
 				}
 			}
 		}
@@ -540,39 +540,39 @@ void Entity::Update()
 		{
 			if (!isAdjacent())
 			{
-				if (m_actionList[CharacterSheet::FiveFtStepFwd].legal)
+				if (m_actionList[CharacterSheet::FiveFtStepFwd].m_legal)
 				{
-					DoAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
-					if (m_actionList[CharacterSheet::FullAttackDefensively].legal)
+					doAction(m_actionList[CharacterSheet::FiveFtStepFwd]);
+					if (m_actionList[CharacterSheet::FullAttackDefensively].m_legal)
 					{
-						DoAction(m_actionList[CharacterSheet::FullAttackDefensively]);
+						doAction(m_actionList[CharacterSheet::FullAttackDefensively]);
 					}
 				}
 			}
 			else
 			{
-				if (m_actionList[CharacterSheet::FullAttackDefensively].legal)
+				if (m_actionList[CharacterSheet::FullAttackDefensively].m_legal)
 				{
-					DoAction(m_actionList[CharacterSheet::FullAttackDefensively]);
+					doAction(m_actionList[CharacterSheet::FullAttackDefensively]);
 				}
 			}
 		}
 		else if (contains((int)CharacterSheet::FullRangedAttack, selection) && isAdjacent())
 		{
-			if (m_actionList[CharacterSheet::FiveFtStepBack].legal)
+			if (m_actionList[CharacterSheet::FiveFtStepBack].m_legal)
 			{
-				DoAction(m_actionList[CharacterSheet::FiveFtStepBack]);
-				if (m_actionList[CharacterSheet::FullRangedAttack].legal)
+				doAction(m_actionList[CharacterSheet::FiveFtStepBack]);
+				if (m_actionList[CharacterSheet::FullRangedAttack].m_legal)
 				{
-					DoAction(m_actionList[CharacterSheet::FullRangedAttack]);
+					doAction(m_actionList[CharacterSheet::FullRangedAttack]);
 				}
 			}
 		}
 		else if (contains((int)CharacterSheet::FullRangedAttack, selection))
 		{
-			if (m_actionList[CharacterSheet::FullRangedAttack].legal)
+			if (m_actionList[CharacterSheet::FullRangedAttack].m_legal)
 			{
-				DoAction(m_actionList[CharacterSheet::FullRangedAttack]);
+				doAction(m_actionList[CharacterSheet::FullRangedAttack]);
 			}
 		}
 
@@ -581,108 +581,108 @@ void Entity::Update()
 		{			
 			if (selection[i] == 1 && i != 11)
 			{
-				if (m_actionList[i].legal)
+				if (m_actionList[i].m_legal)
 				{
-					DoAction(m_actionList[i]);
+					doAction(m_actionList[i]);
 				}
 			}			
 		}
 
-		DoAction(m_actionList[CharacterSheet::EndTurn]);		
+		doAction(m_actionList[CharacterSheet::EndTurn]);		
 	}
 	else
 	{
-		DoAction(m_actionList[CharacterSheet::EndTurn]);
-		game->victory = true;
+		doAction(m_actionList[CharacterSheet::EndTurn]);
+		m_game->m_victory = true;
 	}
 }
 
-void Entity::StartTurn()
+void Entity::startTurn()
 {
-	isMyTurn = true;
+	m_isMyTurn = true;
 	refreshActionList();
-	MoveActionsTaken = 0;
-	CS.ACbonus = 0;
-	CS.attackBonus = 0;
-	LOSsquare = glm::vec2(-1, -1);
-	bool line = HasStraightLine();	
+	m_moveActionsTaken = 0;
+	m_CS.m_ACbonus = 0;
+	m_CS.m_attackBonus = 0;
+	m_LOSsquare = glm::vec2(-1, -1);
+	bool line = hasStraightLine();	
 
-	m_actionList[CharacterSheet::AOO].legal = false;
-	m_actionList[CharacterSheet::Charge].legal = false;
-	m_actionList[CharacterSheet::FiveFtStepBack].legal = false;
-	m_actionList[CharacterSheet::MoveForRanged].legal = true;
+	m_actionList[CharacterSheet::AOO].m_legal = false;
+	m_actionList[CharacterSheet::Charge].m_legal = false;
+	m_actionList[CharacterSheet::FiveFtStepBack].m_legal = false;
+	m_actionList[CharacterSheet::MoveForRanged].m_legal = true;
 
-	m_actionList[CharacterSheet::RangedAttack].legal = false;
-	m_actionList[CharacterSheet::FullRangedAttack].legal = false;
+	m_actionList[CharacterSheet::RangedAttack].m_legal = false;
+	m_actionList[CharacterSheet::FullRangedAttack].m_legal = false;
 
-	if (CS.weapon == CharacterSheet::Longsword)
+	if (m_CS.m_weapon == CharacterSheet::Longsword)
 	{		
 		if (line)
 		{
-			chargePath = findPath(game->map, this);
-			if (chargePath.size() <= 12 && chargePath.size() > 1)
+			m_chargePath = findPath(m_game->m_map, this);
+			if (m_chargePath.size() <= 12 && m_chargePath.size() > 1)
 			{
-				m_actionList[CharacterSheet::Charge].legal = true;
+				m_actionList[CharacterSheet::Charge].m_legal = true;
 			}
 		}
 	}
 	else
 	{
-		m_actionList[CharacterSheet::MeleeAttack].legal = false;
-		m_actionList[CharacterSheet::FullMeleeAttack].legal = false;		
-		m_actionList[CharacterSheet::FullAttackDefensively].legal = false;		
-		m_actionList[CharacterSheet::AttackDefensively].legal = false;		
+		m_actionList[CharacterSheet::MeleeAttack].m_legal = false;
+		m_actionList[CharacterSheet::FullMeleeAttack].m_legal = false;		
+		m_actionList[CharacterSheet::FullAttackDefensively].m_legal = false;		
+		m_actionList[CharacterSheet::AttackDefensively].m_legal = false;		
 		if (line)
 		{
-			m_actionList[CharacterSheet::RangedAttack].legal = true;
-			m_actionList[CharacterSheet::FullRangedAttack].legal = true;
+			m_actionList[CharacterSheet::RangedAttack].m_legal = true;
+			m_actionList[CharacterSheet::FullRangedAttack].m_legal = true;
 		}
 		
 	}	
 
 	if (isAdjacent())
 	{
-		m_actionList[CharacterSheet::MoveForMelee].legal = false;
-		m_actionList[CharacterSheet::FiveFtStepFwd].legal = false;
-		m_actionList[CharacterSheet::FiveFtStepBack].legal = can5ftBack();		
+		m_actionList[CharacterSheet::MoveForMelee].m_legal = false;
+		m_actionList[CharacterSheet::FiveFtStepFwd].m_legal = false;
+		m_actionList[CharacterSheet::FiveFtStepBack].m_legal = can5ftBack();		
 	}
 	else
 	{
-		m_actionList[CharacterSheet::MeleeAttack].legal = false;
-		m_actionList[CharacterSheet::FullMeleeAttack].legal = false;
-		m_actionList[CharacterSheet::FullAttackDefensively].legal = false;
-		m_actionList[CharacterSheet::AttackDefensively].legal = false;
-		m_actionList[CharacterSheet::FiveFtStepBack].legal = false;
+		m_actionList[CharacterSheet::MeleeAttack].m_legal = false;
+		m_actionList[CharacterSheet::FullMeleeAttack].m_legal = false;
+		m_actionList[CharacterSheet::FullAttackDefensively].m_legal = false;
+		m_actionList[CharacterSheet::AttackDefensively].m_legal = false;
+		m_actionList[CharacterSheet::FiveFtStepBack].m_legal = false;
 	}
 
 
 }
 
-void Entity::EndTurn()
+void Entity::endTurn()
 {
-	isMyTurn = false;
-	m_actionList[CharacterSheet::AOO].legal = true;	
+	m_isMyTurn = false;
+	m_actionList[CharacterSheet::AOO].m_legal = true;	
 }
 
-void Entity::TakeAOO()
+void Entity::takeAOO()
 {
-	if (m_actionList[CharacterSheet::AOO].legal && isAdjacent())
+	if (m_actionList[CharacterSheet::AOO].m_legal && isAdjacent())
 	{
-		if (CS.weapon == CharacterSheet::Longsword)
+		if (m_CS.m_weapon == CharacterSheet::Longsword)
 		{
 			std::string tag = " ";
-			tag[0] = opponent->tag;
-			game->console.Log("Player " + tag + " triggered AOO!");
-			if (game->PlayerTesting)
+			tag[0] = m_opponent->m_tag;
+			m_game->m_console.log("Player " + tag + " triggered AOO!");
+			if (m_game->m_playerTesting)
 			{
-				game->console.Log("Type 'Y' to take your attack, or 'N' to pass.");
+				m_game->m_console.log("Type 'Y' to take your attack, or 'N' to pass.");
 				std::string input;
 				std::cin >> input;
-				if (input == "Y") { DoAction(m_actionList[CharacterSheet::AOO]); }
+				if (input == "Y") { doAction(m_actionList[CharacterSheet::AOO]); }
 			}
 			else
 			{
-				DoAction(m_actionList[CharacterSheet::AOO]);
+				doAction(m_actionList[CharacterSheet::AOO]);
 			}
 		}
 	}
@@ -700,25 +700,25 @@ std::string Entity::readUntilVal(std::string& _string, int &_i, char _delim)
 	return out;
 }
 
-void Entity::MeleeAttack(int _bonus)
+void Entity::meleeAttack(int _bonus)
 {
-	int D20 = Roll(20);
-	int dmgMod = (int)floor(CS.STR * 1.5f);
+	int D20 = roll(20);
+	int dmgMod = (int)floor(m_CS.m_STR * 1.5f);
 	int dmgDice = 8;
 	int damage = 0;
 
-	if (game->PlayerTesting)
+	if (m_game->m_playerTesting)
 	{
 		bool valid = false;
 		while (!valid)
 		{
 			valid = true;
 			system("CLS");
-			if (this->tag == 'A')
+			if (this->m_tag == 'A')
 			{
-				game->DisplayStats();
-				game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
-				game->console.Log("For example: !roll d20+10 d6+5");
+				m_game->displayStats();
+				m_game->m_console.log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
+				m_game->m_console.log("For example: !roll d20+10 d6+5");
 				try
 				{
 					std::string input;
@@ -728,7 +728,7 @@ void Entity::MeleeAttack(int _bonus)
 					{
 						std::getline(std::cin, input);
 					}
-					game->console.SecretLog(input);
+					m_game->m_console.secretLog(input);
 
 					int it = 7;
 					std::string d = readUntilVal(input, it, '+');
@@ -741,17 +741,17 @@ void Entity::MeleeAttack(int _bonus)
 					{
 						dm += input[it + 1];
 					}
-					D20 = Roll(std::stoi(d));
+					D20 = roll(std::stoi(d));
 					_bonus = std::stoi(hm);
 					dmgMod = std::stoi(dm);
 					dmgDice = std::stoi(dd);
 					system("CLS");
-					game->console.Log("You rolled: " + std::to_string(D20));
+					m_game->m_console.log("You rolled: " + std::to_string(D20));
 				}
 				catch(std::exception e)
 				{
 					valid = false;
-					game->console.Log("Invalid Input");
+					m_game->m_console.log("Invalid Input");
 					system("PAUSE");
 				}
 			}
@@ -761,69 +761,69 @@ void Entity::MeleeAttack(int _bonus)
 
 	if (D20 >= 19)
 	{
-		int confirm = Roll(20);
-		if (game->PlayerTesting && this->tag == 'A')
+		int confirm = roll(20);
+		if (m_game->m_playerTesting && this->m_tag == 'A')
 		{
-			game->console.Log("Confirmation Roll: " + std::to_string(confirm));
+			m_game->m_console.log("Confirmation Roll: " + std::to_string(confirm));
 		}
 
-		if (confirm + _bonus >= opponent->CS.AC)
+		if (confirm + _bonus >= m_opponent->m_CS.m_AC)
 		{			
-			damage = (Roll(dmgDice) + dmgMod) + (Roll(dmgDice) + dmgMod);
-			opponent->CS.HP -= damage;			
-			game->console.Log("(CRIT)");
+			damage = (roll(dmgDice) + dmgMod) + (roll(dmgDice) + dmgMod);
+			m_opponent->m_CS.m_HP -= damage;			
+			m_game->m_console.log("(CRIT)");
 		}
 		else
 		{
-			damage = (Roll(dmgDice) + dmgMod);
-			opponent->CS.HP -= damage;
-			game->console.Log("(Hit)");
+			damage = (roll(dmgDice) + dmgMod);
+			m_opponent->m_CS.m_HP -= damage;
+			m_game->m_console.log("(Hit)");
 		}
 	}
-	else if (D20 + _bonus >= opponent->CS.AC)
+	else if (D20 + _bonus >= m_opponent->m_CS.m_AC)
 	{
-		damage = (Roll(dmgDice) + dmgMod);
-		opponent->CS.HP -= damage;
-		game->console.Log("(Hit)");
+		damage = (roll(dmgDice) + dmgMod);
+		m_opponent->m_CS.m_HP -= damage;
+		m_game->m_console.log("(Hit)");
 	}
 	else
 	{
-		game->console.Log("(Miss)");
+		m_game->m_console.log("(Miss)");
 	}
 
-	if (game->PlayerTesting)
+	if (m_game->m_playerTesting)
 	{
-		if (this->tag == 'A')
+		if (this->m_tag == 'A')
 		{
-			game->console.Log("(You dealt: " + std::to_string(damage) + " damage!)");
+			m_game->m_console.log("(You dealt: " + std::to_string(damage) + " damage!)");
 		}
 		else
 		{
-			game->console.Log("(You took: " + std::to_string(damage) + " damage!)");
+			m_game->m_console.log("(You took: " + std::to_string(damage) + " damage!)");
 		}
 		system("PAUSE");
 	}
 }
 
-void Entity::RangedAttack(int _bonus)
+void Entity::rangedAttack(int _bonus)
 {
-	int D20 = Roll(20);
+	int D20 = roll(20);
 	int dmgMod = 0;
 	int dmgDice = 8;
 	int damage = 0;
 	
-	if (game->PlayerTesting)
+	if (m_game->m_playerTesting)
 	{		
 		bool valid = false;
 		while (!valid)
 		{
 			valid = true;
 			system("CLS");
-			if (this->tag == 'A')
+			if (this->m_tag == 'A')
 			{
-				game->DisplayStats();
-				game->console.Log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
-				game->console.Log("For example: !roll d20+10 d6+5");
+				m_game->displayStats();
+				m_game->m_console.log("Type !roll followed by the attack dice + modifier, followed by the damage dice + modifier.");
+				m_game->m_console.log("For example: !roll d20+10 d6+5");
 
 				try
 				{
@@ -833,7 +833,7 @@ void Entity::RangedAttack(int _bonus)
 					{
 						std::getline(std::cin, input);
 					}
-					game->console.SecretLog(input);
+					m_game->m_console.secretLog(input);
 					int it = 7;
 					std::string d = readUntilVal(input, it, '+');
 					std::string hm = readUntilVal(input, it, ' ');
@@ -845,17 +845,17 @@ void Entity::RangedAttack(int _bonus)
 					{
 						dm += input[it + 1];
 					}
-					D20 = Roll(std::stoi(d));
+					D20 = roll(std::stoi(d));
 					_bonus = std::stoi(hm);
 					dmgMod = std::stoi(dm);
 					dmgDice = std::stoi(dd);
 					system("CLS");
-					game->console.Log("You rolled: " + std::to_string(D20));
+					m_game->m_console.log("You rolled: " + std::to_string(D20));
 				}
 				catch (std::exception e)
 				{
 					valid = false;
-					game->console.Log("Invalid Input");
+					m_game->m_console.log("Invalid Input");
 					system("PAUSE");
 				}
 			}
@@ -865,90 +865,90 @@ void Entity::RangedAttack(int _bonus)
 
 	if (D20 > 19)
 	{
-		int confirm = Roll(20);
-		if (game->PlayerTesting && this->tag == 'A')
+		int confirm = roll(20);
+		if (m_game->m_playerTesting && this->m_tag == 'A')
 		{
-			game->console.Log("Confirmation Roll: " + std::to_string(confirm));
+			m_game->m_console.log("Confirmation Roll: " + std::to_string(confirm));
 		}
 
-		if (confirm + _bonus >= opponent->CS.AC)
+		if (confirm + _bonus >= m_opponent->m_CS.m_AC)
 		{
-			damage = (Roll(dmgDice) + dmgMod) + (Roll(dmgDice) + dmgMod) + (Roll(dmgDice) + dmgMod);
-			opponent->CS.HP -= damage;
-			game->console.Log("(CRIT)");
+			damage = (roll(dmgDice) + dmgMod) + (roll(dmgDice) + dmgMod) + (roll(dmgDice) + dmgMod);
+			m_opponent->m_CS.m_HP -= damage;
+			m_game->m_console.log("(CRIT)");
 		}
 		else
 		{
-			damage = (Roll(dmgDice) + dmgMod);
-			opponent->CS.HP -= damage;
-			game->console.Log("(Hit)");
+			damage = (roll(dmgDice) + dmgMod);
+			m_opponent->m_CS.m_HP -= damage;
+			m_game->m_console.log("(Hit)");
 		}
 	}
-	else if (D20 + _bonus >= opponent->CS.AC)
+	else if (D20 + _bonus >= m_opponent->m_CS.m_AC)
 	{
-		damage = (Roll(dmgDice) + dmgMod);
-		opponent->CS.HP -= damage;
-		game->console.Log("(Hit)");
+		damage = (roll(dmgDice) + dmgMod);
+		m_opponent->m_CS.m_HP -= damage;
+		m_game->m_console.log("(Hit)");
 	}
 	else
 	{
-		game->console.Log("(Miss)");
+		m_game->m_console.log("(Miss)");
 	}
 
-	if (game->PlayerTesting)
+	if (m_game->m_playerTesting)
 	{
-		if (this->tag == 'A')
+		if (this->m_tag == 'A')
 		{
-			game->console.Log("(You dealt: " + std::to_string(damage) + " damage!)");
+			m_game->m_console.log("(You dealt: " + std::to_string(damage) + " damage!)");
 		}
 		else
 		{
-			game->console.Log("(You took: " + std::to_string(damage) + " damage!)");
+			m_game->m_console.log("(You took: " + std::to_string(damage) + " damage!)");
 		}
 		system("PAUSE");
 	}
 }
 
-int Entity::Roll(int _dice)
+int Entity::roll(int _dice)
 {
 	return (rand() % _dice) + 1;
 }
 
 bool Entity::isAdjacent()
 {	
-	if (opponent->m_Pos == m_Pos + glm::vec2(0, game->boxSize))
+	if (m_opponent->m_Pos == m_Pos + glm::vec2(0, m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos + glm::vec2(0, -game->boxSize))
+	else if (m_opponent->m_Pos == m_Pos + glm::vec2(0, -m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos + glm::vec2(game->boxSize, 0))
+	else if (m_opponent->m_Pos == m_Pos + glm::vec2(m_game->m_boxSize, 0))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos + glm::vec2(-game->boxSize, 0))
+	else if (m_opponent->m_Pos == m_Pos + glm::vec2(-m_game->m_boxSize, 0))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos + glm::vec2(game->boxSize, game->boxSize))
+	else if (m_opponent->m_Pos == m_Pos + glm::vec2(m_game->m_boxSize, m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos + glm::vec2(game->boxSize, -game->boxSize))
+	else if (m_opponent->m_Pos == m_Pos + glm::vec2(m_game->m_boxSize, -m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos + glm::vec2(-game->boxSize, -game->boxSize))
+	else if (m_opponent->m_Pos == m_Pos + glm::vec2(-m_game->m_boxSize, -m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos + glm::vec2(-game->boxSize, game->boxSize))
+	else if (m_opponent->m_Pos == m_Pos + glm::vec2(-m_game->m_boxSize, m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (opponent->m_Pos == m_Pos)
+	else if (m_opponent->m_Pos == m_Pos)
 	{
 		return true;
 	}
@@ -966,7 +966,7 @@ from "Graphics Gems", Academic Press, 1990
 #define LEFT	1
 #define MIDDLE	2
 
-bool Entity::HitBoundingBox(float minB[], float maxB[], float origin[],  float dir[], float coord[])
+bool Entity::hitBoundingBox(float minB[], float maxB[], float origin[],  float dir[], float coord[])
 
 {
 	bool inside = true;
@@ -1027,27 +1027,27 @@ bool Entity::HitBoundingBox(float minB[], float maxB[], float origin[],  float d
 	return (true);				/* ray hits box */
 }
 
-bool Entity::HasStraightLine()
+bool Entity::hasStraightLine()
 {	
-	for (int i = 0; i < game->map.m_walls.size(); i++)
+	for (int i = 0; i < m_game->m_map.m_walls.size(); i++)
 	{
-		if (game->map.m_walls[i]->m_Pos == m_Pos / game->boxSize)
+		if (m_game->m_map.m_walls[i]->m_Pos == m_Pos / m_game->m_boxSize)
 		{
 			return false;
 		}
 
-		if (game->map.m_walls[i]->m_Pos.x != 0.0f && game->map.m_walls[i]->m_Pos.x != game->map.m_gridX - 1 && game->map.m_walls[i]->m_Pos.y != game->map.m_gridX - 1 && game->map.m_walls[i]->m_Pos.y != 0.0f			)
+		if (m_game->m_map.m_walls[i]->m_Pos.x != 0.0f && m_game->m_map.m_walls[i]->m_Pos.x != m_game->m_map.m_gridX - 1 && m_game->m_map.m_walls[i]->m_Pos.y != m_game->m_map.m_gridX - 1 && m_game->m_map.m_walls[i]->m_Pos.y != 0.0f			)
 		{
-			float minB[2] = { game->map.m_walls[i]->m_Pos.x, game->map.m_walls[i]->m_Pos.y };
-			float maxB[2] = { game->map.m_walls[i]->m_Pos.x + 1.0f, game->map.m_walls[i]->m_Pos.y + 1.0f };
-			float origin[2] = { (m_Pos.x / game->boxSize) + 0.5f, (m_Pos.y / game->boxSize) + 0.5f };
-			glm::vec2 dir = glm::normalize(m_Pos - opponent->m_Pos);
+			float minB[2] = { m_game->m_map.m_walls[i]->m_Pos.x, m_game->m_map.m_walls[i]->m_Pos.y };
+			float maxB[2] = { m_game->m_map.m_walls[i]->m_Pos.x + 1.0f, m_game->m_map.m_walls[i]->m_Pos.y + 1.0f };
+			float origin[2] = { (m_Pos.x / m_game->m_boxSize) + 0.5f, (m_Pos.y / m_game->m_boxSize) + 0.5f };
+			glm::vec2 dir = glm::normalize(m_Pos - m_opponent->m_Pos);
 			float ray[2] = { -dir.x, -dir.y };
 			float coord[2] = { 0.0f, 0.0f };
-			if (HitBoundingBox(minB, maxB, origin, ray, coord))
+			if (hitBoundingBox(minB, maxB, origin, ray, coord))
 			{
 				glm::vec2 hitPos = glm::vec2(coord[0], coord[1]);
-				if (glm::distance(m_Pos / game->boxSize, hitPos) < glm::distance(m_Pos / game->boxSize, opponent->m_Pos / game->boxSize))
+				if (glm::distance(m_Pos / m_game->m_boxSize, hitPos) < glm::distance(m_Pos / m_game->m_boxSize, m_opponent->m_Pos / m_game->m_boxSize))
 				{
 					return false;
 				}
@@ -1057,44 +1057,44 @@ bool Entity::HasStraightLine()
 	return true;
 }
 
-void Entity::AdjustPosition(std::string _route)
+void Entity::adjustPosition(std::string _route)
 {
 	for (int i = 0; i < _route.size(); i++)
 	{
 		switch (_route[i])
 		{
 			case '1': //Left
-				m_Pos.x-= game->boxSize;
+				m_Pos.x-= m_game->m_boxSize;
 				break;
 			case '2': // Right
-				m_Pos.x+= game->boxSize;
+				m_Pos.x+= m_game->m_boxSize;
 				break;
 			case '3': // Up
-				m_Pos.y-= game->boxSize;
+				m_Pos.y-= m_game->m_boxSize;
 				break;
 			case '4': // Down
-				m_Pos.y+= game->boxSize;
+				m_Pos.y+= m_game->m_boxSize;
 				break;
 
 
 
 			case '5':
-				m_Pos.y-= game->boxSize;
-				m_Pos.x-= game->boxSize;
+				m_Pos.y-= m_game->m_boxSize;
+				m_Pos.x-= m_game->m_boxSize;
 				break;
 			case '6':
-				m_Pos.y+= game->boxSize;
-				m_Pos.x-= game->boxSize;
+				m_Pos.y+= m_game->m_boxSize;
+				m_Pos.x-= m_game->m_boxSize;
 				break;
 
 			case '7':
-				m_Pos.y+= game->boxSize;
-				m_Pos.x+= game->boxSize;
+				m_Pos.y+= m_game->m_boxSize;
+				m_Pos.x+= m_game->m_boxSize;
 				break;
 
 			case '8':
-				m_Pos.y-= game->boxSize;
-				m_Pos.x+= game->boxSize;
+				m_Pos.y-= m_game->m_boxSize;
+				m_Pos.x+= m_game->m_boxSize;
 				break;
 		}
 	}
@@ -1105,20 +1105,20 @@ glm::vec2 Entity::findLOS()
 	glm::ivec2 startPos = m_Pos;
 	glm::ivec2 bestPos = glm::vec2(0, 0);
 
-	for (int x = 1; x < game->map.m_gridX-1; x++)
+	for (int x = 1; x < m_game->m_map.m_gridX-1; x++)
 	{
-		for (int y = 1; y < game->map.m_gridY-1; y++)
+		for (int y = 1; y < m_game->m_map.m_gridY-1; y++)
 		{
-			m_Pos = glm::vec2(x * game->boxSize, y * game->boxSize);
+			m_Pos = glm::vec2(x * m_game->m_boxSize, y * m_game->m_boxSize);
 			if (!isAdjacent())
 			{
-				if (HasStraightLine())
+				if (hasStraightLine())
 				{
 					m_Pos = startPos;
-					std::string route = findPath(game->map, this, x, y);
+					std::string route = findPath(m_game->m_map, this, x, y);
 					if (route.size() > 0 && route.size() <= 6)
 					{
-						if (glm::distance(glm::vec2(x * game->boxSize, y * game->boxSize), opponent->m_Pos) >= glm::distance(m_Pos, opponent->m_Pos))
+						if (glm::distance(glm::vec2(x * m_game->m_boxSize, y * m_game->m_boxSize), m_opponent->m_Pos) >= glm::distance(m_Pos, m_opponent->m_Pos))
 						{							
 							return glm::vec2(x, y);	
 						}
@@ -1145,58 +1145,58 @@ bool Entity::can5ftBack()
 	if (!isAdjacent()) { return false; }
 	glm::vec2 startPos = m_Pos;
 
-	m_Pos = glm::vec2(startPos.x + game->boxSize, startPos.y);
-	if (!isAdjacent() && HasStraightLine()) 
+	m_Pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y);
+	if (!isAdjacent() && hasStraightLine()) 
 	{ 
-		fiveFtBackSquare = m_Pos;
+		m_fiveFtBackSquare = m_Pos;
 		m_Pos = startPos;
 		return true; 
 	}
 
-	m_Pos = glm::vec2(startPos.x - game->boxSize, startPos.y);
-	if (!isAdjacent() && HasStraightLine()) {
-		fiveFtBackSquare = m_Pos;
+	m_Pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_Pos;
 		m_Pos = startPos;
 		return true;
 	}
 
-	m_Pos = glm::vec2(startPos.x, startPos.y - game->boxSize);
-	if (!isAdjacent() && HasStraightLine()) {
-		fiveFtBackSquare = m_Pos;
+	m_Pos = glm::vec2(startPos.x, startPos.y - m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_Pos;
 		m_Pos = startPos;
 		return true;
 	}
-	m_Pos = glm::vec2(startPos.x, startPos.y + game->boxSize);
-	if (!isAdjacent() && HasStraightLine()) {
-		fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-
-	m_Pos = glm::vec2(startPos.x - game->boxSize, startPos.y - game->boxSize);
-	if (!isAdjacent() && HasStraightLine()) {
-		fiveFtBackSquare = m_Pos;
+	m_Pos = glm::vec2(startPos.x, startPos.y + m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_Pos;
 		m_Pos = startPos;
 		return true;
 	}
 
-	m_Pos = glm::vec2(startPos.x + game->boxSize, startPos.y - game->boxSize);
-	if (!isAdjacent() && HasStraightLine()) {
-		fiveFtBackSquare = m_Pos;
+	m_Pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y - m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_Pos;
 		m_Pos = startPos;
 		return true;
 	}
 
-	m_Pos = glm::vec2(startPos.x + game->boxSize, startPos.y + game->boxSize);
-	if (!isAdjacent() && HasStraightLine()) {
-		fiveFtBackSquare = m_Pos;
+	m_Pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y - m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_Pos;
 		m_Pos = startPos;
 		return true;
 	}
 
-	m_Pos = glm::vec2(startPos.x - game->boxSize, startPos.y + game->boxSize);
-	if (!isAdjacent() && HasStraightLine()) {
-		fiveFtBackSquare = m_Pos;
+	m_Pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y + m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_Pos;
+		m_Pos = startPos;
+		return true;
+	}
+
+	m_Pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y + m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_Pos;
 		m_Pos = startPos;
 		return true;
 	}
