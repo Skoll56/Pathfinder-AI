@@ -69,97 +69,100 @@ $(function() {
 <div class="title">Sheet.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="struct_character_sheet.html">    6</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_character_sheet.html">CharacterSheet</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">enum</span> Weapon</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        Longsword = 0,</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        Longbow = 1</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    };</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">   15</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">ActionLength</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        Standard,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        Move,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        FullRound,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        Free,</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        Immediate,</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        Step</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">   26</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">ActionName</a></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        MeleeAttack,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        RangedAttack,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        FullMeleeAttack,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        FullRangedAttack,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        FiveFtStepBack,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        FiveFtStepFwd,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        AttackDefensively,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        FullAttackDefensively,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        TotalDefence,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        MoveForMelee,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        MoveForRanged,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        Draw,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        Charge,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        AOO,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        EndTurn</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    };</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">//Stats</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a52379390701db8087060eff46a52683a">   48</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a52379390701db8087060eff46a52683a">m_BAB</a>;  </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a35db7a24ddcb3d154400dc47407facf6">   50</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a35db7a24ddcb3d154400dc47407facf6">m_moveSpeed</a>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a1bf70a115b92a80436d9086c10598c56">   52</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a1bf70a115b92a80436d9086c10598c56">m_AC</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#aba5a95df9895a522c8c484608d834a7d">   54</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#aba5a95df9895a522c8c484608d834a7d">m_DEX</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a2a68d854742e0943eceae3a070e09b10">   56</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a2a68d854742e0943eceae3a070e09b10">m_STR</a>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a783168fdd05e7175f137e32fc2111bfb">   58</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a783168fdd05e7175f137e32fc2111bfb">m_HP</a>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#ad2c9148e227d81dce50fde2d2364ad49">   60</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#ad2c9148e227d81dce50fde2d2364ad49">m_INIT</a>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//Modifiers</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a0f32b473652f4d9c01d244e52cfc2b6b">   64</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a0f32b473652f4d9c01d244e52cfc2b6b">m_ACbonus</a>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#afb74e6118b15b4c805f2c95dcc64cb05">   66</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#afb74e6118b15b4c805f2c95dcc64cb05">m_attackBonus</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a2cb85e2e1d248d6a500700049c8fe366">   69</a></span>&#160;    Weapon <a class="code" href="struct_character_sheet.html#a2cb85e2e1d248d6a500700049c8fe366">m_weapon</a>;    </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="struct_action.html">   73</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_action.html">Action</a></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="struct_action.html#aab92c9e7763c0632d3e096e92e4137c1">   76</a></span>&#160;    <a class="code" href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">CharacterSheet::ActionName</a> <a class="code" href="struct_action.html#aab92c9e7763c0632d3e096e92e4137c1">m_name</a>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="struct_action.html#accdad4c55ba15d19f2e389687596cfd4">   79</a></span>&#160;    <a class="code" href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">CharacterSheet::ActionLength</a> <a class="code" href="struct_action.html#accdad4c55ba15d19f2e389687596cfd4">m_slot</a>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="struct_action.html#ab9809985b56f642320e79b79db18efd9">   82</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_action.html#ab9809985b56f642320e79b79db18efd9">m_provokes</a> = <span class="keyword">false</span>;    </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="struct_action.html#a07182b04e3563722217cdedc4d74cba1">   85</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_action.html#a07182b04e3563722217cdedc4d74cba1">m_legal</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="struct_action.html#a7dfa2c60683dd9987a8d366c62a2a9e3">   88</a></span>&#160;    std::string <a class="code" href="struct_action.html#a7dfa2c60683dd9987a8d366c62a2a9e3">m_stringName</a>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="ttc" id="astruct_action_html"><div class="ttname"><a href="struct_action.html">Action</a></div><div class="ttdef"><b>Definition:</b> Sheet.h:74</div></div>
-<div class="ttc" id="astruct_action_html_a07182b04e3563722217cdedc4d74cba1"><div class="ttname"><a href="struct_action.html#a07182b04e3563722217cdedc4d74cba1">Action::m_legal</a></div><div class="ttdeci">bool m_legal</div><div class="ttdoc">If the action is currently legal.</div><div class="ttdef"><b>Definition:</b> Sheet.h:85</div></div>
-<div class="ttc" id="astruct_action_html_a7dfa2c60683dd9987a8d366c62a2a9e3"><div class="ttname"><a href="struct_action.html#a7dfa2c60683dd9987a8d366c62a2a9e3">Action::m_stringName</a></div><div class="ttdeci">std::string m_stringName</div><div class="ttdoc">The name of the action in string format (for printing to console)</div><div class="ttdef"><b>Definition:</b> Sheet.h:88</div></div>
-<div class="ttc" id="astruct_action_html_aab92c9e7763c0632d3e096e92e4137c1"><div class="ttname"><a href="struct_action.html#aab92c9e7763c0632d3e096e92e4137c1">Action::m_name</a></div><div class="ttdeci">CharacterSheet::ActionName m_name</div><div class="ttdoc">The name of the action.</div><div class="ttdef"><b>Definition:</b> Sheet.h:76</div></div>
-<div class="ttc" id="astruct_action_html_ab9809985b56f642320e79b79db18efd9"><div class="ttname"><a href="struct_action.html#ab9809985b56f642320e79b79db18efd9">Action::m_provokes</a></div><div class="ttdeci">bool m_provokes</div><div class="ttdoc">If the action provokes Attacks of Opportunity when taken.</div><div class="ttdef"><b>Definition:</b> Sheet.h:82</div></div>
-<div class="ttc" id="astruct_action_html_accdad4c55ba15d19f2e389687596cfd4"><div class="ttname"><a href="struct_action.html#accdad4c55ba15d19f2e389687596cfd4">Action::m_slot</a></div><div class="ttdeci">CharacterSheet::ActionLength m_slot</div><div class="ttdoc">What slot the action uses.</div><div class="ttdef"><b>Definition:</b> Sheet.h:79</div></div>
-<div class="ttc" id="astruct_character_sheet_html"><div class="ttname"><a href="struct_character_sheet.html">CharacterSheet</a></div><div class="ttdef"><b>Definition:</b> Sheet.h:7</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a0f32b473652f4d9c01d244e52cfc2b6b"><div class="ttname"><a href="struct_character_sheet.html#a0f32b473652f4d9c01d244e52cfc2b6b">CharacterSheet::m_ACbonus</a></div><div class="ttdeci">int m_ACbonus</div><div class="ttdoc">Any temporary AC bonuses (or penalties, such as from charging)</div><div class="ttdef"><b>Definition:</b> Sheet.h:64</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a1bf70a115b92a80436d9086c10598c56"><div class="ttname"><a href="struct_character_sheet.html#a1bf70a115b92a80436d9086c10598c56">CharacterSheet::m_AC</a></div><div class="ttdeci">int m_AC</div><div class="ttdoc">Armour Class.</div><div class="ttdef"><b>Definition:</b> Sheet.h:52</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a2a68d854742e0943eceae3a070e09b10"><div class="ttname"><a href="struct_character_sheet.html#a2a68d854742e0943eceae3a070e09b10">CharacterSheet::m_STR</a></div><div class="ttdeci">int m_STR</div><div class="ttdoc">Strength.</div><div class="ttdef"><b>Definition:</b> Sheet.h:56</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a2cb85e2e1d248d6a500700049c8fe366"><div class="ttname"><a href="struct_character_sheet.html#a2cb85e2e1d248d6a500700049c8fe366">CharacterSheet::m_weapon</a></div><div class="ttdeci">Weapon m_weapon</div><div class="ttdoc">Which weapon is being held.</div><div class="ttdef"><b>Definition:</b> Sheet.h:69</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a35db7a24ddcb3d154400dc47407facf6"><div class="ttname"><a href="struct_character_sheet.html#a35db7a24ddcb3d154400dc47407facf6">CharacterSheet::m_moveSpeed</a></div><div class="ttdeci">int m_moveSpeed</div><div class="ttdoc">Movement Speed.</div><div class="ttdef"><b>Definition:</b> Sheet.h:50</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a52379390701db8087060eff46a52683a"><div class="ttname"><a href="struct_character_sheet.html#a52379390701db8087060eff46a52683a">CharacterSheet::m_BAB</a></div><div class="ttdeci">int m_BAB</div><div class="ttdoc">Base Attack Bonus.</div><div class="ttdef"><b>Definition:</b> Sheet.h:48</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a783168fdd05e7175f137e32fc2111bfb"><div class="ttname"><a href="struct_character_sheet.html#a783168fdd05e7175f137e32fc2111bfb">CharacterSheet::m_HP</a></div><div class="ttdeci">int m_HP</div><div class="ttdoc">Hit Points.</div><div class="ttdef"><b>Definition:</b> Sheet.h:58</div></div>
-<div class="ttc" id="astruct_character_sheet_html_a8700f20acc6d8706ea3d5ef4964580b2"><div class="ttname"><a href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">CharacterSheet::ActionName</a></div><div class="ttdeci">ActionName</div><div class="ttdoc">Every action in the game represented in enum form.</div><div class="ttdef"><b>Definition:</b> Sheet.h:27</div></div>
-<div class="ttc" id="astruct_character_sheet_html_aba5a95df9895a522c8c484608d834a7d"><div class="ttname"><a href="struct_character_sheet.html#aba5a95df9895a522c8c484608d834a7d">CharacterSheet::m_DEX</a></div><div class="ttdeci">int m_DEX</div><div class="ttdoc">Dexterity.</div><div class="ttdef"><b>Definition:</b> Sheet.h:54</div></div>
-<div class="ttc" id="astruct_character_sheet_html_ad2c9148e227d81dce50fde2d2364ad49"><div class="ttname"><a href="struct_character_sheet.html#ad2c9148e227d81dce50fde2d2364ad49">CharacterSheet::m_INIT</a></div><div class="ttdeci">int m_INIT</div><div class="ttdoc">Initiative Modifier.</div><div class="ttdef"><b>Definition:</b> Sheet.h:60</div></div>
-<div class="ttc" id="astruct_character_sheet_html_aeb32c232ae0a28c13bc3722b790c141e"><div class="ttname"><a href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">CharacterSheet::ActionLength</a></div><div class="ttdeci">ActionLength</div><div class="ttdoc">Every action has a length, AKA, an action slot that it consumes. Represented in Enum form here.</div><div class="ttdef"><b>Definition:</b> Sheet.h:16</div></div>
-<div class="ttc" id="astruct_character_sheet_html_afb74e6118b15b4c805f2c95dcc64cb05"><div class="ttname"><a href="struct_character_sheet.html#afb74e6118b15b4c805f2c95dcc64cb05">CharacterSheet::m_attackBonus</a></div><div class="ttdeci">int m_attackBonus</div><div class="ttdoc">Any temporary attack bonuses (such as from charging) or penalties.</div><div class="ttdef"><b>Definition:</b> Sheet.h:66</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _SHEET_H_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _SHEET_H_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="struct_character_sheet.html">    8</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_character_sheet.html">CharacterSheet</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">enum</span> Weapon</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        Longsword = 0,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        Longbow = 1</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    };</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">   17</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">ActionLength</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        Standard,</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        Move,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        FullRound,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        Free,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        Immediate,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        Step</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">   28</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">ActionName</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        MeleeAttack,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        RangedAttack,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        FullMeleeAttack,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        FullRangedAttack,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        FiveFtStepBack,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        FiveFtStepFwd,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        AttackDefensively,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        FullAttackDefensively,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        TotalDefence,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        MoveForMelee,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        MoveForRanged,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        Draw,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        Charge,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        AOO,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        EndTurn</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">//Stats</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a52379390701db8087060eff46a52683a">   50</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a52379390701db8087060eff46a52683a">m_BAB</a>;  </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a35db7a24ddcb3d154400dc47407facf6">   52</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a35db7a24ddcb3d154400dc47407facf6">m_moveSpeed</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a1bf70a115b92a80436d9086c10598c56">   54</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a1bf70a115b92a80436d9086c10598c56">m_AC</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#aba5a95df9895a522c8c484608d834a7d">   56</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#aba5a95df9895a522c8c484608d834a7d">m_DEX</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a2a68d854742e0943eceae3a070e09b10">   58</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a2a68d854742e0943eceae3a070e09b10">m_STR</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a783168fdd05e7175f137e32fc2111bfb">   60</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a783168fdd05e7175f137e32fc2111bfb">m_HP</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#ad2c9148e227d81dce50fde2d2364ad49">   62</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#ad2c9148e227d81dce50fde2d2364ad49">m_INIT</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">//Modifiers</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a0f32b473652f4d9c01d244e52cfc2b6b">   66</a></span>&#160;<span class="comment"></span>    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#a0f32b473652f4d9c01d244e52cfc2b6b">m_ACbonus</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#afb74e6118b15b4c805f2c95dcc64cb05">   68</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_character_sheet.html#afb74e6118b15b4c805f2c95dcc64cb05">m_attackBonus</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="struct_character_sheet.html#a2cb85e2e1d248d6a500700049c8fe366">   71</a></span>&#160;    Weapon <a class="code" href="struct_character_sheet.html#a2cb85e2e1d248d6a500700049c8fe366">m_weapon</a>;    </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="struct_action.html">   75</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_action.html">Action</a></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="struct_action.html#aab92c9e7763c0632d3e096e92e4137c1">   78</a></span>&#160;    <a class="code" href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">CharacterSheet::ActionName</a> <a class="code" href="struct_action.html#aab92c9e7763c0632d3e096e92e4137c1">m_name</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="struct_action.html#accdad4c55ba15d19f2e389687596cfd4">   81</a></span>&#160;    <a class="code" href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">CharacterSheet::ActionLength</a> <a class="code" href="struct_action.html#accdad4c55ba15d19f2e389687596cfd4">m_slot</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="struct_action.html#ab9809985b56f642320e79b79db18efd9">   84</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_action.html#ab9809985b56f642320e79b79db18efd9">m_provokes</a> = <span class="keyword">false</span>;    </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="struct_action.html#a07182b04e3563722217cdedc4d74cba1">   87</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_action.html#a07182b04e3563722217cdedc4d74cba1">m_legal</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="struct_action.html#a7dfa2c60683dd9987a8d366c62a2a9e3">   90</a></span>&#160;    std::string <a class="code" href="struct_action.html#a7dfa2c60683dd9987a8d366c62a2a9e3">m_stringName</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astruct_action_html"><div class="ttname"><a href="struct_action.html">Action</a></div><div class="ttdef"><b>Definition:</b> Sheet.h:76</div></div>
+<div class="ttc" id="astruct_action_html_a07182b04e3563722217cdedc4d74cba1"><div class="ttname"><a href="struct_action.html#a07182b04e3563722217cdedc4d74cba1">Action::m_legal</a></div><div class="ttdeci">bool m_legal</div><div class="ttdoc">If the action is currently legal.</div><div class="ttdef"><b>Definition:</b> Sheet.h:87</div></div>
+<div class="ttc" id="astruct_action_html_a7dfa2c60683dd9987a8d366c62a2a9e3"><div class="ttname"><a href="struct_action.html#a7dfa2c60683dd9987a8d366c62a2a9e3">Action::m_stringName</a></div><div class="ttdeci">std::string m_stringName</div><div class="ttdoc">The name of the action in string format (for printing to console)</div><div class="ttdef"><b>Definition:</b> Sheet.h:90</div></div>
+<div class="ttc" id="astruct_action_html_aab92c9e7763c0632d3e096e92e4137c1"><div class="ttname"><a href="struct_action.html#aab92c9e7763c0632d3e096e92e4137c1">Action::m_name</a></div><div class="ttdeci">CharacterSheet::ActionName m_name</div><div class="ttdoc">The name of the action.</div><div class="ttdef"><b>Definition:</b> Sheet.h:78</div></div>
+<div class="ttc" id="astruct_action_html_ab9809985b56f642320e79b79db18efd9"><div class="ttname"><a href="struct_action.html#ab9809985b56f642320e79b79db18efd9">Action::m_provokes</a></div><div class="ttdeci">bool m_provokes</div><div class="ttdoc">If the action provokes Attacks of Opportunity when taken.</div><div class="ttdef"><b>Definition:</b> Sheet.h:84</div></div>
+<div class="ttc" id="astruct_action_html_accdad4c55ba15d19f2e389687596cfd4"><div class="ttname"><a href="struct_action.html#accdad4c55ba15d19f2e389687596cfd4">Action::m_slot</a></div><div class="ttdeci">CharacterSheet::ActionLength m_slot</div><div class="ttdoc">What slot the action uses.</div><div class="ttdef"><b>Definition:</b> Sheet.h:81</div></div>
+<div class="ttc" id="astruct_character_sheet_html"><div class="ttname"><a href="struct_character_sheet.html">CharacterSheet</a></div><div class="ttdef"><b>Definition:</b> Sheet.h:9</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a0f32b473652f4d9c01d244e52cfc2b6b"><div class="ttname"><a href="struct_character_sheet.html#a0f32b473652f4d9c01d244e52cfc2b6b">CharacterSheet::m_ACbonus</a></div><div class="ttdeci">int m_ACbonus</div><div class="ttdoc">Any temporary AC bonuses (or penalties, such as from charging)</div><div class="ttdef"><b>Definition:</b> Sheet.h:66</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a1bf70a115b92a80436d9086c10598c56"><div class="ttname"><a href="struct_character_sheet.html#a1bf70a115b92a80436d9086c10598c56">CharacterSheet::m_AC</a></div><div class="ttdeci">int m_AC</div><div class="ttdoc">Armour Class.</div><div class="ttdef"><b>Definition:</b> Sheet.h:54</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a2a68d854742e0943eceae3a070e09b10"><div class="ttname"><a href="struct_character_sheet.html#a2a68d854742e0943eceae3a070e09b10">CharacterSheet::m_STR</a></div><div class="ttdeci">int m_STR</div><div class="ttdoc">Strength.</div><div class="ttdef"><b>Definition:</b> Sheet.h:58</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a2cb85e2e1d248d6a500700049c8fe366"><div class="ttname"><a href="struct_character_sheet.html#a2cb85e2e1d248d6a500700049c8fe366">CharacterSheet::m_weapon</a></div><div class="ttdeci">Weapon m_weapon</div><div class="ttdoc">Which weapon is being held.</div><div class="ttdef"><b>Definition:</b> Sheet.h:71</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a35db7a24ddcb3d154400dc47407facf6"><div class="ttname"><a href="struct_character_sheet.html#a35db7a24ddcb3d154400dc47407facf6">CharacterSheet::m_moveSpeed</a></div><div class="ttdeci">int m_moveSpeed</div><div class="ttdoc">Movement Speed.</div><div class="ttdef"><b>Definition:</b> Sheet.h:52</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a52379390701db8087060eff46a52683a"><div class="ttname"><a href="struct_character_sheet.html#a52379390701db8087060eff46a52683a">CharacterSheet::m_BAB</a></div><div class="ttdeci">int m_BAB</div><div class="ttdoc">Base Attack Bonus.</div><div class="ttdef"><b>Definition:</b> Sheet.h:50</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a783168fdd05e7175f137e32fc2111bfb"><div class="ttname"><a href="struct_character_sheet.html#a783168fdd05e7175f137e32fc2111bfb">CharacterSheet::m_HP</a></div><div class="ttdeci">int m_HP</div><div class="ttdoc">Hit Points.</div><div class="ttdef"><b>Definition:</b> Sheet.h:60</div></div>
+<div class="ttc" id="astruct_character_sheet_html_a8700f20acc6d8706ea3d5ef4964580b2"><div class="ttname"><a href="struct_character_sheet.html#a8700f20acc6d8706ea3d5ef4964580b2">CharacterSheet::ActionName</a></div><div class="ttdeci">ActionName</div><div class="ttdoc">Every action in the game represented in enum form.</div><div class="ttdef"><b>Definition:</b> Sheet.h:29</div></div>
+<div class="ttc" id="astruct_character_sheet_html_aba5a95df9895a522c8c484608d834a7d"><div class="ttname"><a href="struct_character_sheet.html#aba5a95df9895a522c8c484608d834a7d">CharacterSheet::m_DEX</a></div><div class="ttdeci">int m_DEX</div><div class="ttdoc">Dexterity.</div><div class="ttdef"><b>Definition:</b> Sheet.h:56</div></div>
+<div class="ttc" id="astruct_character_sheet_html_ad2c9148e227d81dce50fde2d2364ad49"><div class="ttname"><a href="struct_character_sheet.html#ad2c9148e227d81dce50fde2d2364ad49">CharacterSheet::m_INIT</a></div><div class="ttdeci">int m_INIT</div><div class="ttdoc">Initiative Modifier.</div><div class="ttdef"><b>Definition:</b> Sheet.h:62</div></div>
+<div class="ttc" id="astruct_character_sheet_html_aeb32c232ae0a28c13bc3722b790c141e"><div class="ttname"><a href="struct_character_sheet.html#aeb32c232ae0a28c13bc3722b790c141e">CharacterSheet::ActionLength</a></div><div class="ttdeci">ActionLength</div><div class="ttdoc">Every action has a length, AKA, an action slot that it consumes. Represented in Enum form here.</div><div class="ttdef"><b>Definition:</b> Sheet.h:18</div></div>
+<div class="ttc" id="astruct_character_sheet_html_afb74e6118b15b4c805f2c95dcc64cb05"><div class="ttname"><a href="struct_character_sheet.html#afb74e6118b15b4c805f2c95dcc64cb05">CharacterSheet::m_attackBonus</a></div><div class="ttdeci">int m_attackBonus</div><div class="ttdoc">Any temporary attack bonuses (such as from charging) or penalties.</div><div class="ttdef"><b>Definition:</b> Sheet.h:68</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

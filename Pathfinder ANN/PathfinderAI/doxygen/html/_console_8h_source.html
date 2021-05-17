@@ -69,33 +69,37 @@ $(function() {
 <div class="title">Console.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="struct_console.html">    7</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_console.html">Console</a></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="struct_console.html">Console</a>();</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#a37ae7edeaa4b16dfd5727982893bb7f2">log</a>(std::string _message);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#abacd6382a661417232765263b6737548">secretLog</a>(std::string _message);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#a8b4ffaeabbea48e1f3aa1e535ee88ab8">clear</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#aeaba5be9ce3c291ae6f1336ab778fb9f">save</a>(std::string _path);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct_console.html#a2500bedd05b3e7b77967f288d5a5fb43">   23</a></span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="struct_console.html#a2500bedd05b3e7b77967f288d5a5fb43">m_messageLog</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">int</span> m_index = 0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct_console.html#a25fb7d727bb3f4318858b73265da36ea">   26</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="struct_console.html#a25fb7d727bb3f4318858b73265da36ea">m_maxSize</a> = 50;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct_console.html#a6e5fc48dd2388b7f45c15fb39699c4f7">   29</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_console.html#a6e5fc48dd2388b7f45c15fb39699c4f7">m_output</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
-<div class="ttc" id="astruct_console_html"><div class="ttname"><a href="struct_console.html">Console</a></div><div class="ttdef"><b>Definition:</b> Console.h:8</div></div>
-<div class="ttc" id="astruct_console_html_a2500bedd05b3e7b77967f288d5a5fb43"><div class="ttname"><a href="struct_console.html#a2500bedd05b3e7b77967f288d5a5fb43">Console::m_messageLog</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_messageLog</div><div class="ttdoc">An array that holds all the console messages.</div><div class="ttdef"><b>Definition:</b> Console.h:23</div></div>
-<div class="ttc" id="astruct_console_html_a25fb7d727bb3f4318858b73265da36ea"><div class="ttname"><a href="struct_console.html#a25fb7d727bb3f4318858b73265da36ea">Console::m_maxSize</a></div><div class="ttdeci">const int m_maxSize</div><div class="ttdoc">Sets a max size for the message array to stop it re-allocating memory constantly.</div><div class="ttdef"><b>Definition:</b> Console.h:26</div></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _CONSOLE_H_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _CONSOLE_H_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="struct_console.html">    9</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_console.html">Console</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="struct_console.html">Console</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#a37ae7edeaa4b16dfd5727982893bb7f2">log</a>(std::string _message);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#abacd6382a661417232765263b6737548">secretLog</a>(std::string _message);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#a8b4ffaeabbea48e1f3aa1e535ee88ab8">clear</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_console.html#aeaba5be9ce3c291ae6f1336ab778fb9f">save</a>(std::string _path);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct_console.html#a2500bedd05b3e7b77967f288d5a5fb43">   25</a></span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="struct_console.html#a2500bedd05b3e7b77967f288d5a5fb43">m_messageLog</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">int</span> m_index = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_console.html#a25fb7d727bb3f4318858b73265da36ea">   28</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="struct_console.html#a25fb7d727bb3f4318858b73265da36ea">m_maxSize</a> = 50;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct_console.html#a6e5fc48dd2388b7f45c15fb39699c4f7">   31</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_console.html#a6e5fc48dd2388b7f45c15fb39699c4f7">m_output</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astruct_console_html"><div class="ttname"><a href="struct_console.html">Console</a></div><div class="ttdef"><b>Definition:</b> Console.h:10</div></div>
+<div class="ttc" id="astruct_console_html_a2500bedd05b3e7b77967f288d5a5fb43"><div class="ttname"><a href="struct_console.html#a2500bedd05b3e7b77967f288d5a5fb43">Console::m_messageLog</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_messageLog</div><div class="ttdoc">An array that holds all the console messages.</div><div class="ttdef"><b>Definition:</b> Console.h:25</div></div>
+<div class="ttc" id="astruct_console_html_a25fb7d727bb3f4318858b73265da36ea"><div class="ttname"><a href="struct_console.html#a25fb7d727bb3f4318858b73265da36ea">Console::m_maxSize</a></div><div class="ttdeci">const int m_maxSize</div><div class="ttdoc">Sets a max size for the message array to stop it re-allocating memory constantly.</div><div class="ttdef"><b>Definition:</b> Console.h:28</div></div>
 <div class="ttc" id="astruct_console_html_a37ae7edeaa4b16dfd5727982893bb7f2"><div class="ttname"><a href="struct_console.html#a37ae7edeaa4b16dfd5727982893bb7f2">Console::log</a></div><div class="ttdeci">void log(std::string _message)</div><div class="ttdoc">Logs a message to the console and outputs it.</div><div class="ttdef"><b>Definition:</b> Console.cpp:12</div></div>
-<div class="ttc" id="astruct_console_html_a6e5fc48dd2388b7f45c15fb39699c4f7"><div class="ttname"><a href="struct_console.html#a6e5fc48dd2388b7f45c15fb39699c4f7">Console::m_output</a></div><div class="ttdeci">bool m_output</div><div class="ttdoc">A manual override that disables printing any messages to console.</div><div class="ttdef"><b>Definition:</b> Console.h:29</div></div>
+<div class="ttc" id="astruct_console_html_a6e5fc48dd2388b7f45c15fb39699c4f7"><div class="ttname"><a href="struct_console.html#a6e5fc48dd2388b7f45c15fb39699c4f7">Console::m_output</a></div><div class="ttdeci">bool m_output</div><div class="ttdoc">A manual override that disables printing any messages to console.</div><div class="ttdef"><b>Definition:</b> Console.h:31</div></div>
 <div class="ttc" id="astruct_console_html_a8b4ffaeabbea48e1f3aa1e535ee88ab8"><div class="ttname"><a href="struct_console.html#a8b4ffaeabbea48e1f3aa1e535ee88ab8">Console::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Wipes the array that holds all the log entries.</div><div class="ttdef"><b>Definition:</b> Console.cpp:45</div></div>
 <div class="ttc" id="astruct_console_html_abacd6382a661417232765263b6737548"><div class="ttname"><a href="struct_console.html#abacd6382a661417232765263b6737548">Console::secretLog</a></div><div class="ttdeci">void secretLog(std::string _message)</div><div class="ttdoc">Logs a message to the console but doesn't print it. Used to record the player's input in the log file...</div><div class="ttdef"><b>Definition:</b> Console.cpp:31</div></div>
 <div class="ttc" id="astruct_console_html_aeaba5be9ce3c291ae6f1336ab778fb9f"><div class="ttname"><a href="struct_console.html#aeaba5be9ce3c291ae6f1336ab778fb9f">Console::save</a></div><div class="ttdeci">void save(std::string _path)</div><div class="ttdoc">Saves the current log entries to a file.</div><div class="ttdef"><b>Definition:</b> Console.cpp:52</div></div>
