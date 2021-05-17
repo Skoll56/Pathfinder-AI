@@ -1,3 +1,6 @@
+/**IMPORTANT: The Pathfinding in this project has NOT been uniquely created for this project, it should be treated as a 3rd party library. 
+It was originally provided by Dr Prakoonwit, 2018, and has been used in previous work. It is NOT being submitted as new work to be marked.*/
+
 // Astar.cpp
 // http://en.wikipedia.org/wiki/A*
 // Compiler: Dev-C++ 4.9.9.2
@@ -10,9 +13,9 @@
 #include <ctime>
 #include "Entity.h"
 #include "Game.h"
+#include "MapLoader.h"
 
 using namespace std;
-
 int n;  // horizontal size of the map
 int m; // vertical size size of the map
 
@@ -222,10 +225,10 @@ string astar(const int & xStart, const int & yStart,
 	return ""; // no route found
 }
 
-string findPath(Map &_map, Entity* entity)
+string findPath(BattleMap &_map, Entity* entity)
 {	
-	n = _map.m_gridX;
-	m = _map.m_gridY;
+	n = _map.m_xSize;
+	m = _map.m_ySize;
 
 	map.clear();
 	// create empty map
@@ -238,26 +241,24 @@ string findPath(Map &_map, Entity* entity)
 			map[x].push_back(0);
 		}
 	}
-	// fillout the map matrix with a '+' pattern
+	// Fill the map matrix with 1's (empty space)
 	for (int i = 0; i < _map.m_walls.size(); i++)
 	{
-		map[_map.m_walls[i]->m_Pos.x][_map.m_walls[i]->m_Pos.y] = 1;
+		map[_map.m_walls[i]->m_pos.x][_map.m_walls[i]->m_pos.y] = 1;
 	}	
 
 	int xA, yA, xB, yB;
-	xA = entity->m_Pos.x / entity->m_game->m_boxSize;
-	yA = entity->m_Pos.y / entity->m_game->m_boxSize;
-	xB = entity->m_opponent->m_Pos.x / entity->m_game->m_boxSize;
-	yB = entity->m_opponent->m_Pos.y / entity->m_game->m_boxSize;
+	xA = entity->m_pos.x / entity->m_game->m_boxSize;
+	yA = entity->m_pos.y / entity->m_game->m_boxSize;
+	xB = entity->m_opponent->m_pos.x / entity->m_game->m_boxSize;
+	yB = entity->m_opponent->m_pos.y / entity->m_game->m_boxSize;
 	string route = "";	
 
 	route = astar(xA, yA, xB, yB);
 	if (route.length() > 0)
 	{
 		route.pop_back();
-	}
-
-	
+	}	
 
 	// Convert the directions into a useful format
 	if (route.length() > 0)
@@ -281,10 +282,10 @@ string findPath(Map &_map, Entity* entity)
 }
 
 
-string findPath(Map &_map, Entity* entity, int _x, int _y)
+string findPath(BattleMap &_map, Entity* entity, int _x, int _y)
 {
-	n = _map.m_gridX;
-	m = _map.m_gridY;
+	n = _map.m_xSize;
+	m = _map.m_ySize;
 
 	map.clear();
 	// create empty map
@@ -300,12 +301,12 @@ string findPath(Map &_map, Entity* entity, int _x, int _y)
 	// fillout the map matrix with a '+' pattern
 	for (int i = 0; i < _map.m_walls.size(); i++)
 	{
-		map[_map.m_walls[i]->m_Pos.x][_map.m_walls[i]->m_Pos.y] = 1;
+		map[_map.m_walls[i]->m_pos.x][_map.m_walls[i]->m_pos.y] = 1;
 	}
 
 	int xA, yA, xB, yB;
-	xA = entity->m_Pos.x / entity->m_game->m_boxSize;
-	yA = entity->m_Pos.y / entity->m_game->m_boxSize;
+	xA = entity->m_pos.x / entity->m_game->m_boxSize;
+	yA = entity->m_pos.y / entity->m_game->m_boxSize;
 	xB = _x;
 	yB = _y;
 

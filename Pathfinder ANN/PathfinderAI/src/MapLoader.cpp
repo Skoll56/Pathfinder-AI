@@ -5,7 +5,7 @@
 #include <vector>
 #include <sstream>
 
-Map readFile(std::string _location)
+BattleMap BattleMap::loadFromFile(std::string _location)
 {
 	std::vector<char> mapChars;
 	std::vector<std::string> value;
@@ -27,11 +27,11 @@ Map readFile(std::string _location)
 
 	for (int i = 0; i < value.size(); i++)
 	{
-		int t = cutSpace(value[i]);
+		int t = cutString(value[i]);
 		mapFile.push_back(t);	//After this, we have a vector with all the map parts in int form
 	}	
 	
-	Map map(mapFile[0], mapFile[1]);
+	BattleMap map(mapFile[0], mapFile[1]);
 
 	int location = 2; // Start at 2 in order to ignore the first two places
 
@@ -55,7 +55,7 @@ Map readFile(std::string _location)
 }
 
 //Cuts out any whitespace and returns just the pure numbers
-int cutSpace(std::string &_str)
+int BattleMap::cutString(std::string &_str)
 {
 	std::vector<char> num;
 	std::string temp;

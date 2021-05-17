@@ -209,7 +209,7 @@ void Entity::doAction(Action _a)
 	}
 	else if (_a.m_name == CharacterSheet::FiveFtStepBack)
 	{
-		m_Pos = m_fiveFtBackSquare;	
+		m_pos = m_fiveFtBackSquare;	
 		m_actionList[CharacterSheet::MeleeAttack].m_legal = false;
 		m_actionList[CharacterSheet::AttackDefensively].m_legal = false;		
 		m_actionList[CharacterSheet::FullMeleeAttack].m_legal = false;
@@ -217,14 +217,14 @@ void Entity::doAction(Action _a)
 	}
 	else if (_a.m_name == CharacterSheet::FiveFtStepFwd)
 	{
-		std::string route = findPath(m_game->m_map, this, m_opponent->m_Pos.x / m_game->m_boxSize, m_opponent->m_Pos.y / m_game->m_boxSize);
+		std::string route = findPath(m_game->m_map, this, m_opponent->m_pos.x / m_game->m_boxSize, m_opponent->m_pos.y / m_game->m_boxSize);
 		route.pop_back();
 
 		while (route.size() > 1)
 		{
 			route.pop_back();
 		}
-		adjustPosition(route); 
+		move(route); 
 
 		if (m_CS.m_weapon == CharacterSheet::Longsword && m_moveActionsTaken != 2)
 		{
@@ -262,14 +262,14 @@ void Entity::doAction(Action _a)
 	}
 	else if (_a.m_name == CharacterSheet::MoveForMelee)
 	{
-		std::string route = findPath(m_game->m_map, this, m_opponent->m_Pos.x / m_game->m_boxSize, m_opponent->m_Pos.y / m_game->m_boxSize);
+		std::string route = findPath(m_game->m_map, this, m_opponent->m_pos.x / m_game->m_boxSize, m_opponent->m_pos.y / m_game->m_boxSize);
 		route.pop_back();
 
 		while (route.size() > 6)
 		{
 			route.pop_back();
 		}
-		adjustPosition(route); 
+		move(route); 
 		if (m_CS.m_weapon == CharacterSheet::Longbow && m_moveActionsTaken != 2)
 		{
 			if (hasStraightLine())
@@ -300,7 +300,7 @@ void Entity::doAction(Action _a)
 		}
 		else
 		{
-			route = findPath(m_game->m_map, this, m_opponent->m_Pos.x / m_game->m_boxSize, m_opponent->m_Pos.y / m_game->m_boxSize);
+			route = findPath(m_game->m_map, this, m_opponent->m_pos.x / m_game->m_boxSize, m_opponent->m_pos.y / m_game->m_boxSize);
 			route.pop_back();
 		}
 		
@@ -309,7 +309,7 @@ void Entity::doAction(Action _a)
 			route.pop_back();
 		}
 
-		adjustPosition(route); 
+		move(route); 
 		if (m_CS.m_weapon == CharacterSheet::Longbow && m_moveActionsTaken != 2)
 		{
 			if (hasStraightLine())
@@ -365,7 +365,7 @@ void Entity::doAction(Action _a)
 	else if (_a.m_name == CharacterSheet::Charge)
 	{		
 		m_CS.m_ACbonus -= 2;
-		adjustPosition(m_chargePath);
+		move(m_chargePath);
 		meleeAttack(m_CS.m_BAB + m_CS.m_STR + m_CS.m_attackBonus + 2);
 		disable(CharacterSheet::Step);
 	}
@@ -468,7 +468,7 @@ void Entity::update()
 
 	m_inputs.m_AC = m_CS.m_AC;
 	m_inputs.m_chargeLegal = (int)m_actionList[CharacterSheet::Charge].m_legal;
-	m_inputs.m_distance = glm::distance(m_Pos, m_opponent->m_Pos) / m_game->m_boxSize;
+	m_inputs.m_distance = glm::distance(m_pos, m_opponent->m_pos) / m_game->m_boxSize;
 	m_inputs.m_enemyAC = m_opponent->m_CS.m_AC;
 	m_inputs.m_enemyMeleeAttBonus = m_opponent->m_CS.m_BAB + m_opponent->m_CS.m_STR;
 	m_inputs.m_enemyRangedAttBonus = m_opponent->m_CS.m_BAB + m_opponent->m_CS.m_DEX;
@@ -921,43 +921,223 @@ int Entity::roll(int _dice)
 
 bool Entity::isAdjacent()
 {	
-	if (m_opponent->m_Pos == m_Pos + glm::vec2(0, m_game->m_boxSize))
+	if (m_opponent->m_pos == m_pos + glm::vec2(0, m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos + glm::vec2(0, -m_game->m_boxSize))
+	else if (m_opponent->m_pos == m_pos + glm::vec2(0, -m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos + glm::vec2(m_game->m_boxSize, 0))
+	else if (m_opponent->m_pos == m_pos + glm::vec2(m_game->m_boxSize, 0))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos + glm::vec2(-m_game->m_boxSize, 0))
+	else if (m_opponent->m_pos == m_pos + glm::vec2(-m_game->m_boxSize, 0))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos + glm::vec2(m_game->m_boxSize, m_game->m_boxSize))
+	else if (m_opponent->m_pos == m_pos + glm::vec2(m_game->m_boxSize, m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos + glm::vec2(m_game->m_boxSize, -m_game->m_boxSize))
+	else if (m_opponent->m_pos == m_pos + glm::vec2(m_game->m_boxSize, -m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos + glm::vec2(-m_game->m_boxSize, -m_game->m_boxSize))
+	else if (m_opponent->m_pos == m_pos + glm::vec2(-m_game->m_boxSize, -m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos + glm::vec2(-m_game->m_boxSize, m_game->m_boxSize))
+	else if (m_opponent->m_pos == m_pos + glm::vec2(-m_game->m_boxSize, m_game->m_boxSize))
 	{
 		return true;
 	}
-	else if (m_opponent->m_Pos == m_Pos)
+	else if (m_opponent->m_pos == m_pos)
 	{
 		return true;
 	}
 
+	return false;
+}
+
+
+
+bool Entity::hasStraightLine()
+{	
+	for (int i = 0; i < m_game->m_map.m_walls.size(); i++)
+	{
+		if (m_game->m_map.m_walls[i]->m_pos == m_pos / m_game->m_boxSize)
+		{
+			return false;
+		}
+
+		if (m_game->m_map.m_walls[i]->m_pos.x != 0.0f && m_game->m_map.m_walls[i]->m_pos.x != m_game->m_map.m_xSize - 1 && m_game->m_map.m_walls[i]->m_pos.y != m_game->m_map.m_xSize - 1 && m_game->m_map.m_walls[i]->m_pos.y != 0.0f			)
+		{
+			float minB[2] = { m_game->m_map.m_walls[i]->m_pos.x, m_game->m_map.m_walls[i]->m_pos.y };
+			float maxB[2] = { m_game->m_map.m_walls[i]->m_pos.x + 1.0f, m_game->m_map.m_walls[i]->m_pos.y + 1.0f };
+			float origin[2] = { (m_pos.x / m_game->m_boxSize) + 0.5f, (m_pos.y / m_game->m_boxSize) + 0.5f };
+			glm::vec2 dir = glm::normalize(m_pos - m_opponent->m_pos);
+			float ray[2] = { -dir.x, -dir.y };
+			float coord[2] = { 0.0f, 0.0f };
+			if (hitBoundingBox(minB, maxB, origin, ray, coord))
+			{
+				glm::vec2 hitPos = glm::vec2(coord[0], coord[1]);
+				if (glm::distance(m_pos / m_game->m_boxSize, hitPos) < glm::distance(m_pos / m_game->m_boxSize, m_opponent->m_pos / m_game->m_boxSize))
+				{
+					return false;
+				}
+			}
+		}
+	}
+	return true;
+}
+
+void Entity::move(std::string _route)
+{
+	for (int i = 0; i < _route.size(); i++)
+	{
+		switch (_route[i])
+		{
+			case '1': //Left
+				m_pos.x-= m_game->m_boxSize;
+				break;
+			case '2': // Right
+				m_pos.x+= m_game->m_boxSize;
+				break;
+			case '3': // Up
+				m_pos.y-= m_game->m_boxSize;
+				break;
+			case '4': // Down
+				m_pos.y+= m_game->m_boxSize;
+				break;
+
+
+
+			case '5':
+				m_pos.y-= m_game->m_boxSize;
+				m_pos.x-= m_game->m_boxSize;
+				break;
+			case '6':
+				m_pos.y+= m_game->m_boxSize;
+				m_pos.x-= m_game->m_boxSize;
+				break;
+
+			case '7':
+				m_pos.y+= m_game->m_boxSize;
+				m_pos.x+= m_game->m_boxSize;
+				break;
+
+			case '8':
+				m_pos.y-= m_game->m_boxSize;
+				m_pos.x+= m_game->m_boxSize;
+				break;
+		}
+	}
+}
+
+glm::vec2 Entity::findLOS()
+{
+	glm::ivec2 startPos = m_pos;
+	glm::ivec2 bestPos = glm::vec2(0, 0);
+
+	for (int x = 1; x < m_game->m_map.m_xSize-1; x++)
+	{
+		for (int y = 1; y < m_game->m_map.m_ySize-1; y++)
+		{
+			m_pos = glm::vec2(x * m_game->m_boxSize, y * m_game->m_boxSize);
+			if (!isAdjacent())
+			{
+				if (hasStraightLine())
+				{
+					m_pos = startPos;
+					std::string route = findPath(m_game->m_map, this, x, y);
+					if (route.size() > 0 && route.size() <= 6)
+					{
+						if (glm::distance(glm::vec2(x * m_game->m_boxSize, y * m_game->m_boxSize), m_opponent->m_pos) >= glm::distance(m_pos, m_opponent->m_pos))
+						{							
+							return glm::vec2(x, y);	
+						}
+					}
+				}
+				m_pos = startPos;
+			}
+			m_pos = startPos;
+		}
+	}
+
+	if (bestPos == glm::ivec2(0, 0))
+	{
+		return glm::ivec2(-1, -1);
+	}
+	else
+	{
+		return bestPos;
+	}
+}
+
+bool Entity::can5ftBack()
+{
+	if (!isAdjacent()) { return false; }
+	glm::vec2 startPos = m_pos;
+
+	m_pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y);
+	if (!isAdjacent() && hasStraightLine()) 
+	{ 
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true; 
+	}
+
+	m_pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true;
+	}
+
+	m_pos = glm::vec2(startPos.x, startPos.y - m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true;
+	}
+	m_pos = glm::vec2(startPos.x, startPos.y + m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true;
+	}
+
+	m_pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y - m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true;
+	}
+
+	m_pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y - m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true;
+	}
+
+	m_pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y + m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true;
+	}
+
+	m_pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y + m_game->m_boxSize);
+	if (!isAdjacent() && hasStraightLine()) {
+		m_fiveFtBackSquare = m_pos;
+		m_pos = startPos;
+		return true;
+	}
+
+	m_pos = startPos;
 	return false;
 }
 
@@ -971,7 +1151,7 @@ from "Graphics Gems", Academic Press, 1990
 #define LEFT	1
 #define MIDDLE	2
 
-bool Entity::hitBoundingBox(float minB[], float maxB[], float origin[],  float dir[], float coord[])
+bool Entity::hitBoundingBox(float minB[], float maxB[], float origin[], float dir[], float coord[])
 
 {
 	bool inside = true;
@@ -1030,182 +1210,4 @@ bool Entity::hitBoundingBox(float minB[], float maxB[], float origin[],  float d
 			coord[i] = candidatePlane[i];
 		}
 	return (true);				/* ray hits box */
-}
-
-bool Entity::hasStraightLine()
-{	
-	for (int i = 0; i < m_game->m_map.m_walls.size(); i++)
-	{
-		if (m_game->m_map.m_walls[i]->m_Pos == m_Pos / m_game->m_boxSize)
-		{
-			return false;
-		}
-
-		if (m_game->m_map.m_walls[i]->m_Pos.x != 0.0f && m_game->m_map.m_walls[i]->m_Pos.x != m_game->m_map.m_gridX - 1 && m_game->m_map.m_walls[i]->m_Pos.y != m_game->m_map.m_gridX - 1 && m_game->m_map.m_walls[i]->m_Pos.y != 0.0f			)
-		{
-			float minB[2] = { m_game->m_map.m_walls[i]->m_Pos.x, m_game->m_map.m_walls[i]->m_Pos.y };
-			float maxB[2] = { m_game->m_map.m_walls[i]->m_Pos.x + 1.0f, m_game->m_map.m_walls[i]->m_Pos.y + 1.0f };
-			float origin[2] = { (m_Pos.x / m_game->m_boxSize) + 0.5f, (m_Pos.y / m_game->m_boxSize) + 0.5f };
-			glm::vec2 dir = glm::normalize(m_Pos - m_opponent->m_Pos);
-			float ray[2] = { -dir.x, -dir.y };
-			float coord[2] = { 0.0f, 0.0f };
-			if (hitBoundingBox(minB, maxB, origin, ray, coord))
-			{
-				glm::vec2 hitPos = glm::vec2(coord[0], coord[1]);
-				if (glm::distance(m_Pos / m_game->m_boxSize, hitPos) < glm::distance(m_Pos / m_game->m_boxSize, m_opponent->m_Pos / m_game->m_boxSize))
-				{
-					return false;
-				}
-			}
-		}
-	}
-	return true;
-}
-
-void Entity::adjustPosition(std::string _route)
-{
-	for (int i = 0; i < _route.size(); i++)
-	{
-		switch (_route[i])
-		{
-			case '1': //Left
-				m_Pos.x-= m_game->m_boxSize;
-				break;
-			case '2': // Right
-				m_Pos.x+= m_game->m_boxSize;
-				break;
-			case '3': // Up
-				m_Pos.y-= m_game->m_boxSize;
-				break;
-			case '4': // Down
-				m_Pos.y+= m_game->m_boxSize;
-				break;
-
-
-
-			case '5':
-				m_Pos.y-= m_game->m_boxSize;
-				m_Pos.x-= m_game->m_boxSize;
-				break;
-			case '6':
-				m_Pos.y+= m_game->m_boxSize;
-				m_Pos.x-= m_game->m_boxSize;
-				break;
-
-			case '7':
-				m_Pos.y+= m_game->m_boxSize;
-				m_Pos.x+= m_game->m_boxSize;
-				break;
-
-			case '8':
-				m_Pos.y-= m_game->m_boxSize;
-				m_Pos.x+= m_game->m_boxSize;
-				break;
-		}
-	}
-}
-
-glm::vec2 Entity::findLOS()
-{
-	glm::ivec2 startPos = m_Pos;
-	glm::ivec2 bestPos = glm::vec2(0, 0);
-
-	for (int x = 1; x < m_game->m_map.m_gridX-1; x++)
-	{
-		for (int y = 1; y < m_game->m_map.m_gridY-1; y++)
-		{
-			m_Pos = glm::vec2(x * m_game->m_boxSize, y * m_game->m_boxSize);
-			if (!isAdjacent())
-			{
-				if (hasStraightLine())
-				{
-					m_Pos = startPos;
-					std::string route = findPath(m_game->m_map, this, x, y);
-					if (route.size() > 0 && route.size() <= 6)
-					{
-						if (glm::distance(glm::vec2(x * m_game->m_boxSize, y * m_game->m_boxSize), m_opponent->m_Pos) >= glm::distance(m_Pos, m_opponent->m_Pos))
-						{							
-							return glm::vec2(x, y);	
-						}
-					}
-				}
-				m_Pos = startPos;
-			}
-			m_Pos = startPos;
-		}
-	}
-
-	if (bestPos == glm::ivec2(0, 0))
-	{
-		return glm::ivec2(-1, -1);
-	}
-	else
-	{
-		return bestPos;
-	}
-}
-
-bool Entity::can5ftBack()
-{
-	if (!isAdjacent()) { return false; }
-	glm::vec2 startPos = m_Pos;
-
-	m_Pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y);
-	if (!isAdjacent() && hasStraightLine()) 
-	{ 
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true; 
-	}
-
-	m_Pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y);
-	if (!isAdjacent() && hasStraightLine()) {
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-
-	m_Pos = glm::vec2(startPos.x, startPos.y - m_game->m_boxSize);
-	if (!isAdjacent() && hasStraightLine()) {
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-	m_Pos = glm::vec2(startPos.x, startPos.y + m_game->m_boxSize);
-	if (!isAdjacent() && hasStraightLine()) {
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-
-	m_Pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y - m_game->m_boxSize);
-	if (!isAdjacent() && hasStraightLine()) {
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-
-	m_Pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y - m_game->m_boxSize);
-	if (!isAdjacent() && hasStraightLine()) {
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-
-	m_Pos = glm::vec2(startPos.x + m_game->m_boxSize, startPos.y + m_game->m_boxSize);
-	if (!isAdjacent() && hasStraightLine()) {
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-
-	m_Pos = glm::vec2(startPos.x - m_game->m_boxSize, startPos.y + m_game->m_boxSize);
-	if (!isAdjacent() && hasStraightLine()) {
-		m_fiveFtBackSquare = m_Pos;
-		m_Pos = startPos;
-		return true;
-	}
-
-	m_Pos = startPos;
-	return false;
 }

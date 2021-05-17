@@ -1,0 +1,45 @@
+\hypertarget{struct_console}{}\doxysection{Console Struct Reference}
+\label{struct_console}\index{Console@{Console}}
+
+
+{\ttfamily \#include $<$Console.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_console_a37ae7edeaa4b16dfd5727982893bb7f2}\label{struct_console_a37ae7edeaa4b16dfd5727982893bb7f2}} 
+void \mbox{\hyperlink{struct_console_a37ae7edeaa4b16dfd5727982893bb7f2}{log}} (std\+::string \+\_\+message)
+\begin{DoxyCompactList}\small\item\em Logs a message to the console and outputs it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_console_abacd6382a661417232765263b6737548}\label{struct_console_abacd6382a661417232765263b6737548}} 
+void \mbox{\hyperlink{struct_console_abacd6382a661417232765263b6737548}{secret\+Log}} (std\+::string \+\_\+message)
+\begin{DoxyCompactList}\small\item\em Logs a message to the console but doesn\textquotesingle{}t print it. Used to record the player\textquotesingle{}s input in the log files during testing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_console_a8b4ffaeabbea48e1f3aa1e535ee88ab8}\label{struct_console_a8b4ffaeabbea48e1f3aa1e535ee88ab8}} 
+void \mbox{\hyperlink{struct_console_a8b4ffaeabbea48e1f3aa1e535ee88ab8}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Wipes the array that holds all the log entries. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_console_aeaba5be9ce3c291ae6f1336ab778fb9f}\label{struct_console_aeaba5be9ce3c291ae6f1336ab778fb9f}} 
+void \mbox{\hyperlink{struct_console_aeaba5be9ce3c291ae6f1336ab778fb9f}{save}} (std\+::string \+\_\+path)
+\begin{DoxyCompactList}\small\item\em Saves the current log entries to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_console_a2500bedd05b3e7b77967f288d5a5fb43}\label{struct_console_a2500bedd05b3e7b77967f288d5a5fb43}} 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{struct_console_a2500bedd05b3e7b77967f288d5a5fb43}{m\+\_\+message\+Log}}
+\begin{DoxyCompactList}\small\item\em An array that holds all the console messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_console_ab0a94075baca918d630fd3de23adf3a3}\label{struct_console_ab0a94075baca918d630fd3de23adf3a3}} 
+int {\bfseries m\+\_\+index} = 0
+\item 
+\mbox{\Hypertarget{struct_console_a25fb7d727bb3f4318858b73265da36ea}\label{struct_console_a25fb7d727bb3f4318858b73265da36ea}} 
+const int \mbox{\hyperlink{struct_console_a25fb7d727bb3f4318858b73265da36ea}{m\+\_\+max\+Size}} = 50
+\begin{DoxyCompactList}\small\item\em Sets a max size for the message array to stop it re-\/allocating memory constantly. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_console_a6e5fc48dd2388b7f45c15fb39699c4f7}\label{struct_console_a6e5fc48dd2388b7f45c15fb39699c4f7}} 
+bool \mbox{\hyperlink{struct_console_a6e5fc48dd2388b7f45c15fb39699c4f7}{m\+\_\+output}} = true
+\begin{DoxyCompactList}\small\item\em A manual override that disables printing any messages to console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+When writing messages to the console, it goes through this class first. Then messages are recorded, ready to be saved to file in a log. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/Console.\+h\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/Console.\+cpp\end{DoxyCompactItemize}

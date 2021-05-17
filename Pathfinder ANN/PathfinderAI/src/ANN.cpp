@@ -79,7 +79,6 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 	/* Comment out this line when training is finished */
 	{
 		attempts++;
-		///Decision phase
 		for (int i = 1; i < m_layers.size(); i++) //Only start the "web" from layer 1, not 0 (input layer)
 		{
 			for (int l = 0; l < m_layers[i].m_node.size(); l++)
@@ -112,7 +111,6 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 		}
 		std::vector<float> expectedOutput(output.size());
 
-		///Determining the desired output
 		//Determine the desired action in the current circumstance
 		if (_input->m_distance <= 2.0f)
 		{
@@ -182,7 +180,6 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 			}
 		}
 
-		///Begin Training
 		//Reset all the error values
 		for (int i = 0; i < m_layers.size(); i++)
 		{
@@ -239,7 +236,6 @@ std::vector<int> NeuralNetwork::makeDecision(Inputs* _input)
 			}
 		}
 
-		///Count the ticks for saving the ANN
 		m_tick++;
 		if (m_tick > 500 && !m_game->m_playerTesting)
 		{

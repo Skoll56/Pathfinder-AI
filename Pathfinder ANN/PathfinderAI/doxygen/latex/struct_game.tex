@@ -1,0 +1,114 @@
+\hypertarget{struct_game}{}\doxysection{Game Struct Reference}
+\label{struct_game}\index{Game@{Game}}
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_game_afb6559392bc745814d96e48a60238657}\label{struct_game_afb6559392bc745814d96e48a60238657}} 
+void {\bfseries initialise} ()
+\item 
+\mbox{\Hypertarget{struct_game_afb705aeed0fc1c78e264c58fbccf912a}\label{struct_game_afb705aeed0fc1c78e264c58fbccf912a}} 
+void \mbox{\hyperlink{struct_game_afb705aeed0fc1c78e264c58fbccf912a}{display\+Stats}} ()
+\begin{DoxyCompactList}\small\item\em Prints the player\textquotesingle{}s character sheet to console during testing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a539adf6cf28c33659e1799d7c297011c}\label{struct_game_a539adf6cf28c33659e1799d7c297011c}} 
+void \mbox{\hyperlink{struct_game_a539adf6cf28c33659e1799d7c297011c}{display\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Prints the valid commands to console during testing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_abf59f68cfa92a4e6275c83befed766d6}\label{struct_game_abf59f68cfa92a4e6275c83befed766d6}} 
+void \mbox{\hyperlink{struct_game_abf59f68cfa92a4e6275c83befed766d6}{display\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Calls both display\+Stats and display\+Commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_adf86c6c6a13ee9dd934b4a3062a456c5}\label{struct_game_adf86c6c6a13ee9dd934b4a3062a456c5}} 
+void \mbox{\hyperlink{struct_game_adf86c6c6a13ee9dd934b4a3062a456c5}{initialise\+Entities}} ()
+\begin{DoxyCompactList}\small\item\em Initialises both characters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a75ae692954b393537c189cdde9e15736}\label{struct_game_a75ae692954b393537c189cdde9e15736}} 
+SDL\+\_\+\+Window $\ast$ {\bfseries init\+Window} ()
+\item 
+\mbox{\Hypertarget{struct_game_a5c89ab0b543e45d22ccdb54e9f1a78c0}\label{struct_game_a5c89ab0b543e45d22ccdb54e9f1a78c0}} 
+SDL\+\_\+\+Renderer $\ast$ {\bfseries init\+Renderer} (SDL\+\_\+\+Window $\ast$\+\_\+window)
+\item 
+\mbox{\Hypertarget{struct_game_a47ddeaa138cb4f342a1dbbf9a928f7bd}\label{struct_game_a47ddeaa138cb4f342a1dbbf9a928f7bd}} 
+void \mbox{\hyperlink{struct_game_a47ddeaa138cb4f342a1dbbf9a928f7bd}{draw\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Draws the map and all entities. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a61f9985bc7ce164482bcf6f99877177c}\label{struct_game_a61f9985bc7ce164482bcf6f99877177c}} 
+void \mbox{\hyperlink{struct_game_a61f9985bc7ce164482bcf6f99877177c}{draw\+Walls}} (SDL\+\_\+\+Renderer $\ast$\+\_\+renderer, std\+::vector$<$ \mbox{\hyperlink{struct_entity}{Entity}} $\ast$ $>$ \+\_\+wall)
+\begin{DoxyCompactList}\small\item\em Draws all of the walls to the screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a715fef91ec0a42a6cec488765184ed47}\label{struct_game_a715fef91ec0a42a6cec488765184ed47}} 
+void \mbox{\hyperlink{struct_game_a715fef91ec0a42a6cec488765184ed47}{draw\+Grid}} (SDL\+\_\+\+Renderer $\ast$\+\_\+renderer, int \+\_\+x, int \+\_\+y)
+\begin{DoxyCompactList}\small\item\em Draws the 2D grid to screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_ac4b81ae7f3db86f11489fc740dc67504}\label{struct_game_ac4b81ae7f3db86f11489fc740dc67504}} 
+void \mbox{\hyperlink{struct_game_ac4b81ae7f3db86f11489fc740dc67504}{draw\+Grid\+Square}} (SDL\+\_\+\+Renderer $\ast$\+\_\+renderer, \mbox{\hyperlink{struct_entity}{Entity}} \+\_\+entity, bool \+\_\+fill)
+\begin{DoxyCompactList}\small\item\em Draws a single square to the screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a0b6d773f4beb7a891b6ef2ccc8f7e60a}\label{struct_game_a0b6d773f4beb7a891b6ef2ccc8f7e60a}} 
+void \mbox{\hyperlink{struct_game_a0b6d773f4beb7a891b6ef2ccc8f7e60a}{draw\+Player\+Square}} (SDL\+\_\+\+Renderer $\ast$\+\_\+renderer, \mbox{\hyperlink{struct_entity}{Entity}} $\ast$\+\_\+entity, bool \+\_\+fill)
+\begin{DoxyCompactList}\small\item\em Draws a character to the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_game_a3d9b98f7c4a96ecf578f75b96c9f0e90}{start}} ()
+\begin{DoxyCompactList}\small\item\em Starts the \mbox{\hyperlink{struct_game}{Game}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_game_aa0f5e66f8adfb8095801159e70cebe9e}\label{struct_game_aa0f5e66f8adfb8095801159e70cebe9e}} 
+bool \mbox{\hyperlink{struct_game_aa0f5e66f8adfb8095801159e70cebe9e}{m\+\_\+player\+Testing}} = false
+\begin{DoxyCompactList}\small\item\em Marks whether the game should start in training mode or playing mode. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_afa5a4a17e366d3407e9952aed7c5db69}\label{struct_game_afa5a4a17e366d3407e9952aed7c5db69}} 
+float \mbox{\hyperlink{struct_game_afa5a4a17e366d3407e9952aed7c5db69}{m\+\_\+box\+Size}} = 40.\+0f
+\begin{DoxyCompactList}\small\item\em Marks the size of the map grid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a0b6c64fb81376f33cd49512b3e446d1e}\label{struct_game_a0b6c64fb81376f33cd49512b3e446d1e}} 
+\mbox{\hyperlink{struct_input}{Input}} \mbox{\hyperlink{struct_game_a0b6c64fb81376f33cd49512b3e446d1e}{m\+\_\+input}}
+\begin{DoxyCompactList}\small\item\em Reference to the basic SDL input system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a6e0d70674956416e0294b6b749779e92}\label{struct_game_a6e0d70674956416e0294b6b749779e92}} 
+SDL\+\_\+\+Window $\ast$ {\bfseries m\+\_\+window}
+\item 
+\mbox{\Hypertarget{struct_game_a52ea7db927b65ea842227705fc1fc0c2}\label{struct_game_a52ea7db927b65ea842227705fc1fc0c2}} 
+SDL\+\_\+\+Renderer $\ast$ {\bfseries m\+\_\+renderer}
+\item 
+\mbox{\Hypertarget{struct_game_a06e653554068640b53e55e0183bf79b2}\label{struct_game_a06e653554068640b53e55e0183bf79b2}} 
+\mbox{\hyperlink{struct_battle_map}{Battle\+Map}} \mbox{\hyperlink{struct_game_a06e653554068640b53e55e0183bf79b2}{m\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em Reference to the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_ae607d274da8585697da71c5672e16551}\label{struct_game_ae607d274da8585697da71c5672e16551}} 
+\mbox{\hyperlink{struct_entity}{Entity}} $\ast$ \mbox{\hyperlink{struct_game_ae607d274da8585697da71c5672e16551}{m\+\_\+player}}
+\begin{DoxyCompactList}\small\item\em Reference to Player \textquotesingle{}A\textquotesingle{}. In playing mode, this is the real player. In training mode, this is just an NPC. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a7deeb0d3ed4d2e19ad865e01fe2ea88e}\label{struct_game_a7deeb0d3ed4d2e19ad865e01fe2ea88e}} 
+\mbox{\hyperlink{struct_entity}{Entity}} $\ast$ \mbox{\hyperlink{struct_game_a7deeb0d3ed4d2e19ad865e01fe2ea88e}{m\+\_\+npc}}
+\begin{DoxyCompactList}\small\item\em Reference to Player \textquotesingle{}B\textquotesingle{}. Always an NPC. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_a965ee178c1f111398cb9da592b5a6850}\label{struct_game_a965ee178c1f111398cb9da592b5a6850}} 
+\mbox{\hyperlink{struct_console}{Console}} \mbox{\hyperlink{struct_game_a965ee178c1f111398cb9da592b5a6850}{m\+\_\+console}}
+\begin{DoxyCompactList}\small\item\em The console which logs all output messages from the game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_aac504a2930064e8c83ff9a52c52e1c00}\label{struct_game_aac504a2930064e8c83ff9a52c52e1c00}} 
+int \mbox{\hyperlink{struct_game_aac504a2930064e8c83ff9a52c52e1c00}{m\+\_\+layers}} = 0
+\begin{DoxyCompactList}\small\item\em The number of layers in the current ANN (used when generating a new one from command line args) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_ac6cc8e8fdeaba507019101582ab779bf}\label{struct_game_ac6cc8e8fdeaba507019101582ab779bf}} 
+int \mbox{\hyperlink{struct_game_ac6cc8e8fdeaba507019101582ab779bf}{m\+\_\+nodes}} = 0
+\begin{DoxyCompactList}\small\item\em The number of nodes in the current ANN (used when generating a new one from command line args) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_ae5c549b398f81a100e5a9f5e51d3e903}\label{struct_game_ae5c549b398f81a100e5a9f5e51d3e903}} 
+bool \mbox{\hyperlink{struct_game_ae5c549b398f81a100e5a9f5e51d3e903}{m\+\_\+victory}}
+\begin{DoxyCompactList}\small\item\em True if one of the characters won the fight. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_af9a2bea2c95d7c4149c305960887eaa4}\label{struct_game_af9a2bea2c95d7c4149c305960887eaa4}} 
+bool \mbox{\hyperlink{struct_game_af9a2bea2c95d7c4149c305960887eaa4}{m\+\_\+quit}}
+\begin{DoxyCompactList}\small\item\em Marks if the user is trying to quit the game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_game_ae1a572ba5b0955830c6602065a44d507}\label{struct_game_ae1a572ba5b0955830c6602065a44d507}} 
+bool \mbox{\hyperlink{struct_game_ae1a572ba5b0955830c6602065a44d507}{m\+\_\+generate\+New}} = false
+\begin{DoxyCompactList}\small\item\em Marks if the game should load an ANN or make a new one. Determined by command-\/line args. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A general manager for the gameflow/scene 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_game_a3d9b98f7c4a96ecf578f75b96c9f0e90}\label{struct_game_a3d9b98f7c4a96ecf578f75b96c9f0e90}} 
+\index{Game@{Game}!start@{start}}
+\index{start@{start}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Game\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts the \mbox{\hyperlink{struct_game}{Game}}. 
+
+Draw Code
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/Game.\+h\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/Game.\+cpp\end{DoxyCompactItemize}

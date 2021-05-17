@@ -4,7 +4,6 @@
 #include <glm/glm.hpp>
 #include <sstream>
 #include "Game.h"
-#include "MapLoader.h"
 #include "Sheet.h"
 #include "Entity.h"
 #include <stdlib.h>
@@ -40,8 +39,8 @@ int main(int argc, char *argv[])
 
 void Game::initialiseEntities()
 {
-	m_player->m_Pos.x = 4.0f * m_boxSize;
-	m_player->m_Pos.y = 1.0f * m_boxSize;
+	m_player->m_pos.x = 4.0f * m_boxSize;
+	m_player->m_pos.y = 1.0f * m_boxSize;
 
 
 	if (!m_playerTesting)
@@ -101,7 +100,7 @@ void Game::initialise()
 	srand(time(NULL));
 	m_window = initWindow();
 	m_renderer = initRenderer(m_window);
-	m_map = readFile("map.txt");
+	m_map = m_map.loadFromFile("map.txt");
 	m_player = new Entity(4.0f * m_boxSize, 1.0f * m_boxSize);
 	m_npc = new Entity(14.0f * m_boxSize, 14.0f * m_boxSize);
 
@@ -217,7 +216,6 @@ void Game::start()
 
 				///Draw Code
 				drawScene();
-				/* Removed for efficiency while training */
 				m_input.update();
 			}
 		}
@@ -332,11 +330,11 @@ void Game::start()
 		m_console.clear();		
 		initialiseEntities();
 
-		glm::vec2* player_pos = &m_player->m_Pos;
+		glm::vec2* player_pos = &m_player->m_pos;
 		player_pos->x = 4.0f * m_boxSize;
 		player_pos->y = 1.0f * m_boxSize;
 
-		glm::vec2* npc_pos = &m_npc->m_Pos;
+		glm::vec2* npc_pos = &m_npc->m_pos;
 		int x;
 		int y;
 		bool inwall = true;
@@ -348,7 +346,7 @@ void Game::start()
 			y = rand() % 20;
 			for (int i = 0; i < m_map.m_walls.size(); i++)
 			{
-				if (m_map.m_walls[i]->m_Pos == glm::vec2(x, y))
+				if (m_map.m_walls[i]->m_pos == glm::vec2(x, y))
 				{
 					inwall = true;
 					break;
@@ -377,7 +375,7 @@ void Game::drawScene()
 	SDL_RenderClear(m_renderer);
 
 	//Draw the map
-	drawGrid(m_renderer, m_map.m_gridX, m_map.m_gridY);
+	drawGrid(m_renderer, m_map.m_xSize, m_map.m_ySize);
 	drawWalls(m_renderer, m_map.m_walls);
 
 
@@ -424,10 +422,10 @@ void Game::drawGrid(SDL_Renderer* _renderer, int _x, int _y)
 	
 	for (int x = 0; x < _x; x++)
 	{
-		t.m_Pos.x = x;
+		t.m_pos.x = x;
 		for (int y = 0; y < _y; y++)
 		{
-			t.m_Pos.y = y;
+			t.m_pos.y = y;
 			drawGridSquare(_renderer, t, false);
 		}
 	}
@@ -443,8 +441,8 @@ void Game::drawWalls(SDL_Renderer* _renderer, std::vector<Entity*> _wall)
 void Game::drawGridSquare(SDL_Renderer* _renderer, Entity _entity, bool _fill)
 {
 	SDL_Rect square;	
-	square.x = _entity.m_Pos.x * m_boxSize;
-	square.y = _entity.m_Pos.y * m_boxSize;
+	square.x = _entity.m_pos.x * m_boxSize;
+	square.y = _entity.m_pos.y * m_boxSize;
 	square.w = m_boxSize;
 	square.h = m_boxSize;
 	SDL_SetRenderDrawColor(_renderer, _entity.m_col.r, _entity.m_col.g, _entity.m_col.b, _entity.m_col.a);
@@ -461,8 +459,8 @@ void Game::drawGridSquare(SDL_Renderer* _renderer, Entity _entity, bool _fill)
 void Game::drawPlayerSquare(SDL_Renderer* _renderer, Entity* _entity, bool _fill)
 {
 	SDL_Rect square;
-	square.x = _entity->m_Pos.x;
-	square.y = _entity->m_Pos.y;
+	square.x = _entity->m_pos.x;
+	square.y = _entity->m_pos.y;
 	square.w = m_boxSize;
 	square.h = m_boxSize;
 	SDL_SetRenderDrawColor(_renderer, _entity->m_col.r, _entity->m_col.g, _entity->m_col.b, _entity->m_col.a);

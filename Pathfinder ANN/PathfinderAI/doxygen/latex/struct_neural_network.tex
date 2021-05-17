@@ -1,0 +1,57 @@
+\hypertarget{struct_neural_network}{}\doxysection{Neural\+Network Struct Reference}
+\label{struct_neural_network}\index{NeuralNetwork@{NeuralNetwork}}
+
+
+{\ttfamily \#include $<$ANN.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_neural_network_a289efa86ac893ef6de68510accd459ed}\label{struct_neural_network_a289efa86ac893ef6de68510accd459ed}} 
+\mbox{\hyperlink{struct_neural_network_a289efa86ac893ef6de68510accd459ed}{Neural\+Network}} (std\+::vector$<$ std\+::vector$<$ std\+::vector$<$ float $>$$>$$>$ \+\_\+weights, float \+\_\+activation)
+\begin{DoxyCompactList}\small\item\em Generates a new Neural Network. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_a3b7759aced9ae893dd24fc0415901d7f}\label{struct_neural_network_a3b7759aced9ae893dd24fc0415901d7f}} 
+\mbox{\hyperlink{struct_neural_network_a3b7759aced9ae893dd24fc0415901d7f}{Neural\+Network}} (std\+::string \+\_\+path)
+\begin{DoxyCompactList}\small\item\em Loads a Neural Network from file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_a27a213cfa3952ac00e19769f1b52bd90}\label{struct_neural_network_a27a213cfa3952ac00e19769f1b52bd90}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{struct_neural_network_a27a213cfa3952ac00e19769f1b52bd90}{make\+Decision}} (\mbox{\hyperlink{struct_inputs}{Inputs}} $\ast$\+\_\+inputs)
+\begin{DoxyCompactList}\small\item\em Returns a list of outputs (0/1) representing which actions the ANN wants to take. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_af3e77859e61e14c5b3985f5f9c88d715}\label{struct_neural_network_af3e77859e61e14c5b3985f5f9c88d715}} 
+void \mbox{\hyperlink{struct_neural_network_af3e77859e61e14c5b3985f5f9c88d715}{save}} ()
+\begin{DoxyCompactList}\small\item\em Save the ANN to file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_ac1d47828d8bdc72f24b73e9288aa233c}\label{struct_neural_network_ac1d47828d8bdc72f24b73e9288aa233c}} 
+void \mbox{\hyperlink{struct_neural_network_ac1d47828d8bdc72f24b73e9288aa233c}{load}} (std\+::string \+\_\+path)
+\begin{DoxyCompactList}\small\item\em Load the ANN to file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_neural_network_a7c2794e29fedd4d3885032f278519284}\label{struct_neural_network_a7c2794e29fedd4d3885032f278519284}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_layer}{Layer}} $>$ \mbox{\hyperlink{struct_neural_network_a7c2794e29fedd4d3885032f278519284}{m\+\_\+layers}}
+\begin{DoxyCompactList}\small\item\em Holds a reference to every layer in the ANN. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_a650015689b8cb52c47d250d39372306f}\label{struct_neural_network_a650015689b8cb52c47d250d39372306f}} 
+float \mbox{\hyperlink{struct_neural_network_a650015689b8cb52c47d250d39372306f}{m\+\_\+activation}}
+\begin{DoxyCompactList}\small\item\em A global activation value (no longer used) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_a33e1dba42507034ad9456328f952664c}\label{struct_neural_network_a33e1dba42507034ad9456328f952664c}} 
+int {\bfseries m\+\_\+num\+Inputs} = 0
+\item 
+\mbox{\Hypertarget{struct_neural_network_ad91b3afc40ab8d01ad1d26f6773ec04b}\label{struct_neural_network_ad91b3afc40ab8d01ad1d26f6773ec04b}} 
+const float \mbox{\hyperlink{struct_neural_network_ad91b3afc40ab8d01ad1d26f6773ec04b}{m\+\_\+alpha}} = 0.\+11f
+\begin{DoxyCompactList}\small\item\em The learning rate of the ANN. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_ac7918d94003f98121360225c3f50f1c1}\label{struct_neural_network_ac7918d94003f98121360225c3f50f1c1}} 
+bool {\bfseries m\+\_\+player} = false
+\item 
+\mbox{\Hypertarget{struct_neural_network_a762575c0ea49da47e76d00fbc32a9dfd}\label{struct_neural_network_a762575c0ea49da47e76d00fbc32a9dfd}} 
+int \mbox{\hyperlink{struct_neural_network_a762575c0ea49da47e76d00fbc32a9dfd}{m\+\_\+tick}} = 999
+\begin{DoxyCompactList}\small\item\em Tick is a counter of how many iterations the ANN does. After so many ticks, it saves. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_neural_network_a71982224fd8bf4b5fcd330ad97048264}\label{struct_neural_network_a71982224fd8bf4b5fcd330ad97048264}} 
+\mbox{\hyperlink{struct_game}{Game}} $\ast$ {\bfseries m\+\_\+game}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This struct represents the entire Neural Network 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/ANN.\+h\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/ANN.\+cpp\end{DoxyCompactItemize}

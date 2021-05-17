@@ -1,0 +1,88 @@
+\hypertarget{struct_character_sheet}{}\doxysection{Character\+Sheet Struct Reference}
+\label{struct_character_sheet}\index{CharacterSheet@{CharacterSheet}}
+
+
+{\ttfamily \#include $<$Sheet.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_character_sheet_ac6151beaff853af5195dae1663aed27e}\label{struct_character_sheet_ac6151beaff853af5195dae1663aed27e}} 
+enum {\bfseries Weapon} \{ {\bfseries Longsword} = 0
+, {\bfseries Longbow} = 1
+ \}
+\item 
+\mbox{\Hypertarget{struct_character_sheet_aeb32c232ae0a28c13bc3722b790c141e}\label{struct_character_sheet_aeb32c232ae0a28c13bc3722b790c141e}} 
+enum \mbox{\hyperlink{struct_character_sheet_aeb32c232ae0a28c13bc3722b790c141e}{Action\+Length}} \{ \newline
+{\bfseries Standard}
+, {\bfseries Move}
+, {\bfseries Full\+Round}
+, {\bfseries Free}
+, \newline
+{\bfseries Immediate}
+, {\bfseries Step}
+ \}
+\begin{DoxyCompactList}\small\item\em Every action has a length, AKA, an action slot that it consumes. Represented in Enum form here. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_a8700f20acc6d8706ea3d5ef4964580b2}\label{struct_character_sheet_a8700f20acc6d8706ea3d5ef4964580b2}} 
+enum \mbox{\hyperlink{struct_character_sheet_a8700f20acc6d8706ea3d5ef4964580b2}{Action\+Name}} \{ \newline
+{\bfseries Melee\+Attack}
+, {\bfseries Ranged\+Attack}
+, {\bfseries Full\+Melee\+Attack}
+, {\bfseries Full\+Ranged\+Attack}
+, \newline
+{\bfseries Five\+Ft\+Step\+Back}
+, {\bfseries Five\+Ft\+Step\+Fwd}
+, {\bfseries Attack\+Defensively}
+, {\bfseries Full\+Attack\+Defensively}
+, \newline
+{\bfseries Total\+Defence}
+, {\bfseries Move\+For\+Melee}
+, {\bfseries Move\+For\+Ranged}
+, {\bfseries Draw}
+, \newline
+{\bfseries Charge}
+, {\bfseries AOO}
+, {\bfseries End\+Turn}
+ \}
+\begin{DoxyCompactList}\small\item\em Every action in the game represented in enum form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_character_sheet_a52379390701db8087060eff46a52683a}\label{struct_character_sheet_a52379390701db8087060eff46a52683a}} 
+int \mbox{\hyperlink{struct_character_sheet_a52379390701db8087060eff46a52683a}{m\+\_\+\+BAB}}
+\begin{DoxyCompactList}\small\item\em Base Attack Bonus. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_a35db7a24ddcb3d154400dc47407facf6}\label{struct_character_sheet_a35db7a24ddcb3d154400dc47407facf6}} 
+int \mbox{\hyperlink{struct_character_sheet_a35db7a24ddcb3d154400dc47407facf6}{m\+\_\+move\+Speed}}
+\begin{DoxyCompactList}\small\item\em Movement Speed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_a1bf70a115b92a80436d9086c10598c56}\label{struct_character_sheet_a1bf70a115b92a80436d9086c10598c56}} 
+int \mbox{\hyperlink{struct_character_sheet_a1bf70a115b92a80436d9086c10598c56}{m\+\_\+\+AC}}
+\begin{DoxyCompactList}\small\item\em Armour Class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_aba5a95df9895a522c8c484608d834a7d}\label{struct_character_sheet_aba5a95df9895a522c8c484608d834a7d}} 
+int \mbox{\hyperlink{struct_character_sheet_aba5a95df9895a522c8c484608d834a7d}{m\+\_\+\+DEX}}
+\begin{DoxyCompactList}\small\item\em Dexterity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_a2a68d854742e0943eceae3a070e09b10}\label{struct_character_sheet_a2a68d854742e0943eceae3a070e09b10}} 
+int \mbox{\hyperlink{struct_character_sheet_a2a68d854742e0943eceae3a070e09b10}{m\+\_\+\+STR}}
+\begin{DoxyCompactList}\small\item\em Strength. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_a783168fdd05e7175f137e32fc2111bfb}\label{struct_character_sheet_a783168fdd05e7175f137e32fc2111bfb}} 
+int \mbox{\hyperlink{struct_character_sheet_a783168fdd05e7175f137e32fc2111bfb}{m\+\_\+\+HP}}
+\begin{DoxyCompactList}\small\item\em Hit Points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_ad2c9148e227d81dce50fde2d2364ad49}\label{struct_character_sheet_ad2c9148e227d81dce50fde2d2364ad49}} 
+int \mbox{\hyperlink{struct_character_sheet_ad2c9148e227d81dce50fde2d2364ad49}{m\+\_\+\+INIT}}
+\begin{DoxyCompactList}\small\item\em Initiative Modifier. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_a0f32b473652f4d9c01d244e52cfc2b6b}\label{struct_character_sheet_a0f32b473652f4d9c01d244e52cfc2b6b}} 
+int \mbox{\hyperlink{struct_character_sheet_a0f32b473652f4d9c01d244e52cfc2b6b}{m\+\_\+\+ACbonus}}
+\begin{DoxyCompactList}\small\item\em Any temporary AC bonuses (or penalties, such as from charging) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_afb74e6118b15b4c805f2c95dcc64cb05}\label{struct_character_sheet_afb74e6118b15b4c805f2c95dcc64cb05}} 
+int \mbox{\hyperlink{struct_character_sheet_afb74e6118b15b4c805f2c95dcc64cb05}{m\+\_\+attack\+Bonus}}
+\begin{DoxyCompactList}\small\item\em Any temporary attack bonuses (such as from charging) or penalties. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_character_sheet_a2cb85e2e1d248d6a500700049c8fe366}\label{struct_character_sheet_a2cb85e2e1d248d6a500700049c8fe366}} 
+Weapon \mbox{\hyperlink{struct_character_sheet_a2cb85e2e1d248d6a500700049c8fe366}{m\+\_\+weapon}}
+\begin{DoxyCompactList}\small\item\em Which weapon is being held. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This struct represents the character sheet 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/Sheet.\+h\end{DoxyCompactItemize}

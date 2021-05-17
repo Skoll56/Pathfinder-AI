@@ -1,0 +1,126 @@
+\hypertarget{struct_entity}{}\doxysection{Entity Struct Reference}
+\label{struct_entity}\index{Entity@{Entity}}
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_entity_a3c12cd675a4603cbef3a494ca878b704}\label{struct_entity_a3c12cd675a4603cbef3a494ca878b704}} 
+{\bfseries Entity} (int \+\_\+x, int \+\_\+y)
+\item 
+\mbox{\Hypertarget{struct_entity_af3c20498ce15d423997cf32eadb64d6a}\label{struct_entity_af3c20498ce15d423997cf32eadb64d6a}} 
+void \mbox{\hyperlink{struct_entity_af3c20498ce15d423997cf32eadb64d6a}{initialise\+Action\+List}} ()
+\begin{DoxyCompactList}\small\item\em Initialises the action list with the appropriate values. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a46255ef8371ca9298af7f2869f5c7a21}\label{struct_entity_a46255ef8371ca9298af7f2869f5c7a21}} 
+void \mbox{\hyperlink{struct_entity_a46255ef8371ca9298af7f2869f5c7a21}{refresh\+Action\+List}} ()
+\begin{DoxyCompactList}\small\item\em Refreshes the action list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_aed9fdf4e4037b15eb2f10cc0e53b1180}\label{struct_entity_aed9fdf4e4037b15eb2f10cc0e53b1180}} 
+void \mbox{\hyperlink{struct_entity_aed9fdf4e4037b15eb2f10cc0e53b1180}{do\+Random\+Action}} ()
+\begin{DoxyCompactList}\small\item\em Makes the character take a totally random action. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a13960aac622e42f16859888ec3ec38d2}\label{struct_entity_a13960aac622e42f16859888ec3ec38d2}} 
+void \mbox{\hyperlink{struct_entity_a13960aac622e42f16859888ec3ec38d2}{do\+Action}} (\mbox{\hyperlink{struct_action}{Action}} \+\_\+a)
+\begin{DoxyCompactList}\small\item\em Makes the character take a specific action. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a395677c093faa9a058947a2c8a7776b8}\label{struct_entity_a395677c093faa9a058947a2c8a7776b8}} 
+void \mbox{\hyperlink{struct_entity_a395677c093faa9a058947a2c8a7776b8}{disable}} (\mbox{\hyperlink{struct_character_sheet_aeb32c232ae0a28c13bc3722b790c141e}{Character\+Sheet\+::\+Action\+Length}} \+\_\+slot)
+\begin{DoxyCompactList}\small\item\em Disables an action slot in the action list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_ac95b77ceeb0595472a286c8f8a260790}\label{struct_entity_ac95b77ceeb0595472a286c8f8a260790}} 
+void \mbox{\hyperlink{struct_entity_ac95b77ceeb0595472a286c8f8a260790}{initialise\+ANN}} ()
+\begin{DoxyCompactList}\small\item\em Sets up the character\textquotesingle{}s ANN. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a00b6eeaf99b35c8f8b10b5fbfc1baf4f}\label{struct_entity_a00b6eeaf99b35c8f8b10b5fbfc1baf4f}} 
+void \mbox{\hyperlink{struct_entity_a00b6eeaf99b35c8f8b10b5fbfc1baf4f}{update}} ()
+\begin{DoxyCompactList}\small\item\em Happens once each turn. Re-\/establishes the inputs and gets the character to decide its turn. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a9291953aa471804b324f1598c0cf8b36}\label{struct_entity_a9291953aa471804b324f1598c0cf8b36}} 
+void \mbox{\hyperlink{struct_entity_a9291953aa471804b324f1598c0cf8b36}{start\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Marks that this character\textquotesingle{}s turn has started. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_ac80a83ca628041f5031251b4e44a4402}\label{struct_entity_ac80a83ca628041f5031251b4e44a4402}} 
+void \mbox{\hyperlink{struct_entity_ac80a83ca628041f5031251b4e44a4402}{end\+Turn}} ()
+\begin{DoxyCompactList}\small\item\em Marks that this character\textquotesingle{}s turn ended. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a52d64531ab8a1538b750af9c64241868}\label{struct_entity_a52d64531ab8a1538b750af9c64241868}} 
+void \mbox{\hyperlink{struct_entity_a52d64531ab8a1538b750af9c64241868}{take\+AOO}} ()
+\begin{DoxyCompactList}\small\item\em Causes the character to make an Attack of Opportunity against its opponent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a27d4560bfd085c1618cd224f017949d3}\label{struct_entity_a27d4560bfd085c1618cd224f017949d3}} 
+std\+::string \mbox{\hyperlink{struct_entity_a27d4560bfd085c1618cd224f017949d3}{read\+Until\+Val}} (std\+::string \&\+\_\+string, int \&\+\_\+i, char \+\_\+delim)
+\begin{DoxyCompactList}\small\item\em Used in converting player console input into recognised commands. Reads an input until it finds a delim value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_af327a9bf6a1fd30d072dc91efdf58d59}\label{struct_entity_af327a9bf6a1fd30d072dc91efdf58d59}} 
+void \mbox{\hyperlink{struct_entity_af327a9bf6a1fd30d072dc91efdf58d59}{melee\+Attack}} (int \+\_\+bonus)
+\begin{DoxyCompactList}\small\item\em Make a melee attack. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_ae9500e6c57a5d7d606d556119d3c7e3c}\label{struct_entity_ae9500e6c57a5d7d606d556119d3c7e3c}} 
+void \mbox{\hyperlink{struct_entity_ae9500e6c57a5d7d606d556119d3c7e3c}{ranged\+Attack}} (int \+\_\+bonus)
+\begin{DoxyCompactList}\small\item\em Make a ranged attack. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a1d77ded782f254c4204cd8d9c17364b1}\label{struct_entity_a1d77ded782f254c4204cd8d9c17364b1}} 
+int \mbox{\hyperlink{struct_entity_a1d77ded782f254c4204cd8d9c17364b1}{roll}} (int \+\_\+dice)
+\begin{DoxyCompactList}\small\item\em Generates a number between 1 and the \+\_\+dice value (simulates dice roll) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_af341e50f455d6e5a9dbfc2dfd7325b4f}\label{struct_entity_af341e50f455d6e5a9dbfc2dfd7325b4f}} 
+bool \mbox{\hyperlink{struct_entity_af341e50f455d6e5a9dbfc2dfd7325b4f}{is\+Adjacent}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the character is adjacent to its enemy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_aa49baf4717cab1520981613ddcf162e6}\label{struct_entity_aa49baf4717cab1520981613ddcf162e6}} 
+bool \mbox{\hyperlink{struct_entity_aa49baf4717cab1520981613ddcf162e6}{hit\+Bounding\+Box}} (float minB\mbox{[}$\,$\mbox{]}, float maxB\mbox{[}$\,$\mbox{]}, float origin\mbox{[}$\,$\mbox{]}, float dir\mbox{[}$\,$\mbox{]}, float coord\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em A Ray-\/\+Box intersect test taken from Andrew Woo, \char`\"{}\+Graphics Gems\char`\"{}, Academic Press, 1990. It is not being submitted as original work to be marked. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_ac2d78b6df828042ef7ff7f9390b61051}\label{struct_entity_ac2d78b6df828042ef7ff7f9390b61051}} 
+bool \mbox{\hyperlink{struct_entity_ac2d78b6df828042ef7ff7f9390b61051}{has\+Straight\+Line}} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if a character has Line of Sight to its opponent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a52d5214ccbbd8cf439e3412f463511d1}\label{struct_entity_a52d5214ccbbd8cf439e3412f463511d1}} 
+void \mbox{\hyperlink{struct_entity_a52d5214ccbbd8cf439e3412f463511d1}{move}} (std\+::string \+\_\+route)
+\begin{DoxyCompactList}\small\item\em Move from one position to another, following a route (represented by an array of directions in string form) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_ae3364b33b89a1392704abebf39716935}\label{struct_entity_ae3364b33b89a1392704abebf39716935}} 
+glm\+::vec2 \mbox{\hyperlink{struct_entity_ae3364b33b89a1392704abebf39716935}{find\+LOS}} ()
+\begin{DoxyCompactList}\small\item\em Tries to find a square within move distance that has LOS to its opponent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a964cb3877abc3edb5eed50e05f5f4118}\label{struct_entity_a964cb3877abc3edb5eed50e05f5f4118}} 
+bool \mbox{\hyperlink{struct_entity_a964cb3877abc3edb5eed50e05f5f4118}{can5ft\+Back}} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if there is a square it can step to which would be outside of melee range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_entity_a76c1d0ba40b319ce2c2ec4fddf1a0e0a}\label{struct_entity_a76c1d0ba40b319ce2c2ec4fddf1a0e0a}} 
+std\+::string \mbox{\hyperlink{struct_entity_a76c1d0ba40b319ce2c2ec4fddf1a0e0a}{m\+\_\+charge\+Path}}
+\begin{DoxyCompactList}\small\item\em Saves the movement path if a valid charge route it sound. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a5caffe00214c3969962a4397c0a9a565}\label{struct_entity_a5caffe00214c3969962a4397c0a9a565}} 
+glm\+::vec2 {\bfseries m\+\_\+\+LOSsquare}
+\item 
+\mbox{\Hypertarget{struct_entity_aaa68db76a4671146acec5a78139f55ac}\label{struct_entity_aaa68db76a4671146acec5a78139f55ac}} 
+glm\+::vec2 {\bfseries m\+\_\+five\+Ft\+Back\+Square}
+\item 
+\mbox{\Hypertarget{struct_entity_a3d8c8030110ec26159ed4a55077c4052}\label{struct_entity_a3d8c8030110ec26159ed4a55077c4052}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_action}{Action}} $>$ \mbox{\hyperlink{struct_entity_a3d8c8030110ec26159ed4a55077c4052}{m\+\_\+action\+List}}
+\begin{DoxyCompactList}\small\item\em An array of Actions. Every frame, the legality of the list is updated and each action taken is tracked. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a7b48c1b3b5ba0c190dfc9fd6ce35a13d}\label{struct_entity_a7b48c1b3b5ba0c190dfc9fd6ce35a13d}} 
+bool \mbox{\hyperlink{struct_entity_a7b48c1b3b5ba0c190dfc9fd6ce35a13d}{m\+\_\+is\+My\+Turn}} = false
+\begin{DoxyCompactList}\small\item\em Tracks if it is this character\textquotesingle{}s turn or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a59a2efea39508938c59b29b77e0afa2f}\label{struct_entity_a59a2efea39508938c59b29b77e0afa2f}} 
+char \mbox{\hyperlink{struct_entity_a59a2efea39508938c59b29b77e0afa2f}{m\+\_\+tag}}
+\begin{DoxyCompactList}\small\item\em This is either \textquotesingle{}A\textquotesingle{} or \textquotesingle{}B\textquotesingle{}. Just makes it possible to tell the characters apart. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a9870dea0bbd0c236568c537955ba21e9}\label{struct_entity_a9870dea0bbd0c236568c537955ba21e9}} 
+int {\bfseries m\+\_\+move\+Actions\+Taken} = 0
+\item 
+\mbox{\Hypertarget{struct_entity_a53076aebb7c28ef6d781e844c17896a0}\label{struct_entity_a53076aebb7c28ef6d781e844c17896a0}} 
+\mbox{\hyperlink{struct_character_sheet}{Character\+Sheet}} \mbox{\hyperlink{struct_entity_a53076aebb7c28ef6d781e844c17896a0}{m\+\_\+\+CS}}
+\begin{DoxyCompactList}\small\item\em The character\textquotesingle{}s stat sheet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_ae69d815ee4fc3c54ca667780b191feae}\label{struct_entity_ae69d815ee4fc3c54ca667780b191feae}} 
+\mbox{\hyperlink{struct_entity}{Entity}} $\ast$ \mbox{\hyperlink{struct_entity_ae69d815ee4fc3c54ca667780b191feae}{m\+\_\+opponent}}
+\begin{DoxyCompactList}\small\item\em A reference to the character\textquotesingle{}s opponent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a6a716bc8e0e0b9c01594cb1b1bb1c082}\label{struct_entity_a6a716bc8e0e0b9c01594cb1b1bb1c082}} 
+\mbox{\hyperlink{struct_inputs}{Inputs}} \mbox{\hyperlink{struct_entity_a6a716bc8e0e0b9c01594cb1b1bb1c082}{m\+\_\+inputs}}
+\begin{DoxyCompactList}\small\item\em The input values that are updated and fed to the ANN when deciding how to take a turn. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a107dc46ceb0d37058950f6f7f359531e}\label{struct_entity_a107dc46ceb0d37058950f6f7f359531e}} 
+\mbox{\hyperlink{struct_neural_network}{Neural\+Network}} $\ast$ \mbox{\hyperlink{struct_entity_a107dc46ceb0d37058950f6f7f359531e}{m\+\_\+\+ANN}}
+\begin{DoxyCompactList}\small\item\em This character\textquotesingle{}s ANN. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_entity_a564c4c2be9ba502ebc5e728a1d41a442}\label{struct_entity_a564c4c2be9ba502ebc5e728a1d41a442}} 
+glm\+::vec2 {\bfseries m\+\_\+pos}
+\item 
+\mbox{\Hypertarget{struct_entity_a18b6e1ecca3af021e8f4a3c848e00465}\label{struct_entity_a18b6e1ecca3af021e8f4a3c848e00465}} 
+\mbox{\hyperlink{struct_colour}{Colour}} {\bfseries m\+\_\+col}
+\item 
+\mbox{\Hypertarget{struct_entity_a4f96a0e10085cd54d486805f0609a68f}\label{struct_entity_a4f96a0e10085cd54d486805f0609a68f}} 
+\mbox{\hyperlink{struct_game}{Game}} $\ast$ {\bfseries m\+\_\+game}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An entity is any icon on the map, including the walls and the characters. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/Entity.\+h\item 
+D\+:/\+Users/\+Skoll/\+One\+Drive -\/ Bournemouth University/\+Work/\+Year 3/\+Final Year Project/\+Pathfinder-\/\+AI/\+Pathfinder ANN/\+Pathfinder\+AI/src/Entity.\+cpp\end{DoxyCompactItemize}

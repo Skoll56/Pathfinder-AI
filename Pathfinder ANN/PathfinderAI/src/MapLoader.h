@@ -1,11 +1,27 @@
 #ifndef _MAPLOADER_H_
 #define _MAPLOADER_H_
 #include <string>
+#include <vector>
 
-class Map;
+class Entity;
 
-Map readFile(std::string _location);
+/** This is the map, represented as an X-Y grid and a list of walls */
+struct BattleMap
+{
+	BattleMap(int _x, int _y)
+	{
+		m_xSize = _x;
+		m_ySize = _y;
+	}
+	BattleMap() {};	
 
-int cutSpace(std::string &_str);
+	int cutString(std::string &_str);
+	BattleMap loadFromFile(std::string _path);
+
+	
+	int m_xSize, m_ySize;
+	std::vector<Entity*> m_walls;
+};
+
 
 #endif
