@@ -344,9 +344,9 @@ void Game::start()
 			inwall = false;
 			x = rand() % 20;
 			y = rand() % 20;
-			for (int i = 0; i < m_map.m_walls.size(); i++)
+			for (int i = 0; i < m_map.m_block.size(); i++)
 			{
-				if (m_map.m_walls[i]->m_pos == glm::vec2(x, y))
+				if (m_map.m_block[i]->m_pos == glm::vec2(x, y))
 				{
 					inwall = true;
 					break;
@@ -376,7 +376,7 @@ void Game::drawScene()
 
 	//Draw the map
 	drawGrid(m_renderer, m_map.m_xSize, m_map.m_ySize);
-	drawWalls(m_renderer, m_map.m_walls);
+	drawWalls(m_renderer, m_map.m_block);
 
 
 

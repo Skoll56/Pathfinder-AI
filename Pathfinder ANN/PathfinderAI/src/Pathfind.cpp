@@ -242,9 +242,9 @@ string findPath(BattleMap &_map, Entity* entity)
 		}
 	}
 	// Fill the map matrix with 1's (empty space)
-	for (int i = 0; i < _map.m_walls.size(); i++)
+	for (int i = 0; i < _map.m_block.size(); i++)
 	{
-		map[_map.m_walls[i]->m_pos.x][_map.m_walls[i]->m_pos.y] = 1;
+		map[_map.m_block[i]->m_pos.x][_map.m_block[i]->m_pos.y] = 1;
 	}	
 
 	int xA, yA, xB, yB;
@@ -299,9 +299,9 @@ string findPath(BattleMap &_map, Entity* entity, int _x, int _y)
 		}
 	}
 	// fillout the map matrix with a '+' pattern
-	for (int i = 0; i < _map.m_walls.size(); i++)
+	for (int i = 0; i < _map.m_block.size(); i++)
 	{
-		map[_map.m_walls[i]->m_pos.x][_map.m_walls[i]->m_pos.y] = 1;
+		map[_map.m_block[i]->m_pos.x][_map.m_block[i]->m_pos.y] = 1;
 	}
 
 	int xA, yA, xB, yB;

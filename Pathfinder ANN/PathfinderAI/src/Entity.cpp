@@ -965,17 +965,17 @@ bool Entity::isAdjacent()
 
 bool Entity::hasStraightLine()
 {	
-	for (int i = 0; i < m_game->m_map.m_walls.size(); i++)
+	for (int i = 0; i < m_game->m_map.m_block.size(); i++)
 	{
-		if (m_game->m_map.m_walls[i]->m_pos == m_pos / m_game->m_boxSize)
+		if (m_game->m_map.m_block[i]->m_pos == m_pos / m_game->m_boxSize)
 		{
 			return false;
 		}
 
-		if (m_game->m_map.m_walls[i]->m_pos.x != 0.0f && m_game->m_map.m_walls[i]->m_pos.x != m_game->m_map.m_xSize - 1 && m_game->m_map.m_walls[i]->m_pos.y != m_game->m_map.m_xSize - 1 && m_game->m_map.m_walls[i]->m_pos.y != 0.0f			)
+		if (m_game->m_map.m_block[i]->m_pos.x != 0.0f && m_game->m_map.m_block[i]->m_pos.x != m_game->m_map.m_xSize - 1 && m_game->m_map.m_block[i]->m_pos.y != m_game->m_map.m_xSize - 1 && m_game->m_map.m_block[i]->m_pos.y != 0.0f			)
 		{
-			float minB[2] = { m_game->m_map.m_walls[i]->m_pos.x, m_game->m_map.m_walls[i]->m_pos.y };
-			float maxB[2] = { m_game->m_map.m_walls[i]->m_pos.x + 1.0f, m_game->m_map.m_walls[i]->m_pos.y + 1.0f };
+			float minB[2] = { m_game->m_map.m_block[i]->m_pos.x, m_game->m_map.m_block[i]->m_pos.y };
+			float maxB[2] = { m_game->m_map.m_block[i]->m_pos.x + 1.0f, m_game->m_map.m_block[i]->m_pos.y + 1.0f };
 			float origin[2] = { (m_pos.x / m_game->m_boxSize) + 0.5f, (m_pos.y / m_game->m_boxSize) + 0.5f };
 			glm::vec2 dir = glm::normalize(m_pos - m_opponent->m_pos);
 			float ray[2] = { -dir.x, -dir.y };
@@ -1145,6 +1145,7 @@ bool Entity::can5ftBack()
 Fast Ray-Box Intersection
 by Andrew Woo
 from "Graphics Gems", Academic Press, 1990
+!!NOT being submitted as my own work, this is a 3rd party function!!
 */
 #define NUMDIM	2
 #define RIGHT	0

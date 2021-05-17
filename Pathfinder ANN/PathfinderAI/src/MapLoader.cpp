@@ -1,64 +1,63 @@
+#include <vector>
+#include <iostream>
+#include <sstream>
+#include <fstream>
 #include "MapLoader.h"
 #include "Entity.h"
-#include <fstream>
-#include <iostream>
-#include <vector>
-#include <sstream>
 
-BattleMap BattleMap::loadFromFile(std::string _location)
+BattleMap BattleMap::loadFromFile(std::string _path)
 {
 	std::vector<char> mapChars;
-	std::vector<std::string> value;
+	std::vector<std::string> mapVals;
 	std::ifstream file;
-	std::vector<int> mapFile;
-	file.open(_location);
+	std::vector<int> mapInt;
+	file.open(_path);
 
 	if (file.is_open())
 	{
 		while (!file.eof())
 		{
 			std::string t;
-			std::getline(file, t, ' '); // Reads the line, saves it as a string. 
-			value.push_back(t);
+			std::getline(file, t, ' '); 
+			mapVals.push_back(t);
 		}
 	}
 	else { throw std::exception(); }
 	file.close();
 
-	for (int i = 0; i < value.size(); i++)
+	for (int i = 0; i < mapVals.size(); i++)
 	{
-		int t = cutString(value[i]);
-		mapFile.push_back(t);	//After this, we have a vector with all the map parts in int form
+		int t = cutString(mapVals[i]);
+		mapInt.push_back(t);	
 	}	
 	
-	BattleMap map(mapFile[0], mapFile[1]);
+	BattleMap map(mapInt[0], mapInt[1]); //Create the map
 
-	int location = 2; // Start at 2 in order to ignore the first two places
-
-	for (int y = 0; y < mapFile[1]; y++) // This is the vertical
+	//Fill the map with walls
+	int i = 2; // (Ignores the X and Y spaces on the map, saved in spaces 0-1 in the array)
+	for (int y = 0; y < mapInt[1]; y++) 
 	{
-		for (int x = 0; x < mapFile[0]; x++) // Horizontal
+		for (int x = 0; x < mapInt[0]; x++) 
 		{
-			switch (mapFile[location])
+			switch (mapInt[i])
 			{
 			case 1:
-				map.m_walls.push_back(new Entity(x, y));
+				map.m_block.push_back(new Entity(x, y)); //Create a new wall object
 				break;			
 
-			default: // Whitespace
+			default:
 				break;
 			}
-			location++;
+			i++;
 		}
 	}
 	return map;
 }
 
-//Cuts out any whitespace and returns just the pure numbers
-int BattleMap::cutString(std::string &_str)
+//Cuts any non-character values from the string, returns the int
+int BattleMap::cutString(std::string _str)
 {
-	std::vector<char> num;
-	std::string temp;
+	std::string num;	
 
 	for (int i = 0; i < _str.size(); i++)
 	{
@@ -95,18 +94,10 @@ int BattleMap::cutString(std::string &_str)
 			num.push_back(_str[i]);
 			break;
 
-		default: // Not a valid character. Doesn't get recorded.
+		default: 
 			break;
 		}
 	}
-	temp = num[0]; // We now have a string holding the first digit (or the only digit)
-
-	if (num.size() == 2) // If a two-digit number
-	{
-		temp += num[1];
-	}
-	std::stringstream s(temp);
-	int val;
-	s >> val;
-	return val;
+	
+	return std::stoi(num);
 }

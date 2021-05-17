@@ -15,12 +15,12 @@ struct BattleMap
 	}
 	BattleMap() {};	
 
-	int cutString(std::string &_str);
+	int cutString(std::string _str);
 	BattleMap loadFromFile(std::string _path);
 
 	
 	int m_xSize, m_ySize;
-	std::vector<Entity*> m_walls;
+	std::vector<Entity*> m_block;
 };
 
 
